@@ -15,6 +15,7 @@ class SaltAdmin(tornado.web.Application):
 
     def __init__(self,handlers,settings):
         tornado.web.Application.__init__(self, handlers, **settings)
+        #后台日志高亮输出
         tornado.options.parse_command_line()
         #每分钟执行一次
         tornado.ioloop.PeriodicCallback(self.test, 1 * 60 * 1000).start()
