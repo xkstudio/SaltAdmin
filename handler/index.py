@@ -8,3 +8,8 @@ import tornado
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("This is SlatAdmin Index Page.")
+
+
+class LoginHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("This is SlatAdmin Login Page.")
