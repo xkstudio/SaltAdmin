@@ -5,7 +5,7 @@ import index
 import host
 
 urls = [
-    (r'/(|index)/?',index.IndexHandler),
+    (r'/',index.IndexHandler),
     (r'/login',index.LoginHandler),
     (r'/host',host.HostHandler)
 ]
