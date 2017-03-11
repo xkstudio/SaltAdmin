@@ -18,8 +18,8 @@ class SaltAdmin(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
         #后台日志高亮输出
         tornado.options.parse_command_line()
-        #每分钟执行一次
-        tornado.ioloop.PeriodicCallback(self.test, 1 * 60 * 1000).start()
+        #每10秒执行一次
+        tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
 
     def test(self):
         now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
@@ -36,12 +36,12 @@ class MainHandler(tornado.web.RequestHandler):
 
 class App():
 
-    def __init__(self,host,port,urls,settings,processes=2):
+    def __init__(self,host,port,urls,settings,processes=1):
         self.host = host
         self.port = port
         self.urls = urls
         self.settings = settings
-        self.processes = processes
+        self.processes = processes # 当processes>1时，PeriodicCallback定时任务会响相应的执行多次
 
     # 多线程模式1
     def run(self):
