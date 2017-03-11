@@ -1,8 +1,11 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 # Powered By KStudio
+import index
+import host
 
-urls = (
-    '/index','handler.index.IndexHandler',
-    '/login','handler.index.LoginHandler'
-)
+urls = [
+    (r'/(|index)/?',index.IndexHandler),
+    (r'/login',index.LoginHandler),
+    (r'/host',host.HostHandler)
+]
