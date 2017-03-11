@@ -38,8 +38,14 @@ class App():
         else:
             self.processes = 1
 
+    #打印版本号到控制台
+    def print_version(self):
+        now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        print '[%s] SaltAdmin %s' % (now,self.__version__)
+
     #多线程模式
     def run(self):
+        self.print_version() # 启动时打印版本号
         http_sockets = tornado.netutil.bind_sockets(self.port, self.host)
         tornado.process.fork_processes(num_processes=self.processes)
         http_server = tornado.httpserver.HTTPServer(request_callback=SaltAdmin(self.urls,self.settings), xheaders=True)
