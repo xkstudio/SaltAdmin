@@ -2,22 +2,12 @@
 # -*- coding:utf8 -*-
 # Powered By XK-Studio
 
-import tornado.ioloop
-import tornado.web
-
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("This is SlatAdmin")
-
-def make_app():
-    return tornado.web.Application([
-        (r"/", MainHandler),
-    ])
-
-def run(port=8888):
-    app = make_app()
-    app.listen(port)
-    tornado.ioloop.IOLoop.current().start()
+from app import SaltAdmin
+from config import settings
+from handler import route
 
 if __name__ == "__main__":
-    run()
+    host = '0.0.0.0'
+    port = 8888
+    app = SaltAdmin.App(host,port,route.urls,settings.settings)
+    app.run()
