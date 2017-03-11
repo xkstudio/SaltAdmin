@@ -41,7 +41,10 @@ class App():
         self.port = port
         self.urls = urls
         self.settings = settings
-        self.processes = processes # 当processes>1时，PeriodicCallback定时任务会响相应的执行多次
+        if platform.system() == "Linux":  #根据操作系统类型来确定是否启用多线程
+            self.processes = processes # 当processes>1时，PeriodicCallback定时任务会响相应的执行多次
+        else:
+            self.processes = 0
 
     # 多线程模式1
     def run(self):
