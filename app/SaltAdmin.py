@@ -8,11 +8,20 @@ import tornado.ioloop
 import tornado.web
 import tornado.netutil
 import tornado.process
+import tornado.options
+import time
 
 class SaltAdmin(tornado.web.Application):
 
     def __init__(self,handlers,settings):
         tornado.web.Application.__init__(self, handlers, **settings)
+        tornado.options.parse_command_line()
+        #每分钟执行一次
+        tornado.ioloop.PeriodicCallback(self.test, 1 * 60 * 1000).start()
+
+    def test(self):
+        now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        print '[%s] Test' % now
 
 
 
