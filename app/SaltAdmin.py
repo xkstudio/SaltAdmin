@@ -27,7 +27,7 @@ class SaltAdmin(tornado.web.Application):
 
 class App():
 
-    def __init__(self,host,port,urls,settings,processes=1):
+    def __init__(self,host,port,urls,settings,processes=4):
         self.host = host
         self.port = port
         self.urls = urls
@@ -35,7 +35,7 @@ class App():
         if platform.system() == "Linux":  #根据操作系统类型来确定是否启用多线程
             self.processes = processes # 当processes>1时，PeriodicCallback定时任务会响相应的执行多次
         else:
-            self.processes = 0
+            self.processes = 1
 
     #多线程模式
     def run(self):
