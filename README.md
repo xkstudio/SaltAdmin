@@ -20,7 +20,7 @@ Designed By [KStudio](http://github.com/xkstudio)
 >加群时请注明来自 **Github**
 
 ## 版本说明 ##
-* SaltAdmin：2.0
+* SaltAdmin：**2.0**
 * OS：RHEL 6.x / CentOS 6.x / Ubuntu 12.04+
 * [SaltStack](https://github.com/saltstack/salt) >= 2014.7.0
 * [Python](http://www.python.org)：2.6.x/2.7.x
