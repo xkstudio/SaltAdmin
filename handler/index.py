@@ -13,4 +13,5 @@ class IndexHandler(BaseHandler):
 
 class LoginHandler(BaseHandler):
     def get(self):
-        self.write("This is SlatAdmin Login Page.")
+        #self.write("This is SlatAdmin Login Page.")
+        self.render('index/login.html', title="Login")
