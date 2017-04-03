@@ -19,7 +19,7 @@ class SaltAdmin(tornado.web.Application):
         #后台日志高亮输出
         tornado.options.parse_command_line()
         #每10秒执行一次
-        tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
+        #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
 
     def test(self):
         now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
