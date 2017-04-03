@@ -10,7 +10,6 @@ import tornado.netutil
 import tornado.process
 import tornado.options
 import platform
-import time
 from Log import Log
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -36,9 +35,8 @@ class App(tornado.web.Application):
             (self._db['user'], self._db['pass'], self._db['host'], self._db['port'], self._db['db'], self._db['charset'])
         return conn
 
-    def test(self):
-        now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        print '[%s] Test' % now
+    #def test(self):
+    #    print "Test"
 
 class SaltAdmin():
 
