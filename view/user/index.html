@@ -26,28 +26,25 @@
             <table class="table table-bordered table-striped cf table-hover table-center">
                 <thead class="cf">
                 <tr>
-                    <th>#</th>
-                    <th>Col 1</th>
-                    <th>Col 2</th>
-                    <th>Col 3</th>
-                    <th>Action</th>
+                    <th>UID</th>
+                    <th>用户名</th>
+                    <th>昵称</th>
+                    <th>电子邮箱</th>
+                    <th>手机号</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
+                {% for u in data %}
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>{{ u.id }}</td>
+                    <td>{{ u.username }}</td>
+                    <td>{{ u.nickname }}</td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.phone }}</td>
+                    <td>编辑</td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
+                {% end %}
                 </tbody>
             </table>
         </div>
