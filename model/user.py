@@ -16,6 +16,8 @@ class User(Base):
     email = Column(VARCHAR(32))
     phone = Column(VARCHAR(32))
     nickname = Column(VARCHAR(32))
+    gender = Column(INTEGER) # 性别
+    dept = Column(VARCHAR(32)) # 部门
     role = Column(VARCHAR(32))
     create_time = Column(INTEGER)
     update_time = Column(INTEGER)
