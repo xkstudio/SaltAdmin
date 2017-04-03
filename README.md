@@ -24,6 +24,7 @@ Designed By [KStudio](http://github.com/xkstudio)
 * OS：RHEL 6.x / CentOS 6.x / Ubuntu 12.04+
 * [SaltStack](https://github.com/saltstack/salt) >= 2014.7.0
 * [Python](http://www.python.org)：2.6.x/2.7.x
+* [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.8
 * [Tornado](http://www.tornadoweb.org/)：4.0+
 * [Jinja2](http://jinja.pocoo.org/)：2.7+
 * [MySQL](http://www.percona.com/)：Percona-Server 5.5/5.6
