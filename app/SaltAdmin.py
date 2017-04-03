@@ -16,7 +16,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 
-class SaltAdmin(tornado.web.Application):
+class App(tornado.web.Application):
 
     def __init__(self,handlers,settings,db_conf):
         tornado.web.Application.__init__(self, handlers, **settings)
@@ -35,7 +35,7 @@ class SaltAdmin(tornado.web.Application):
         now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         print '[%s] Test' % now
 
-class App():
+class SaltAdmin():
 
     def __init__(self,host,port,urls,settings,db_conf,processes=4):
         _log = Log()
@@ -57,6 +57,6 @@ class App():
         self.log('Listen Port: %s' % self.port)
         http_sockets = tornado.netutil.bind_sockets(self.port, self.host)
         tornado.process.fork_processes(num_processes=self.processes)
-        http_server = tornado.httpserver.HTTPServer(request_callback=SaltAdmin(self.urls,self.settings,self.db_conf), xheaders=True)
+        http_server = tornado.httpserver.HTTPServer(request_callback=App(self.urls,self.settings,self.db_conf), xheaders=True)
         http_server.add_sockets(http_sockets)
         tornado.ioloop.IOLoop.instance().start()
