@@ -3,14 +3,14 @@
 # Powered By KStudio
 # 控制中心
 
-import tornado
+from BaseHandler import BaseHandler
 
-class IndexHandler(tornado.web.RequestHandler):
+class IndexHandler(BaseHandler):
     def get(self):
         #self.write("This is SlatAdmin Index Page.")
         self.render('index/index.html',title="Hello")
 
 
-class LoginHandler(tornado.web.RequestHandler):
+class LoginHandler(BaseHandler):
     def get(self):
         self.write("This is SlatAdmin Login Page.")

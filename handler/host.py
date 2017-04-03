@@ -3,8 +3,8 @@
 # Powered By KStudio
 # 主机管理
 
-import tornado
+from BaseHandler import BaseHandler
 
-class HostHandler(tornado.web.RequestHandler):
+class HostHandler(BaseHandler):
     def get(self):
         self.write("This is SlatAdmin Host Page.")
