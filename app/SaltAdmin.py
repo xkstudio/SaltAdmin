@@ -25,11 +25,16 @@ class App(tornado.web.Application):
         #每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
         #封装数据库
-        engine = create_engine('mysql+mysqldb://%s:%s@%s:%s/%s?charset=%s' %
-            (db_conf['user'], db_conf['pass'], db_conf['host'], db_conf['port'], db_conf['db'], db_conf['charset']),
+        self._db = db_conf
+        db_engine = create_engine(self.__gen_db_conn(),
             encoding='utf-8', echo=False,
             pool_size=100, pool_recycle=10)
-        self.db = scoped_session(sessionmaker(bind=engine))
+        self.db = scoped_session(sessionmaker(bind=db_engine))
+
+    def __gen_db_conn(self):
+        conn = 'mysql+mysqldb://%s:%s@%s:%s/%s?charset=%s' % \
+            (self._db['user'], self._db['pass'], self._db['host'], self._db['port'], self._db['db'], self._db['charset'])
+        return conn
 
     def test(self):
         now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
