@@ -7,7 +7,8 @@ import tornado
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("This is SlatAdmin Index Page.")
+        #self.write("This is SlatAdmin Index Page.")
+        self.render('index/index.html',title="Hello")
 
 
 class LoginHandler(tornado.web.RequestHandler):
