@@ -12,3 +12,12 @@ settings = dict(
     debug = True,
     autoreload = True
 )
+
+db = {
+    'host': '127.0.0.1',
+    'port': 3306,
+    'db': 'saltadmin2',
+    'user': 'test',
+    'pass': 'test',
+    'charset': 'utf8'
+}
