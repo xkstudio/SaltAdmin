@@ -22,7 +22,7 @@ Designed By [KStudio](http://github.com/xkstudio)
 ## 版本说明 ##
 * SaltAdmin：**2.0.0**
 * OS：RHEL 6.x / CentOS 6.x / Ubuntu 12.04+
-* [SaltStack](https://github.com/saltstack/salt) >= 2014.7.0
+* [SaltStack](https://github.com/saltstack/salt)：>= 2014.7.0
 * [Python](http://www.python.org)：2.6.x/2.7.x
 * [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.8
 * [Tornado](http://www.tornadoweb.org/)：4.0+
