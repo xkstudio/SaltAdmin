@@ -13,4 +13,5 @@ urls = [
     (r'/user',user.UserHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/blank.html',page.BlankHandler),
+    (r'.*',page.Page404Handler), # 默认路由定位到404
 ]
