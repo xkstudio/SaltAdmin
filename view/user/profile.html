@@ -1,0 +1,27 @@
+{% extends "../layout/main.html" %}
+{% block content %}
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <span>我的资料</span>
+            </li>
+            <!--<li>
+                <a href="#">Blank Page</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Page Layouts</span>
+            </li>-->
+        </ul>
+        <div class="page-toolbar pull-right" style="margin-top:5px;">{{ handler.time_str }}</div>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
+</div>
+{% end %}
