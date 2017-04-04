@@ -5,6 +5,7 @@
 
 from BaseHandler import BaseHandler
 from tornado.web import authenticated as Auth
+from model.models import User
 
 class IndexHandler(BaseHandler):
     @Auth
@@ -21,3 +22,18 @@ class LoginHandler(BaseHandler):
     def get(self):
         #self.write("This is SlatAdmin Login Page.")
         self.render('index/login.html', title="Login")
+
+    def post(self):
+        username = self.get_argument("username",None)
+        password = self.get_argument("password",None)
+        if not username or not password:
+            self.jsonReturn({'code':-1,'msg':'参数错误'})
+            return False
+        user = self.db.query(User).filter_by(username=username).one()
+        if not user:
+            self.jsonReturn({'code': -2, 'msg': '用户名错误'})
+            return False
+        if password != user.password:
+            self.jsonReturn({'code': -3, 'msg': '密码错误'})
+            return False
+        self.jsonReturn({'code': 0, 'msg': 'Success'})
