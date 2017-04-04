@@ -25,7 +25,7 @@ settings = dict(
     static_url_prefix = '/static/',
     xsrf_cookies = False,
     cookie_secret = "db884468559f4c432bf1c1775f3dc9da",
-    login_url = "/login",
+    login_url = "/user/login",
     debug = True,
     autoreload = True
 )

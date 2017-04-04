@@ -8,8 +8,8 @@ import page
 
 urls = [
     (r'/',index.IndexHandler),
-    (r'/login',index.LoginHandler),
     (r'/host',host.HostHandler),
+    (r'/user/login',user.LoginHandler),
     (r'/user',user.UserHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/blank.html',page.BlankHandler),
