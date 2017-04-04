@@ -30,7 +30,7 @@
                     <td>{{ d.hostname }}</td>
                     <td>{{ d.ip }}</td>
                     <td>{{ groups.get(d.host_group,'') }}</td>
-                    <td>{{ d.status }}</td>
+                    <td>{{ status.get(d.status,'') }}</td>
                     <td><a href="javascript:void(0)">编辑</a> | <a href="javascript:void(0)">任务</a></td>
                 </tr>
                 {% end %}

@@ -15,7 +15,8 @@ class IndexHandler(BaseHandler):
         groups = {}
         for i in grps:
             groups[i.id] = i.group_name
-        self.render('host/index.html',data=data,groups=groups)
+        status = {1:"正常",2:"未知"}
+        self.render('host/index.html',data=data,groups=groups,status=status)
 
 
 class GroupHandler(BaseHandler):
