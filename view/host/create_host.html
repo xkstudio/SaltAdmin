@@ -1,0 +1,110 @@
+{% extends "../layout/main.html" %}
+{% block content %}
+<div class="page-content">
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <span>新增主机</span>
+            </li>
+        </ul>
+        <div class="page-toolbar pull-right" style="margin-top:5px;"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="hostname" class="col-sm-1 control-label">主机名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="hostname" placeholder="主机名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ip" class="col-sm-1 control-label">IP地址</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="ip" placeholder="主机IP地址">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="group" class="col-sm-1 control-label">主机分组</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="group">
+                            <option value="0">请选择分组</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="vendor" class="col-sm-1 control-label">厂商</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="vendor" placeholder="厂商">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="model" class="col-sm-1 control-label">型号</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="model" placeholder="型号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-sm-1 control-label">主机描述</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="desc" placeholder="主机描述">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label"></label>
+                    <div class="col-sm-5 text-right">
+                        <a class="btn btn-primary" id="save_btn"><i class="fa fa-check"></i> 保存</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% end %}
+{% block footer %}
+<script>
+$(function(){
+    var _save_profile = function(){
+        var data = {
+            'nickname': $('#nickname').val().trim(),
+            'gender': $('#gender').val(),
+            'email': $('#email').val().trim(),
+            'phone': $('#phone').val().trim(),
+            'dept': $('#dept').val().trim()
+        };
+        if (data['nickname']==""){
+            $.xk.toast('姓名不能为空！');
+            $('#nickname').focus();
+            return false;
+        }
+        if (data['gender']=="0"){
+            $.xk.toast('请选择您的性别！');
+            $('#gender').focus();
+            return false;
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/user/profile',
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('保存成功！');
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+    //$("#save_btn").click(_save_profile);
+});
+</script>
+{% end %}
