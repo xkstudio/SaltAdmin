@@ -84,7 +84,7 @@
 <script src="{{ static_url('js/jquery.min.js') }}" type="text/javascript"></script>
 <script>
 $(function(){
-    var login = function(){
+    var _login = function(){
         var username = $('#username').val().trim();
         var password = $('#password').val().trim();
         if (username==""){
@@ -118,7 +118,14 @@ $(function(){
             }
         });
     };
-    $("#login").click(login);
+    $("#login").click(_login);
+    //监听回车事件
+    $("html").keydown(function(e){
+        var Key = e.which;
+        if(Key == 13){
+            _login();
+        }
+    });
 });
 </script>
 </body>
