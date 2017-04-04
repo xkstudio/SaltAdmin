@@ -12,7 +12,8 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 重载on_finish
     def on_finish(self):
-        pass
+        # 请求逻辑处理结束时关闭数据库连接，如果不关闭可能会造成MySQL Server has gone away 2006错误
+        self.db.close()
 
     # 数据库
     @property
