@@ -3,12 +3,15 @@
 # Powered By KStudio
 
 import tornado
+import time
 
 class BaseHandler(tornado.web.RequestHandler):
 
     # 初始化函数
     def initialize(self):
-        pass
+        # 当前请求时间
+        self.time = int(time.time())
+        self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
 
     # 重载on_finish
     def on_finish(self):
