@@ -27,6 +27,7 @@ settings = dict(
     cookie_secret = "db884468559f4c432bf1c1775f3dc9da",
     ksid_name = '_ksid',
     session_key = "_k_session_",
+    session_expires = 7200,
     login_url = "/user/login",
     debug = True,
     autoreload = True
