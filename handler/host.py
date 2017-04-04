@@ -21,4 +21,5 @@ class GroupHandler(BaseHandler):
 
 class CreateHostHandler(BaseHandler):
     def get(self):
-        self.render('host/create_host.html')
+        groups = self.db.query(HostGroup).all()
+        self.render('host/create_host.html',groups=groups)
