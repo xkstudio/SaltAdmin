@@ -21,4 +21,4 @@ class IndexHandler(BaseHandler):
     @Auth
     def get(self):
         data = self.get_system_info()
-        self.render('index/index.html',title="Hello",data=data)
+        self.render('index/index.html',data=data)
