@@ -100,12 +100,12 @@ $(function(){
             'dept': $('#dept').val().trim()
         };
         if (data['nickname']==""){
-            alert('姓名不能为空！');
+            $.xk.toast('姓名不能为空！');
             $('#nickname').focus();
             return false;
         }
         if (data['gender']=="0"){
-            alert('请选择您的性别！');
+            $.xk.toast('请选择您的性别！');
             $('#gender').focus();
             return false;
         }
@@ -118,15 +118,15 @@ $(function(){
                 var code = response['code'];
                 if (code<0){
                     var msg = response['msg'];
-                    alert(msg);
+                    $.xk.toast(msg);
                 } else if (code==0){
-                    alert('保存成功！');
+                    $.xk.toast('保存成功！');
                 } else {
-                    alert('未知错误');
+                    $.xk.alert('服务器错误！');
                 }
             },
             error: function(){
-                alert('系统繁忙，请稍后再试。');
+                $.xk.alert('系统繁忙，请稍后再试！');
             }
         });
     };
