@@ -27,13 +27,27 @@ class User(Base):
     update_time = Column(Integer,nullable=True)
     status = Column(SmallInteger,nullable=True)
 
+
 class Host(Base):
     __tablename__ = 'hosts'
 
     id = Column(Integer,primary_key=True,autoincrement=True)
+    hostname = Column(VARCHAR(64), nullable=False, unique=True)
+    ip = Column(VARCHAR(64), nullable=False)
+    os = Column(VARCHAR(64), nullable=True)
+    vendor = Column(VARCHAR(64), nullable=True)
+    model = Column(VARCHAR(64), nullable=True)
+    cpu = Column(VARCHAR(64), nullable=True)
+    hdd = Column(VARCHAR(64), nullable=True)
+    mem = Column(VARCHAR(64), nullable=True)
+    snum = Column(VARCHAR(64), nullable=True)
+    tag = Column(VARCHAR(64), nullable=True)
+    host_desc = Column(VARCHAR(64), nullable=True)
+    host_group = Column(Integer, nullable=True)
     create_time = Column(Integer, nullable=True)
     update_time = Column(Integer, nullable=True)
     status = Column(SmallInteger, nullable=True)
+
 
 class HostGroup(Base):
     __tablename__ = 'hosts_groups'
