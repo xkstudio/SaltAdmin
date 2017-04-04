@@ -39,9 +39,10 @@ class App(tornado.web.Application):
 class SaltAdmin():
 
     def __init__(self,host,port,urls,settings,db_conf,processes=4):
+        self.__version__ = '2.0.0'
         _log = Log()
         self.log = _log.info
-        self.__version__ = '2.0.0'
+        #self.log('SaltAdmin Initializing ...')
         self.host = host
         self.port = port
         self.urls = urls
