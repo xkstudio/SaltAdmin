@@ -10,6 +10,7 @@ urls = [
     (r'/',index.IndexHandler),
     (r'/host',host.IndexHandler),
     (r'/host/group',host.GroupHandler),
+    (r'/host/create',host.CreateHostHandler),
     (r'/user/login',user.LoginHandler),
     (r'/user/logout',user.LogoutHandler),
     (r'/user/profile',user.ProfileHandler),
