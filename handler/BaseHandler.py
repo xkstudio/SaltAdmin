@@ -6,7 +6,7 @@ import tornado
 import os
 import time
 import json
-from hashlib import sha1
+import hashlib
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -91,7 +91,14 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 生成SessionID
     def gen_ksid(self):
-        return sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
+        return hashlib.sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
+
+
+    # MD5计算
+    def md5(self,text):
+        s = hashlib.md5()
+        s.update(text)
+        return s.hexdigest()
 
 
     # Session检查
