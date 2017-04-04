@@ -73,11 +73,57 @@
                 <div class="form-group">
                     <label class="col-sm-1 control-label"></label>
                     <div class="col-sm-5 text-right">
-                        <a class="btn btn-primary" onclick=""><i class="fa fa-check"></i> 保存</a>
+                        <a class="btn btn-primary" id="save_btn"><i class="fa fa-check"></i> 保存</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+{% end %}
+{% block footer %}
+<script>
+$(function(){
+    var _save_profile = function(){
+        var data = {
+            'nickname': $('#nickname').val().trim(),
+            'gender': $('#gender').val(),
+            'email': $('#email').val().trim(),
+            'phone': $('#phone').val().trim(),
+            'dept': $('#dept').val().trim()
+        };
+        if (data['nickname']==""){
+            alert('姓名不能为空！');
+            $('#nickname').focus();
+            return false;
+        }
+        if (data['gender']=="0"){
+            alert('请选择您的性别！');
+            $('#gender').focus();
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/user/profile',
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    alert(msg);
+                } else if (code==0){
+                    alert('保存成功！');
+                } else {
+                    alert('未知错误');
+                }
+            },
+            error: function(){
+                alert('系统繁忙，请稍后再试。');
+            }
+        });
+    };
+    $("#save_btn").click(_save_profile);
+});
+</script>
 {% end %}

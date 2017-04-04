@@ -99,10 +99,8 @@ class ProfileHandler(BaseHandler):
         if data['gender'] not in ['1','2']:
             return self.jsonReturn({'code': -1, 'msg': '参数错误'})
         user = self.current_user
-        q_ret = self.db.query(User).filter_by(id=user['uid']).update(data)
-        c_ret = self.db.commit()
-        print "Query Update Return: %s - %s" % (type(q_ret),q_ret)
-        print "Commit Return: %s - %s" % (type(c_ret),c_ret)
+        self.db.query(User).filter_by(id=user['uid']).update(data) # <type 'long'> - 1
+        self.db.commit() # <type 'NoneType'> - None
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
