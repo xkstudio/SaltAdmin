@@ -54,6 +54,10 @@ class BaseHandler(tornado.web.RequestHandler):
         self.set_header('Content-Type', 'application/json')
         self.write(data)
 
+    # 格式化时间戳
+    def format_time(self,timstamp=None):
+        return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timstamp))
+
     def get_current_user(self):
         ksid_name = self.settings.get('ksid_name')
         ksid = self.get_secure_cookie(ksid_name)

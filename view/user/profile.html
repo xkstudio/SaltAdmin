@@ -9,6 +9,7 @@
         </ul>
         <div class="page-toolbar pull-right" style="margin-top:5px;">{{ handler.time_str }}</div>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-12">
             <form class="form-horizontal">
@@ -55,13 +56,13 @@
                 <div class="form-group">
                     <label for="reg_time" class="col-sm-1 control-label">注册时间</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="reg_time" placeholder="注册时间" value="{{ profile.create_time }}" disabled>
+                        <input type="text" class="form-control" id="reg_time" placeholder="注册时间" value="{{ handler.format_time(profile.create_time) }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="login_time" class="col-sm-1 control-label">登录时间</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="login_time" placeholder="登录时间" value="{{ profile.login_time }}" disabled>
+                        <input type="text" class="form-control" id="login_time" placeholder="登录时间" value="{{ handler.format_time(profile.login_time) }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
