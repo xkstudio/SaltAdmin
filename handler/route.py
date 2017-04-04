@@ -11,6 +11,8 @@ urls = [
     (r'/host',host.HostHandler),
     (r'/user/login',user.LoginHandler),
     (r'/user/logout',user.LogoutHandler),
+    (r'/user/profile',user.ProfileHandler),
+    (r'/user/passwd',user.PasswdHandler),
     (r'/user',user.UserHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/blank.html',page.BlankHandler),
