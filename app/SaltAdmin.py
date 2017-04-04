@@ -45,7 +45,7 @@ class App(tornado.web.Application):
 
 class SaltAdmin():
 
-    def __init__(self,host,port,urls,settings,db_conf,processes=4):
+    def __init__(self,host,port,urls,settings,config,processes=4):
         self.__version__ = '2.0.0'
         _log = Log()
         self.log = _log.info
@@ -54,7 +54,7 @@ class SaltAdmin():
         self.port = port
         self.urls = urls
         self.settings = settings
-        self.db_conf = db_conf
+        self.config = config
         if platform.system() == "Linux":  #根据操作系统类型来确定是否启用多线程
             self.processes = processes # 当processes>1时，PeriodicCallback定时任务会响相应的执行多次
         else:
@@ -66,6 +66,6 @@ class SaltAdmin():
         self.log('Listen Port: %s' % self.port)
         http_sockets = tornado.netutil.bind_sockets(self.port, self.host)
         tornado.process.fork_processes(num_processes=self.processes)
-        http_server = tornado.httpserver.HTTPServer(request_callback=App(self.urls,self.settings,self.db_conf), xheaders=True)
+        http_server = tornado.httpserver.HTTPServer(request_callback=App(self.urls,self.settings,self.config), xheaders=True)
         http_server.add_sockets(http_sockets)
         tornado.ioloop.IOLoop.instance().start()
