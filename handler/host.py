@@ -11,7 +11,11 @@ from model.models import HostGroup
 class IndexHandler(BaseHandler):
     def get(self):
         data = self.db.query(Host).all()
-        self.render('host/index.html',data=data)
+        grps = self.db.query(HostGroup).all()
+        groups = {}
+        for i in grps:
+            groups[i.id] = i.group_name
+        self.render('host/index.html',data=data,groups=groups)
 
 
 class GroupHandler(BaseHandler):
