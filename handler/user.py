@@ -29,4 +29,4 @@ class LoginHandler(BaseHandler):
             return self.jsonReturn({'code': -2, 'msg': '用户名错误'})
         if password != user.password:
             return self.jsonReturn({'code': -3, 'msg': '密码错误'})
-        self.jsonReturn({'code': 0, 'msg': 'Success'})
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
