@@ -34,6 +34,19 @@ class LoginHandler(BaseHandler):
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
     def create_session(self,user,remember):
+        #记录登录信息
+        headers = self.request.headers
+        login_ip = self.request.remote_ip
+        login_ua = headers.get('User-Agent')
+        login_data = {
+            "login_time": self.time,
+            "login_ua": login_ua,
+            "login_ip": login_ip
+            #"login_location": user.login_location
+        }
+        self.db.query(User).filter_by(id=user.id).update(login_data)
+        self.db.commit()
+        #写Session
         session = {
             "uid": user.id,
             "username": user.username,
