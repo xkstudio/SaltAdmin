@@ -4,11 +4,13 @@
 # 主机管理
 
 from BaseHandler import BaseHandler
+from tornado.web import authenticated as Auth
 from model.models import Host
 from model.models import HostGroup
 
 
 class IndexHandler(BaseHandler):
+    @Auth
     def get(self):
         data = self.db.query(Host).all()
         grps = self.db.query(HostGroup).all()
@@ -20,11 +22,13 @@ class IndexHandler(BaseHandler):
 
 
 class GroupHandler(BaseHandler):
+    @Auth
     def get(self):
         data = self.db.query(HostGroup).all()
         self.render('host/group.html',data=data)
 
 class CreateHostHandler(BaseHandler):
+    @Auth
     def get(self):
         groups = self.db.query(HostGroup).all()
         self.render('host/create_host.html',groups=groups)
