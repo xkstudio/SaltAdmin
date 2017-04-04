@@ -13,11 +13,12 @@ class IndexHandler(BaseHandler):
     def get_system_info(self):
         tornado_verion = tornado.version
         data = {
-            'tornaod': tornado_verion
+            'tornado': tornado_verion,
+            'saltadmin': '2.0.0'
         }
         return data
 
     @Auth
     def get(self):
-        info = self.get_system_info()
-        self.render('index/index.html',title="Hello",info=info)
+        data = self.get_system_info()
+        self.render('index/index.html',title="Hello",data=data)
