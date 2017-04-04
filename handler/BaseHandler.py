@@ -58,4 +58,4 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 生成SessionID
     def gen_ksid(self):
-        return lambda: sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
+        return sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
