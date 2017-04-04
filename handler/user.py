@@ -9,4 +9,5 @@ from model.user import User
 class UserHandler(BaseHandler):
     def get(self):
         data = self.db.query(User).all()
-        self.render('user/index.html', title="用户管理",data=data)
+        gender = {1:'男', 2:'女'}
+        self.render('user/index.html', title="用户管理",data=data,gender=gender)
