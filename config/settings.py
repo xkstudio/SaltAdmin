@@ -2,6 +2,24 @@
 # -*- coding:utf-8 -*-
 # Powered By KStudio
 
+db = {
+    'host': '127.0.0.1',
+    'port': 3306,
+    'db': 'saltadmin2',
+    'user': 'test',
+    'pass': 'test',
+    'charset': 'utf8'
+}
+
+
+redis = {
+    'host': '127.0.0.1',
+    'port': 6503,
+    'auth': '',
+    'db': '0'
+}
+
+
 settings = dict(
     template_path = 'view',
     static_path = 'static',
@@ -12,12 +30,3 @@ settings = dict(
     debug = True,
     autoreload = True
 )
-
-db = {
-    'host': '127.0.0.1',
-    'port': 3306,
-    'db': 'saltadmin2',
-    'user': 'test',
-    'pass': 'test',
-    'charset': 'utf8'
-}
