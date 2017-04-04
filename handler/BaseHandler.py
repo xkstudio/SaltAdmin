@@ -14,15 +14,8 @@ class BaseHandler(tornado.web.RequestHandler):
         # 当前请求时间
         self.time = int(time.time())
         self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
-        # SessionID
-        ksid_name = self.settings.get('ksid_name')
-        expires = self.settings.get('session_expires')
-        ksid = self.get_secure_cookie(ksid_name)
-        if not ksid:
-            ksid = self.gen_ksid()
-            self.set_secure_cookie(ksid_name, ksid,expires=None)
-        self.ksid = ksid
-
+        # Session
+        self.gen_session()
 
     # 重载on_finish
     def on_finish(self):
@@ -68,3 +61,15 @@ class BaseHandler(tornado.web.RequestHandler):
     # 生成SessionID
     def gen_ksid(self):
         return sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
+
+
+    # Session控制
+    def gen_session(self):
+        ksid_name = self.settings.get('ksid_name')
+        expires = self.settings.get('session_expires')
+        session_key = self.settings.get('session_key')
+        ksid = self.get_secure_cookie(ksid_name)
+        if not ksid:
+            ksid = self.gen_ksid()
+            self.set_secure_cookie(ksid_name, ksid, expires=None)
+        self.ksid = ksid
