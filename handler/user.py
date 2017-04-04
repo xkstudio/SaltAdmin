@@ -58,3 +58,9 @@ class LoginHandler(BaseHandler):
             "login_location": user.login_location
         }
         self.set_session(session)
+
+# 注销登录
+class LogoutHandler(BaseHandler):
+    def get(self):
+        #self.write("This is SlatAdmin Login Page.")
+        self.render('user/login.html', title="Login")
