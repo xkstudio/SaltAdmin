@@ -44,6 +44,11 @@ class BaseHandler(tornado.web.RequestHandler):
     def redis(self):
         return self.application.redis
 
+    # 返回Json
+    def jsonReturn(self,data):
+        self.set_header('Content-Type', 'application/json')
+        self.write(data)
+
     def get_current_user(self):
         uid = self.get_secure_cookie("k_auth_token")
         if not uid: return None
