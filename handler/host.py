@@ -4,10 +4,13 @@
 # 主机管理
 
 from BaseHandler import BaseHandler
+from model.models import Host
+
 
 class IndexHandler(BaseHandler):
     def get(self):
-        self.render('host/index.html')
+        data = self.db.query(Host).all()
+        self.render('host/index.html',data=data)
 
 
 class GroupHandler(BaseHandler):
