@@ -31,3 +31,15 @@ class Host(Base):
     __tablename__ = 'hosts'
 
     id = Column(Integer,primary_key=True,autoincrement=True)
+    create_time = Column(Integer, nullable=True)
+    update_time = Column(Integer, nullable=True)
+    status = Column(SmallInteger, nullable=True)
+
+class HostGroup(Base):
+    __tablename__ = 'hosts_groups'
+
+    id = Column(Integer,primary_key=True,autoincrement=True)
+    group_name = Column(VARCHAR(64), nullable=False,unique=True)
+    hosts_count = Column(Integer,nullable=False,default=0)
+    create_time = Column(Integer,nullable=True)
+    update_time = Column(Integer,nullable=True)
