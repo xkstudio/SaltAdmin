@@ -109,7 +109,7 @@ $(function(){
             $('#gender').focus();
             return false;
         }
-        $.ajax({
+        $.xk.http({
             type: 'POST',
             url: '/user/profile',
             data: data,

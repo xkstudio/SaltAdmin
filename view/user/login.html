@@ -97,7 +97,7 @@ $(function(){
             $('#password').focus();
             return false;
         }
-        $.ajax({
+        $.xk.http({
             type: 'POST',
             url: '/user/login',
             data: {'username':username,'password':password},
