@@ -83,6 +83,28 @@ class ProfileHandler(BaseHandler):
         profile = self.db.query(User).filter_by(id=uid).first()
         self.render('user/profile.html',profile=profile)
 
+    @Auth
+    def post(self):
+        data = {
+            "nickname": self.get_argument("nickname", None),
+            "gender": self.get_argument("gender", None),
+            "email": self.get_argument("email", None),
+            "phone": self.get_argument("phone", None),
+            "dept": self.get_argument("dept", None),
+            "update_time": self.time
+        }
+        # 数据校验
+        if not data['nickname']:
+            return self.jsonReturn({'code': -1, 'msg': '姓名不能空'})
+        if data['gender'] not in ['1','2']:
+            return self.jsonReturn({'code': -1, 'msg': '参数错误'})
+        user = self.current_user
+        q_ret = self.db.query(User).filter_by(id=user['uid']).update(data)
+        c_ret = self.db.commit()
+        print "Query Update Return: %s - %s" % (type(q_ret),q_ret)
+        print "Commit Return: %s - %s" % (type(c_ret),c_ret)
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
 
 # 修改密码
 class PasswdHandler(BaseHandler):
