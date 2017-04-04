@@ -43,3 +43,8 @@ class BaseHandler(tornado.web.RequestHandler):
     @property
     def redis(self):
         return self.application.redis
+
+    def get_current_user(self):
+        uid = self.get_secure_cookie("k_auth_token")
+        if not uid: return None
+        return uid
