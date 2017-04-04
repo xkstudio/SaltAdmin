@@ -3,7 +3,9 @@
 # Powered By KStudio
 
 import tornado
+import os
 import time
+from hashlib import sha1
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -53,3 +55,7 @@ class BaseHandler(tornado.web.RequestHandler):
         uid = self.get_secure_cookie("k_auth_token")
         if not uid: return None
         return uid
+
+    # 生成SessionID
+    def gen_ksid(self):
+        return lambda: sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
