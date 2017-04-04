@@ -12,4 +12,5 @@ urls = [
     (r'/host',host.HostHandler),
     (r'/user',user.UserHandler),
     (r'/page/404.html',page.Page404Handler),
+    (r'/page/blank.html',page.BlankHandler),
 ]
