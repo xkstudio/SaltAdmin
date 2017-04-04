@@ -72,9 +72,11 @@ class BaseHandler(tornado.web.RequestHandler):
         session = json.loads(session) # 字符串转字典
         return session
 
-    def set_session(self,ksid,name,value):
+    def set_session(self,session):
         session_key = self.settings.get('session_key')
         expires = self.settings.get('session_expires')
+        key = session_key + self.ksid
+        self.redis.set(key,json.dumps(session),expires)
 
 
     # 生成SessionID

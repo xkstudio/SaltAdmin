@@ -56,3 +56,4 @@ class LoginHandler(BaseHandler):
             "login_ip": user.login_ip,
             "login_location": user.login_location
         }
+        self.set_session(session)
