@@ -7,8 +7,9 @@ from BaseHandler import BaseHandler
 
 class IndexHandler(BaseHandler):
     def get(self):
+        foo = self.redis.get('test')
         #self.write("This is SlatAdmin Index Page.")
-        self.render('index/index.html',title="Hello")
+        self.render('index/index.html',title="Hello",foo=foo)
 
 
 class LoginHandler(BaseHandler):
