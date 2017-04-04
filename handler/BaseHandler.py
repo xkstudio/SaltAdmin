@@ -5,6 +5,7 @@
 import tornado
 import os
 import time
+import json
 from hashlib import sha1
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -54,9 +55,21 @@ class BaseHandler(tornado.web.RequestHandler):
         self.write(data)
 
     def get_current_user(self):
-        uid = self.get_secure_cookie("k_auth_token")
-        if not uid: return None
-        return uid
+        ksid_name = self.settings.get('ksid_name')
+        ksid = self.get_secure_cookie(ksid_name)
+        user = self.get_session(ksid)
+        if not user and 'uid' not in user:
+            return None
+        return user['username']
+
+    def get_session(self,ksid):
+        session_key = self.settings.get('session_key')
+        user = self.redis.get(session_key + ksid)
+        if not user:
+            return None
+        user = json.loads(user) # 字符串转字典
+        return user
+
 
     # 生成SessionID
     def gen_ksid(self):
@@ -67,7 +80,6 @@ class BaseHandler(tornado.web.RequestHandler):
     def gen_session(self):
         ksid_name = self.settings.get('ksid_name')
         expires = self.settings.get('session_expires')
-        session_key = self.settings.get('session_key')
         ksid = self.get_secure_cookie(ksid_name)
         if not ksid:
             ksid = self.gen_ksid()
