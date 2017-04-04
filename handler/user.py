@@ -16,7 +16,7 @@ class UserHandler(BaseHandler):
 class LoginHandler(BaseHandler):
     def get(self):
         #self.write("This is SlatAdmin Login Page.")
-        self.render('index/login.html', title="Login")
+        self.render('user/login.html', title="Login")
 
     def post(self):
         username = self.get_argument("username",None)
