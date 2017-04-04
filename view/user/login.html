@@ -121,9 +121,10 @@ $(function(){
     $("#login").click(_login);
     //监听回车事件
     $("html").keydown(function(e){
-        var Key = e.which;
-        if(Key == 13){
+        var key = e.which;
+        if(key == 13){
             _login();
+            return false;
         }
     });
 });
