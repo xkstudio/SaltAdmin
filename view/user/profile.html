@@ -1,27 +1,83 @@
 {% extends "../layout/main.html" %}
 {% block content %}
 <div class="page-content">
-    <!-- BEGIN PAGE HEADER-->
-    <!-- BEGIN PAGE BAR -->
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
                 <span>我的资料</span>
             </li>
-            <!--<li>
-                <a href="#">Blank Page</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span>Page Layouts</span>
-            </li>-->
         </ul>
         <div class="page-toolbar pull-right" style="margin-top:5px;">{{ handler.time_str }}</div>
     </div>
-    <!-- END PAGE BAR -->
-    <!-- END PAGE HEADER-->
     <div class="row">
-        <div class="col-sm-12"></div>
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="username" class="col-sm-1 control-label">用户名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="username" placeholder="用户名" value="{{ current_user['username'] }}" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nickname" class="col-sm-1 control-label">姓名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="nickname" placeholder="姓名" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="col-sm-1 control-label">性别</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="gender">
+                            <option value="0">请选择性别</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dept" class="col-sm-1 control-label">部门</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="dept" placeholder="部门" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-1 control-label">邮箱</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="email" placeholder="电子邮箱" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-1 control-label">手机</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="phone" placeholder="手机号码" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg_time" class="col-sm-1 control-label">注册时间</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="reg_time" placeholder="注册时间" value="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="login_time" class="col-sm-1 control-label">登录时间</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="login_time" placeholder="登录时间" value="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="login_ip" class="col-sm-1 control-label">登录IP</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="login_ip" placeholder="登录IP" value="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label"></label>
+                    <div class="col-sm-5 text-right">
+                        <a class="btn btn-primary" onclick=""><i class="fa fa-check"></i> 保存</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% end %}
