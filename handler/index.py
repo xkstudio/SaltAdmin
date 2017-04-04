@@ -26,6 +26,7 @@ class LoginHandler(BaseHandler):
     def post(self):
         username = self.get_argument("username",None)
         password = self.get_argument("password",None)
+        remember = self.get_argument("remember","no")
         if not username or not password:
             return self.jsonReturn({'code':-1,'msg':'参数错误'})
         user = self.db.query(User).filter_by(username=username).first()
