@@ -14,7 +14,7 @@ config = {
     'redis': {
         'host': '127.0.0.1',
         'port': 6503,
-        'auth': '',
+        'password': '',
         'db': '0'
     }
 }

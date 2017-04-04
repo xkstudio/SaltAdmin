@@ -10,6 +10,7 @@ import tornado.netutil
 import tornado.process
 import tornado.options
 import platform
+import redis
 from Log import Log
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -17,16 +18,22 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 class App(tornado.web.Application):
 
-    def __init__(self,handlers,settings,db_conf):
+    def __init__(self,handlers,settings,conf):
         tornado.web.Application.__init__(self, handlers, **settings)
         #后台日志高亮输出
         tornado.options.parse_command_line()
         #每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
         #封装数据库
-        self._db = db_conf
+        self._db = conf['db']
+        self._redis = conf['redis']
         db_engine = create_engine(self.__gen_db_conn(),encoding='utf-8', echo=False)
         self.db = scoped_session(sessionmaker(bind=db_engine))
+        #Redis
+        self.redis = self.__gen_redis__()
+
+    def __gen_redis__(self):
+        return redis.Redis(self._redis['host'],self._redis['port'],self._redis['db'],self._redis['password'])
 
     def __gen_db_conn(self):
         conn = 'mysql+mysqldb://%s:%s@%s:%s/%s?charset=%s' % \
