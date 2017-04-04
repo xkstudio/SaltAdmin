@@ -6,6 +6,10 @@ import tornado
 
 class BaseHandler(tornado.web.RequestHandler):
 
+    # 初始化函数
+    def initialize(self):
+        pass
+
     # 数据库
     @property
     def db(self):
