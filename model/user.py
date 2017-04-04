@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 # Powered By KStudio
 
-from sqlalchemy import Column, String, INTEGER, VARCHAR, ForeignKey, Float
+from sqlalchemy import Column, Integer, SmallInteger, VARCHAR
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -10,15 +10,15 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'users'
 
-    id = Column(INTEGER,primary_key=True)
-    username = Column(VARCHAR(32))
-    password = Column(VARCHAR(64))
-    email = Column(VARCHAR(32))
-    phone = Column(VARCHAR(32))
-    nickname = Column(VARCHAR(32))
-    gender = Column(INTEGER) # 性别
-    dept = Column(VARCHAR(32)) # 部门
-    role = Column(VARCHAR(32))
-    create_time = Column(INTEGER)
-    update_time = Column(INTEGER)
-    status = Column(INTEGER)
+    id = Column(Integer,primary_key=True,autoincrement=True)
+    username = Column(VARCHAR(32),nullable=False)
+    password = Column(VARCHAR(64),nullable=False)
+    email = Column(VARCHAR(32),nullable=True)
+    phone = Column(VARCHAR(32),nullable=True)
+    nickname = Column(VARCHAR(32),nullable=True)
+    gender = Column(SmallInteger,nullable=True) # 性别
+    dept = Column(VARCHAR(32),nullable=True) # 部门
+    role = Column(VARCHAR(32),nullable=True)
+    create_time = Column(Integer,nullable=True)
+    update_time = Column(Integer,nullable=True)
+    status = Column(SmallInteger,nullable=True)
