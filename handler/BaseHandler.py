@@ -57,18 +57,23 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         ksid_name = self.settings.get('ksid_name')
         ksid = self.get_secure_cookie(ksid_name)
-        user = self.get_session(ksid)
-        if not user and 'uid' not in user:
+        if not ksid:
             return None
-        return user
+        session = self.get_session(ksid)
+        if not session and 'uid' not in session:
+            return None
+        return session
 
     def get_session(self,ksid):
         session_key = self.settings.get('session_key')
-        user = self.redis.get(session_key + ksid)
-        if not user:
+        session = self.redis.get(session_key + ksid)
+        if not session:
             return None
-        user = json.loads(user) # 字符串转字典
-        return user
+        session = json.loads(session) # 字符串转字典
+        return session
+
+    def set_session(self,ksid,name,value):
+        pass
 
 
     # 生成SessionID
