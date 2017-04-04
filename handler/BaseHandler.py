@@ -14,6 +14,15 @@ class BaseHandler(tornado.web.RequestHandler):
         # 当前请求时间
         self.time = int(time.time())
         self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
+        # SessionID
+        ksid_name = self.settings.get('ksid_name')
+        expires = self.settings.get('session_expires')
+        ksid = self.get_secure_cookie(ksid_name)
+        if not ksid:
+            ksid = self.gen_ksid()
+            self.set_secure_cookie(ksid_name, ksid,expires=None)
+        self.ksid = ksid
+
 
     # 重载on_finish
     def on_finish(self):
