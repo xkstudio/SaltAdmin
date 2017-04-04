@@ -27,7 +27,19 @@ class LoginHandler(BaseHandler):
         user = self.db.query(User).filter_by(username=username).first()
         if not user:
             return self.jsonReturn({'code': -2, 'msg': '用户名错误'})
-        uid = user.id
         if password != user.password:
             return self.jsonReturn({'code': -3, 'msg': '密码错误'})
+        # 验证通过，创建会话
+        self.create_session(user,remember)
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
+    def create_session(self,user,remember):
+        session = {
+            "uid": user.id,
+            "username": user.username,
+            "nickname": user.nickname,
+            "login_time": user.login_time,
+            "login_ua": user.login_ua,
+            "login_ip": user.login_ip,
+            "login_location": user.login_location
+        }
