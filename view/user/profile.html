@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label for="gender" class="col-sm-1 control-label">性别</label>
                     <div class="col-sm-5">
-                        <select class="form-control" id="gender">
+                        <select class="form-control" id="gender" data-v="{{ profile.gender }}">
                             <option value="0">请选择性别</option>
                             <option value="1">男</option>
                             <option value="2">女</option>
@@ -84,6 +84,12 @@
 {% block footer %}
 <script>
 $(function(){
+    var _init_ = function(){
+        var gender = $('#gender').data('v');
+        $('#gender').val(gender);
+
+    };
+    _init_();
     var _save_profile = function(){
         var data = {
             'nickname': $('#nickname').val().trim(),
