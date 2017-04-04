@@ -31,7 +31,8 @@ class LoginHandler(BaseHandler):
             return self.jsonReturn({'code': -3, 'msg': '密码错误'})
         # 验证通过，创建会话
         self.create_session(user,remember)
-        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+        url = self.get_argument("next","/")
+        return self.jsonReturn({'code': 0, 'msg': 'Success', 'url': url})
 
     def create_session(self,user,remember):
         #记录登录信息

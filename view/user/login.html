@@ -108,7 +108,9 @@ $(function(){
                     var msg = response['msg'];
                     alert(msg);
                 } else if (code==0){
-                    alert('登录成功！');
+                    //alert('登录成功！');
+                    var url = response['url'];
+                    location.href = url;
                 } else {
                     alert('未知错误');
                 }
