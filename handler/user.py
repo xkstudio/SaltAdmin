@@ -4,7 +4,7 @@
 # 用户管理
 
 from BaseHandler import BaseHandler
-from model.user import User
+from model.models import User
 
 class UserHandler(BaseHandler):
     def get(self):
