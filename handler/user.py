@@ -31,7 +31,7 @@ class LoginHandler(BaseHandler):
         user = self.db.query(User).filter_by(username=username).first()
         if not user:
             return self.jsonReturn({'code': -2, 'msg': '用户名错误'})
-        if password != user.password:
+        if self.md5(password) != user.password:
             return self.jsonReturn({'code': -3, 'msg': '密码错误'})
         # 验证通过，创建会话
         self.create_session(user,remember)
