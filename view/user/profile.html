@@ -15,13 +15,13 @@
                 <div class="form-group">
                     <label for="username" class="col-sm-1 control-label">用户名</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="username" placeholder="用户名" value="{{ current_user['username'] }}" disabled>
+                        <input type="text" class="form-control" id="username" placeholder="用户名" value="{{ profile.username }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nickname" class="col-sm-1 control-label">姓名</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="nickname" placeholder="姓名" value="">
+                        <input type="text" class="form-control" id="nickname" placeholder="姓名" value="{{ profile.nickname }}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -37,37 +37,37 @@
                 <div class="form-group">
                     <label for="dept" class="col-sm-1 control-label">部门</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="dept" placeholder="部门" value="">
+                        <input type="text" class="form-control" id="dept" placeholder="部门" value="{{ profile.dept }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-1 control-label">邮箱</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="email" placeholder="电子邮箱" value="">
+                        <input type="text" class="form-control" id="email" placeholder="电子邮箱" value="{{ profile.email }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="col-sm-1 control-label">手机</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="phone" placeholder="手机号码" value="">
+                        <input type="text" class="form-control" id="phone" placeholder="手机号码" value="{{ profile.phone }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="reg_time" class="col-sm-1 control-label">注册时间</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="reg_time" placeholder="注册时间" value="" disabled>
+                        <input type="text" class="form-control" id="reg_time" placeholder="注册时间" value="{{ profile.create_time }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="login_time" class="col-sm-1 control-label">登录时间</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="login_time" placeholder="登录时间" value="" disabled>
+                        <input type="text" class="form-control" id="login_time" placeholder="登录时间" value="{{ profile.login_time }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="login_ip" class="col-sm-1 control-label">登录IP</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="login_ip" placeholder="登录IP" value="" disabled>
+                        <input type="text" class="form-control" id="login_ip" placeholder="登录IP" value="{{ profile.login_ip }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">

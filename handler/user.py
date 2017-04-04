@@ -78,7 +78,10 @@ class LogoutHandler(BaseHandler):
 class ProfileHandler(BaseHandler):
     @Auth
     def get(self):
-        self.render('user/profile.html')
+        user = self.current_user
+        uid = user['uid']
+        profile = self.db.query(User).filter_by(id=uid).first()
+        self.render('user/profile.html',profile=profile)
 
 
 # 修改密码
