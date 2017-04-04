@@ -17,12 +17,20 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 重载write_error方法
     def write_error(self, status_code, **kwargs):
+        title = "%s - %s" % (status_code, self._reason)
         if status_code == 404: # 捕获404
-            self.render('page/404.html')
+            self.render('page/error.html',title=title)
         elif status_code == 500: # 500可以正常捕获，404好像不行
-            self.render('page/500.html')
+            #print self.settings.get("serve_traceback")
+            msg = ''
+            if 'exc_info' in kwargs:
+                for i in kwargs['exc_info']:
+                    #print type(i)
+                    msg += "<p>%s</p>" % str(i)
+            self.render('page/error.html', title=title, code=status_code, msg=msg)
         else:
-            self.render('page/error.html',code=status_code,msg=self._re_reason)
+            self.render('page/error.html', title=title, code=status_code, msg=status_code)
+
 
     # 数据库
     @property
