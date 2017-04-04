@@ -25,9 +25,7 @@ class App(tornado.web.Application):
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
         #封装数据库
         self._db = db_conf
-        db_engine = create_engine(self.__gen_db_conn(),
-            encoding='utf-8', echo=False,
-            pool_size=100, pool_recycle=10)
+        db_engine = create_engine(self.__gen_db_conn(),encoding='utf-8', echo=False)
         self.db = scoped_session(sessionmaker(bind=db_engine))
 
     def __gen_db_conn(self):
