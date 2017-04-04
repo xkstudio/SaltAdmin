@@ -62,6 +62,10 @@ class BaseHandler(tornado.web.RequestHandler):
         session = self.get_session(ksid)
         if not session:
             return None
+        # 刷新Seesion过期时间
+        session_key = self.settings.get('session_key')
+        expires = self.settings.get('session_expires')
+        self.redis.expire(session_key+ksid,expires)
         return session
 
     def get_session(self,ksid):
