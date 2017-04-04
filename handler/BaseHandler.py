@@ -60,7 +60,7 @@ class BaseHandler(tornado.web.RequestHandler):
         if not ksid:
             return None
         session = self.get_session(ksid)
-        if not session and 'uid' not in session:
+        if not session:
             return None
         return session
 
