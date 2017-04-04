@@ -100,7 +100,7 @@ $(function(){
         }
         $.ajax({
             type: 'POST',
-            url: '/login',
+            url: '/user/login',
             data: {'username':username,'password':password},
             dataType: "json",
             success: function(response){
