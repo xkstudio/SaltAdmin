@@ -89,7 +89,7 @@ class BaseHandler(tornado.web.RequestHandler):
         ksid_name = self.settings.get('ksid_name')
         expires = self.settings.get('session_expires')
         ksid = self.get_secure_cookie(ksid_name)
-        if not ksid:
-            ksid = self.gen_ksid()
-            self.set_secure_cookie(ksid_name, ksid, expires=None)
+        #if not ksid:
+        #    ksid = self.gen_ksid()
+        #    self.set_secure_cookie(ksid_name, ksid, expires=None)
         self.ksid = ksid
