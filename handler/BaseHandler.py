@@ -19,7 +19,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def write_error(self, status_code, **kwargs):
         if status_code == 404: # 捕获404
             self.render('page/404.html')
-        elif status_code == 500:
+        elif status_code == 500: # 500可以正常捕获，404好像不行
             self.render('page/500.html')
         else:
             self.render('page/error.html',code=status_code,msg=self._re_reason)
