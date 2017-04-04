@@ -60,7 +60,7 @@ class BaseHandler(tornado.web.RequestHandler):
         user = self.get_session(ksid)
         if not user and 'uid' not in user:
             return None
-        return user['username']
+        return user
 
     def get_session(self,ksid):
         session_key = self.settings.get('session_key')
