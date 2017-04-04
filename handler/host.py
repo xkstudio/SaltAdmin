@@ -5,6 +5,11 @@
 
 from BaseHandler import BaseHandler
 
-class HostHandler(BaseHandler):
+class IndexHandler(BaseHandler):
     def get(self):
-        self.write("This is SlatAdmin Host Page.")
+        self.render('host/index.html')
+
+
+class GroupHandler(BaseHandler):
+    def get(self):
+        self.render('host/group.html')
