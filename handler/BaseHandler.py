@@ -73,7 +73,8 @@ class BaseHandler(tornado.web.RequestHandler):
         return session
 
     def set_session(self,ksid,name,value):
-        pass
+        session_key = self.settings.get('session_key')
+        expires = self.settings.get('session_expires')
 
 
     # 生成SessionID
