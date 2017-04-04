@@ -5,6 +5,7 @@
 
 from BaseHandler import BaseHandler
 from model.models import Host
+from model.models import HostGroup
 
 
 class IndexHandler(BaseHandler):
@@ -15,4 +16,5 @@ class IndexHandler(BaseHandler):
 
 class GroupHandler(BaseHandler):
     def get(self):
-        self.render('host/group.html')
+        data = self.db.query(HostGroup).all()
+        self.render('host/group.html',data=data)

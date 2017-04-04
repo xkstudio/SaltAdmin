@@ -16,27 +16,20 @@
                 <thead class="cf">
                 <tr>
                     <th>#</th>
-                    <th>Col 1</th>
-                    <th>Col 2</th>
-                    <th>Col 3</th>
-                    <th>Action</th>
+                    <th>分组名称</th>
+                    <th>主机统计</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
+                {% for d in data %}
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>{{ d.id }}</td>
+                    <td>{{ d.group_name }}</td>
+                    <td>{{ d.hosts_count }}</td>
+                    <td><a href="javascript:void(0)">编辑</a> | <a href="javascript:void(0)">删除</a></td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
+                {% end %}
                 </tbody>
             </table>
         </div>
