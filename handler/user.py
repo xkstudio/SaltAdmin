@@ -17,7 +17,9 @@ class UserHandler(BaseHandler):
 # 用户登录
 class LoginHandler(BaseHandler):
     def get(self):
-        #self.write("This is SlatAdmin Login Page.")
+        user = self.get_current_user()
+        if user:
+            return self.redirect('/') # 已登录则跳转到首页
         self.render('user/login.html', title="Login")
 
     def post(self):
