@@ -72,3 +72,17 @@ class LogoutHandler(BaseHandler):
         self.redis.delete(key)
         self.clear_cookie(self.settings.get('ksid_name'))
         self.redirect(self.get_login_url())
+
+
+# 我的资料
+class ProfileHandler(BaseHandler):
+    @Auth
+    def get(self):
+        self.render('user/profile.html')
+
+
+# 修改密码
+class PasswdHandler(BaseHandler):
+    @Auth
+    def get(self):
+        self.render('user/passwd.html')
