@@ -14,7 +14,7 @@ class IndexHandler(BaseHandler):
         tornado_verion = tornado.version
         data = {
             'tornado': tornado_verion,
-            'saltadmin': '2.0.0'
+            'saltadmin': self.app_version
         }
         return data
 

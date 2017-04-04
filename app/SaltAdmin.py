@@ -24,6 +24,7 @@ class App(tornado.web.Application):
         tornado.options.parse_command_line()
         #每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
+        self.__version__ = conf['version']
         #封装数据库
         self._db = conf['db']
         self._redis = conf['redis']
@@ -55,6 +56,7 @@ class SaltAdmin():
         self.urls = urls
         self.settings = settings
         self.config = config
+        self.config['version'] = self.__version__
         if platform.system() == "Linux":  #根据操作系统类型来确定是否启用多线程
             self.processes = processes # 当processes>1时，PeriodicCallback定时任务会响相应的执行多次
         else:

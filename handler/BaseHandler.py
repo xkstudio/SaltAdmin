@@ -17,6 +17,8 @@ class BaseHandler(tornado.web.RequestHandler):
         self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
         # Session
         self.check_session()
+        # Version
+        self.app_version = self.application.__version__
 
     # 重载on_finish
     def on_finish(self):
