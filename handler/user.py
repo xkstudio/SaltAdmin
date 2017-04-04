@@ -4,9 +4,11 @@
 # 用户管理
 
 from BaseHandler import BaseHandler
+from tornado.web import authenticated as Auth
 from model.models import User
 
 class UserHandler(BaseHandler):
+    @Auth
     def get(self):
         data = self.db.query(User).all()
         gender = {1:'男', 2:'女'}
