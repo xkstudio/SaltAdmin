@@ -64,33 +64,33 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 获取当前登录用户
     def get_current_user(self):
-        if not self.session_key:
+        if not self.session_id:
             return None
         session = self.get_session()
         if not session:
             return None
         # 刷新Seesion过期时间
-        self.redis.expire(self.session_key,self.session_expires)
+        self.redis.expire(self.session_id,self.session_expires)
         return session
 
 
     # Session初始化
     def init_session(self):
-        session_key_prefix  = self.settings.get('session_key')
+        session_key  = self.settings.get('session_key')
         self.session_expires  = self.settings.get('session_expires')
         self.cookie_name = self.settings.get('cookie_name')
         self.cookie_value = self.get_secure_cookie(self.cookie_name)
         if self.cookie_value:
-            self.session_key = session_key_prefix + self.cookie_value
+            self.session_id = session_key + self.cookie_value
         else:
             #self.cookie_value = self.gen_session_id()
             #self.set_secure_cookie(self.cookie_name,self.cookie_value)
-            #self.session_key = session_key_prefix + self.cookie_value
-            self.session_key = None
+            #self.session_id = session_key + self.cookie_value
+            self.session_id = None
 
 
     def get_session(self):
-        session = self.redis.get(self.session_key)
+        session = self.redis.get(self.session_id)
         if not session:
             return None
         session = json.loads(session) # 字符串转字典
@@ -99,7 +99,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
     def set_session(self,session):
-        self.redis.set(self.session_key,json.dumps(self.session),self.session_expires) # 后端Session
+        self.redis.set(self.session_id,json.dumps(self.session),self.session_expires) # 后端Session
         self.set_secure_cookie(self.cookie_name, self.cookie_value, expires=None) # 前端Cookie
         self.session = session
 
