@@ -16,6 +16,7 @@ class BaseHandler(tornado.web.RequestHandler):
         self.time = int(time.time())
         self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
         # Session
+        self.session = None # 用户未登录标识
         self.init_session()
         # Version
         self.app_version = self.application.__version__
