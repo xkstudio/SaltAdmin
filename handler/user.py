@@ -43,7 +43,11 @@ class LoginHandler(BaseHandler):
             "login_ip": profile.login_ip,
             "login_location": profile.login_location
         }
-        self.create_session(session) # 创建Session
+        if remember == "yes":
+            expires_days = 30 # 记住Session
+        else:
+            expires_days = None
+        self.create_session(session,expires_days) # 创建Session
         # 记录登录信息
         headers = self.request.headers
         login_ua = headers.get('User-Agent')

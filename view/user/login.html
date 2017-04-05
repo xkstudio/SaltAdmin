@@ -97,10 +97,14 @@ $(function(){
             $('#password').focus();
             return false;
         }
+        var remember = "no";
+        if ($("#remember").is(':checked')){
+            remember = "yes";
+        }
         $.xk.http({
             type: 'POST',
             url: '/user/login?_k=' + $.random(),
-            data: {'username':username,'password':$.xk.md5(password)},
+            data: {'username':username,'password':$.xk.md5(password),'remember':remember},
             dataType: "json",
             success: function(response){
                 var code = response['code'];
