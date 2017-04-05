@@ -33,6 +33,17 @@ class LoginHandler(BaseHandler):
         if self.md5(password) != profile.password:
             return self.jsonReturn({'code': -2, 'msg': '用户名或密码错误'})
         ##### 验证通过逻辑 #####
+        # 写Session
+        session = {
+            "uid": profile.id,
+            "username": profile.username,
+            "nickname": profile.nickname,
+            "login_time": profile.login_time,
+            "login_ua": profile.login_ua,
+            "login_ip": profile.login_ip,
+            "login_location": profile.login_location
+        }
+        self.create_session(session) # 创建Session
         # 记录登录信息
         headers = self.request.headers
         login_ua = headers.get('User-Agent')
@@ -45,17 +56,7 @@ class LoginHandler(BaseHandler):
         }
         self.db.query(User).filter_by(id=profile.id).update(login_data)
         self.db.commit()
-        # 写Session
-        session = {
-            "uid": profile.id,
-            "username": profile.username,
-            "nickname": profile.nickname,
-            "login_time": profile.login_time,
-            "login_ua": profile.login_ua,
-            "login_ip": profile.login_ip,
-            "login_location": profile.login_location
-        }
-        self.create_session(session) # 创建Session
+        # 跳转登录前的URL
         url = self.get_argument("next","/")
         return self.jsonReturn({'code': 0, 'msg': 'Success', 'url': url})
 
