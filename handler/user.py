@@ -67,10 +67,9 @@ class LoginHandler(BaseHandler):
 # 注销登录
 class LogoutHandler(BaseHandler):
     def get(self):
-        session_key = self.settings.get('session_key')
-        key = session_key + self.ksid
-        self.redis.delete(key)
-        self.clear_cookie(self.settings.get('ksid_name'))
+        if self.session: # Session存在
+            self.redis.delete(self.session_key)
+            self.clear_cookie(self.cookie_name)
         self.redirect(self.get_login_url())
 
 
