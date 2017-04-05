@@ -20,7 +20,10 @@ class IndexHandler(BaseHandler):
         data = {
             'tornado': tornado_verion,
             'saltadmin': self.app_version,
-            'saltstack': salt_version
+            'saltstack': salt_version,
+            'login_time': self.format_time(self.session['login_time']),
+            'login_ip': self.session['login_ip'],
+            'login_ua': self.session['login_ua']
         }
         return data
 
