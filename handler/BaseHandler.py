@@ -17,7 +17,6 @@ class BaseHandler(tornado.web.RequestHandler):
         self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
         # Session
         self.init_session()
-        self.check_session()
         # Version
         self.app_version = self.application.__version__
 
@@ -62,45 +61,47 @@ class BaseHandler(tornado.web.RequestHandler):
         return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timstamp))
 
     def get_current_user(self):
-        ksid_name = self.settings.get('ksid_name')
-        ksid = self.get_secure_cookie(ksid_name)
-        if not ksid:
+        if not self.session_key:
             return None
-        session = self.get_session(ksid)
+        session = self.get_session()
         if not session:
             return None
         # 刷新Seesion过期时间
-        session_key = self.settings.get('session_key')
-        expires = self.settings.get('session_expires')
-        self.redis.expire(session_key+ksid,expires)
+        self.redis.expire(self.session_key,self.session_expires)
         return session
+
 
     # Session初始化
     def init_session(self):
-        self.session_key_prefix  = self.settings.get('session_key')
+        session_key_prefix  = self.settings.get('session_key')
         self.session_expires  = self.settings.get('session_expires')
         self.cookie_name = self.settings.get('cookie_name')
         self.cookie_value = self.get_secure_cookie(self.cookie_name)
+        if self.cookie_value:
+            self.session_key = session_key_prefix + self.cookie_value
+        else:
+            #self.cookie_value = self.gen_session_key()
+            #self.set_secure_cookie(self.cookie_name,self.cookie_value)
+            #self.session_key = session_key_prefix + self.cookie_value
+            self.session_key = None
 
-    def get_session(self,ksid):
-        session_key = self.settings.get('session_key')
-        session = self.redis.get(session_key + ksid)
+
+    def get_session(self):
+        session = self.redis.get(self.session_key)
         if not session:
             return None
         session = json.loads(session) # 字符串转字典
-        return session
+        self.session = session
+        return self.session
 
-    def set_session(self,session):
-        session_key = self.settings.get('session_key')
-        expires = self.settings.get('session_expires')
-        self.ksid = self.gen_ksid()
-        key = session_key + self.ksid
-        self.redis.set(key,json.dumps(session),expires) # 后端Session
-        self.set_secure_cookie(self.settings.get('ksid_name'), self.ksid, expires=None) # 前端Cookie
+
+    def set_session(self):
+        self.redis.set(self.session_key,json.dumps(self.session),self.session_expires) # 后端Session
+        self.set_secure_cookie(self.cookie_name, self.cookie_value, expires=None) # 前端Cookie
 
 
     # 生成SessionID
-    def gen_ksid(self):
+    def gen_session_key(self):
         return hashlib.sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
 
 
@@ -109,14 +110,3 @@ class BaseHandler(tornado.web.RequestHandler):
         s = hashlib.md5()
         s.update(text)
         return s.hexdigest()
-
-
-    # Session检查
-    def check_session(self):
-        ksid_name = self.settings.get('ksid_name')
-        expires = self.settings.get('session_expires')
-        ksid = self.get_secure_cookie(ksid_name)
-        #if not ksid:
-        #    ksid = self.gen_ksid()
-        #    self.set_secure_cookie(ksid_name, ksid, expires=None)
-        self.ksid = ksid
