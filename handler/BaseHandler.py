@@ -98,9 +98,10 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.session
 
 
-    def set_session(self):
+    def set_session(self,session):
         self.redis.set(self.session_key,json.dumps(self.session),self.session_expires) # 后端Session
         self.set_secure_cookie(self.cookie_name, self.cookie_value, expires=None) # 前端Cookie
+        self.session = session
 
 
     # 生成SessionID
