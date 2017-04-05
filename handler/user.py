@@ -27,10 +27,10 @@ class LoginHandler(BaseHandler):
         remember = self.get_argument("remember","no")
         if not username or not password:
             return self.jsonReturn({'code':-1,'msg':'参数错误'})
-        user = self.db.query(User).filter_by(username=username).first()
-        if not user:
+        profile = self.db.query(User).filter_by(username=username).first()
+        if not profile:
             return self.jsonReturn({'code': -2, 'msg': '用户名或密码错误'})
-        if self.md5(password) != user.password:
+        if self.md5(password) != profile.password:
             return self.jsonReturn({'code': -2, 'msg': '用户名或密码错误'})
         ##### 验证通过逻辑 #####
         # 记录登录信息
@@ -41,19 +41,19 @@ class LoginHandler(BaseHandler):
             "login_time": self.time,
             "login_ua": login_ua,
             "login_ip": login_ip
-            # "login_location": user.login_location
+            # "login_location": login_location
         }
-        self.db.query(User).filter_by(id=user.id).update(login_data)
+        self.db.query(User).filter_by(id=profile.id).update(login_data)
         self.db.commit()
         # 写Session
         session = {
-            "uid": user.id,
-            "username": user.username,
-            "nickname": user.nickname,
-            "login_time": user.login_time,
-            "login_ua": user.login_ua,
-            "login_ip": user.login_ip,
-            "login_location": user.login_location
+            "uid": profile.id,
+            "username": profile.username,
+            "nickname": profile.nickname,
+            "login_time": profile.login_time,
+            "login_ua": profile.login_ua,
+            "login_ip": profile.login_ip,
+            "login_location": profile.login_location
         }
         self.create_session(session) # 创建Session
         url = self.get_argument("next","/")
