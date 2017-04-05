@@ -44,7 +44,7 @@ class LoginHandler(BaseHandler):
             "login_location": profile.login_location
         }
         if remember == "yes":
-            expires_days = 30 # 记住Session
+            expires_days = 15 # 记住Session
         else:
             expires_days = None
         self.create_session(session,expires_days) # 创建Session
