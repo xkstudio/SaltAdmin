@@ -60,6 +60,8 @@ class BaseHandler(tornado.web.RequestHandler):
     def format_time(self,timstamp=None):
         return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timstamp))
 
+
+    # 获取当前登录用户
     def get_current_user(self):
         if not self.session_key:
             return None
