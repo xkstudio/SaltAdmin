@@ -64,14 +64,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 获取当前登录用户
     def get_current_user(self):
-        if not self.session_id:
-            return None
-        session = self.get_session()
-        if not session:
-            return None
-        # 刷新Seesion过期时间
-        self.redis.expire(self.session_id,self.session_expires)
-        return session
+        return self.session
 
 
     # Session初始化
@@ -82,6 +75,10 @@ class BaseHandler(tornado.web.RequestHandler):
         self.cookie_value = self.get_secure_cookie(self.cookie_name)
         if self.cookie_value:
             self.session_id = self.session_key + self.cookie_value
+            self.session = self.get_session()
+            if self.session:
+                # 刷新Seesion过期时间
+                self.redis.expire(self.session_id, self.session_expires)
         else:
             #self.cookie_value = self.gen_session_id()
             #self.set_secure_cookie(self.cookie_name,self.cookie_value)
@@ -94,8 +91,7 @@ class BaseHandler(tornado.web.RequestHandler):
         if not session:
             return None
         session = json.loads(session) # 字符串转字典
-        self.session = session
-        return self.session
+        return session
 
 
     def set_session(self):
