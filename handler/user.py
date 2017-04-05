@@ -17,8 +17,7 @@ class UserHandler(BaseHandler):
 # 用户登录
 class LoginHandler(BaseHandler):
     def get(self):
-        user = self.get_current_user()
-        if user:
+        if self.session:
             return self.redirect('/') # 已登录则跳转到首页
         self.render('user/login.html', title="Login")
 
