@@ -64,9 +64,7 @@ class LoginHandler(BaseHandler):
 # 注销登录
 class LogoutHandler(BaseHandler):
     def get(self):
-        if self.session: # Session存在
-            self.redis.delete(self.session_key)
-            self.clear_cookie(self.cookie_name)
+        self.remove_session()
         self.redirect(self.get_login_url())
 
 
