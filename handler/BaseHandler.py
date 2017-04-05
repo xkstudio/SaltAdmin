@@ -16,6 +16,7 @@ class BaseHandler(tornado.web.RequestHandler):
         self.time = int(time.time())
         self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
         # Session
+        self.init_session()
         self.check_session()
         # Version
         self.app_version = self.application.__version__
@@ -73,6 +74,13 @@ class BaseHandler(tornado.web.RequestHandler):
         expires = self.settings.get('session_expires')
         self.redis.expire(session_key+ksid,expires)
         return session
+
+    # Session初始化
+    def init_session(self):
+        self.session_key_prefix  = self.settings.get('session_key')
+        self.session_expires  = self.settings.get('session_expires')
+        self.cookie_name = self.settings.get('cookie_name')
+        self.cookie_value = self.get_secure_cookie(self.cookie_name)
 
     def get_session(self,ksid):
         session_key = self.settings.get('session_key')
