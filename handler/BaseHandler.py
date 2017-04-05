@@ -76,16 +76,16 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # Session初始化
     def init_session(self):
-        session_key  = self.settings.get('session_key')
+        self.session_key  = self.settings.get('session_key')
         self.session_expires  = self.settings.get('session_expires')
         self.cookie_name = self.settings.get('cookie_name')
         self.cookie_value = self.get_secure_cookie(self.cookie_name)
         if self.cookie_value:
-            self.session_id = session_key + self.cookie_value
+            self.session_id = self.session_key + self.cookie_value
         else:
             #self.cookie_value = self.gen_session_id()
             #self.set_secure_cookie(self.cookie_name,self.cookie_value)
-            #self.session_id = session_key + self.cookie_value
+            #self.session_id = self.session_key + self.cookie_value
             self.session_id = None
 
 
@@ -98,10 +98,16 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.session
 
 
-    def set_session(self,session):
+    def set_session(self):
         self.redis.set(self.session_id,json.dumps(self.session),self.session_expires) # 后端Session
-        self.set_secure_cookie(self.cookie_name, self.cookie_value, expires=None) # 前端Cookie
+
+
+    def create_session(self,session):
+        self.cookie_value = self.gen_session_id()
+        self.session_id = self.session_key + self.cookie_value
         self.session = session
+        self.set_session()
+        self.set_secure_cookie(self.cookie_name, self.cookie_value, expires=None)  # 前端Cookie
 
 
     # 生成SessionID
