@@ -83,7 +83,7 @@ class BaseHandler(tornado.web.RequestHandler):
         if self.cookie_value:
             self.session_key = session_key_prefix + self.cookie_value
         else:
-            #self.cookie_value = self.gen_session_key()
+            #self.cookie_value = self.gen_session_id()
             #self.set_secure_cookie(self.cookie_name,self.cookie_value)
             #self.session_key = session_key_prefix + self.cookie_value
             self.session_key = None
@@ -105,7 +105,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
     # 生成SessionID
-    def gen_session_key(self):
+    def gen_session_id(self):
         return hashlib.sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
 
 
