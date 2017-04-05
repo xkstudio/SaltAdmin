@@ -110,6 +110,13 @@ class BaseHandler(tornado.web.RequestHandler):
         self.set_secure_cookie(self.cookie_name, self.cookie_value, expires=None)  # 前端Cookie
 
 
+    # 销毁Session
+    def remove_session(self):
+        if self.session: # Session存在
+            self.redis.delete(self.session_key)
+            self.clear_cookie(self.cookie_name)
+
+
     # 生成SessionID
     def gen_session_id(self):
         return hashlib.sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
