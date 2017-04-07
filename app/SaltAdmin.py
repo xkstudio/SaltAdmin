@@ -14,11 +14,13 @@ import redis
 from Log import Log
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
+from handler.page import Page404Handler
 
 
 class App(tornado.web.Application):
 
     def __init__(self,handlers,settings,conf):
+        settings['default_handler_class'] = Page404Handler # 404
         tornado.web.Application.__init__(self, handlers, **settings)
         #后台日志高亮输出
         tornado.options.parse_command_line()
