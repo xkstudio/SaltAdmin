@@ -123,3 +123,10 @@ class BaseHandler(tornado.web.RequestHandler):
         s = hashlib.md5()
         s.update(text)
         return s.hexdigest()
+
+
+    # 获取当前路由
+    def get_route(self):
+        uri = self.request.uri.split('?')
+        return uri[0]
+
