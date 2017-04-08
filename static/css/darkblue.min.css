@@ -1,3 +1,5 @@
+/* darkblude.min.css */
+
 .page-header.navbar {
 	background-color: #2b3643
 }
@@ -700,4 +702,11 @@ body {
 
 .block-spinner-bar>div,.page-spinner-bar>div {
 	background: #4bccd8
+}
+
+/* SaltAdmin.css */
+
+.table-center th, .table-center td {
+    text-align: center;
+    vertical-align: middle !important;
 }
