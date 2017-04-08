@@ -16,6 +16,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from handler.page import Page404Handler
 
+from config.settings import settings as Settings
+from config.settings import config as Config
+from handler.route import urls as URLS
+
 
 class App(tornado.web.Application):
 
@@ -48,16 +52,16 @@ class App(tornado.web.Application):
 
 class SaltAdmin():
 
-    def __init__(self,host,port,urls,settings,config,processes=4):
+    def __init__(self,host,port,processes=4):
         self.__version__ = '2.0.0'
         _log = Log()
         self.log = _log.info
         #self.log('SaltAdmin Initializing ...')
         self.host = host
         self.port = port
-        self.urls = urls
-        self.settings = settings
-        self.config = config
+        self.urls = URLS
+        self.settings = Settings
+        self.config = Config
         self.config['version'] = self.__version__
         if platform.system() == "Linux":  #根据操作系统类型来确定是否启用多线程
             self.processes = processes # 当processes>1时，PeriodicCallback定时任务会响相应的执行多次
