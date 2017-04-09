@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-# Powered By KStudio
+# Powered By KK Studio
 
 import tornado
 import tornado.httpserver
@@ -18,7 +18,7 @@ from handler.page import Page404Handler
 
 from config.settings import settings as Settings
 from config.settings import config as Config
-from handler.route import urls as URLS
+from handler import route
 
 
 class App(tornado.web.Application):
@@ -59,7 +59,7 @@ class SaltAdmin():
         #self.log('SaltAdmin Initializing ...')
         self.host = host
         self.port = port
-        self.urls = URLS
+        self.urls = route
         self.settings = Settings
         self.config = Config
         self.config['version'] = self.__version__
