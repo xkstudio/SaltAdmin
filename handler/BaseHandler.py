@@ -42,6 +42,11 @@ class BaseHandler(tornado.web.RequestHandler):
         else:
             self.render('page/error.html', title=title, code=status_code, msg=status_code)
 
+    # Log Instance
+    @property
+    def log(self):
+        return self.application.log
+
     # 数据库
     @property
     def db(self):
