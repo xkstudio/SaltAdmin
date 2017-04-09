@@ -2,6 +2,16 @@
 # -*- coding:utf-8 -*-
 # Powered By KK Studio
 
+from tornado.options import define, options
+import tornado.options
+
+define("host", default='0.0.0.0', help="Listen on the given IP", type=str)
+define("port", default=8888, help="Run on the given port", type=int)
+
+tornado.options.parse_command_line()
+
+# Call options.*** should be after the parse_command_line()
+
 config = {
     'db': {
         'host': '127.0.0.1',
@@ -17,6 +27,8 @@ config = {
         'password': '',
         'db': '0'
     },
+    'host': options.host,
+    'port': options.port,
     'app_settings': dict(
         template_path = 'view',
         static_path = 'static',
