@@ -15,7 +15,6 @@ from tornado.log import gen_log
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from handler.page import Page404Handler
-from config.settings import settings
 from config.settings import config
 from handler import route
 
@@ -55,7 +54,6 @@ class SaltAdmin():
         self.host = host
         self.port = port
         self.urls = route
-        self.settings = settings
         self.config = config
         self.config['version'] = self.__version__
         self.log = gen_log
@@ -71,6 +69,6 @@ class SaltAdmin():
         self.log.info('Listen Port: %s' % self.port)
         http_sockets = tornado.netutil.bind_sockets(self.port, self.host)
         tornado.process.fork_processes(num_processes=self.processes)
-        http_server = tornado.httpserver.HTTPServer(request_callback=App(self.urls,self.settings,self.config,self.log), xheaders=True)
+        http_server = tornado.httpserver.HTTPServer(request_callback=App(self.urls,self.config['app_settings'],self.config,self.log), xheaders=True)
         http_server.add_sockets(http_sockets)
         tornado.ioloop.IOLoop.instance().start()

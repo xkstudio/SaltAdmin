@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-# Powered By KStudio
+# Powered By KK Studio
 
 config = {
     'db': {
@@ -16,19 +16,18 @@ config = {
         'port': 6503,
         'password': '',
         'db': '0'
-    }
+    },
+    'app_settings': dict(
+        template_path = 'view',
+        static_path = 'static',
+        static_url_prefix = '/static/',
+        xsrf_cookies = False,
+        cookie_secret = "db884468559f4c432bf1c1775f3dc9da",
+        cookie_name = '_ksid',
+        session_key = "_k_session_",
+        session_expires = 7200,
+        login_url = "/user/login",
+        debug = True,
+        autoreload = True
+    )
 }
-
-settings = dict(
-    template_path = 'view',
-    static_path = 'static',
-    static_url_prefix = '/static/',
-    xsrf_cookies = False,
-    cookie_secret = "db884468559f4c432bf1c1775f3dc9da",
-    cookie_name = '_ksid',
-    session_key = "_k_session_",
-    session_expires = 7200,
-    login_url = "/user/login",
-    debug = True,
-    autoreload = True
-)
