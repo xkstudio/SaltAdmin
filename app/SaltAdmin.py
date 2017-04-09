@@ -26,8 +26,6 @@ class App(tornado.web.Application):
     def __init__(self,handlers,settings,conf):
         settings['default_handler_class'] = Page404Handler # 404
         tornado.web.Application.__init__(self, handlers, **settings)
-        #后台日志高亮输出
-        tornado.options.parse_command_line()
         #每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
         self.__version__ = conf['version']
@@ -70,6 +68,7 @@ class SaltAdmin():
 
     #多线程模式
     def run(self):
+        tornado.options.parse_command_line()
         self.log('SaltAdmin %s' % self.__version__) # 启动时打印版本号
         self.log('Listen Port: %s' % self.port)
         http_sockets = tornado.netutil.bind_sockets(self.port, self.host)
