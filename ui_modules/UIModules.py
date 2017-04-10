@@ -136,7 +136,7 @@ class Nav(UIModule):
         HL = False
         html = '<ul class="sub-menu">'
         for i in data:
-            if url:
+            if url == i['url']:
                 css_class = 'nav-item active open' # High Light Style
                 HL = True
             else:
