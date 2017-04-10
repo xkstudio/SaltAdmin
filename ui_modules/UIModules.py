@@ -153,9 +153,20 @@ class Nav(UIModule):
 
     # 生成菜单
     def gen_nav(self,url):
+        html = ''
         for i in self.nav:
-            HL = False
             sub = self.gen_sub_nav(i['sub'],url)
+            if i['url'] == url or sub['HL']:
+                html += '<li class="%s">' % 'nav-item active open'
+                html += '<i class="%s"></i><span class="title">%s</span>' % (i['icon'],i['name'])
+                html += '<span class="arrow open"></span><span class="selected"></span>'
+            else:
+                html += '<li class="%s">' % 'nav-item'
+                html += '<i class="%s"></i><span class="title">%s</span>' % (i['icon'], i['name'])
+                html += '<span class="arrow"></span>'
+            html += sub['html'] # Sub Menu Html
+            html += '</li>'
+        return html
 
 
     def render(self,url):
