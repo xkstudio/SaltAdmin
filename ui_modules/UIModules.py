@@ -131,6 +131,26 @@ class Nav(UIModule):
         }
     ]
 
+
+    def gen_sub_nav(self,data,url=''):
+        HL = False
+        html = '<ul class="sub-menu">'
+        for i in data:
+            if url:
+                css_class = 'nav-item active open' # High Light Style
+                HL = True
+            else:
+                css_class = 'nav-item'
+            html += '<li class="%s"><a href="%s" class="nav-link">' % (css_class,i['url'])
+            if i['icon']:
+                html += '<i class="%s"></i>' % i['icon']
+            html += '<span class="title">%s</span></a></li>' % i['name']
+        html += '</ul>'
+        return {'HL': HL, 'html': html}
+
+
     def render(self,url):
-        #print self.nav
+        for i in self.nav:
+            hl = False # High Light
+            data = self.gen_sub_nav(i['sub'])
         return self.render_string("ui_modules/nav.html",url=url)
