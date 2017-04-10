@@ -17,6 +17,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from handler.page import Page404Handler
 from config.settings import config
 from handler import route
+from ui_modules import UIModules
 
 
 class App(tornado.web.Application):
@@ -24,6 +25,7 @@ class App(tornado.web.Application):
     def __init__(self,handlers,settings,conf,log):
         self.log = log
         settings['default_handler_class'] = Page404Handler # 404
+        settings['ui_modules'] = UIModules
         tornado.web.Application.__init__(self, handlers, **settings)
         #每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
