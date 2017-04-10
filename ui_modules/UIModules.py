@@ -132,6 +132,7 @@ class Nav(UIModule):
     ]
 
 
+    # 生成二级菜单
     def gen_sub_nav(self,data,url=''):
         HL = False
         html = '<ul class="sub-menu">'
@@ -148,9 +149,13 @@ class Nav(UIModule):
         html += '</ul>'
         return {'HL': HL, 'html': html}
 
+    # 生成菜单
+    def gen_nav(self,url):
+        for i in self.nav:
+            HL = False
+            sub = self.gen_sub_nav(i['sub'],url)
+
 
     def render(self,url):
-        for i in self.nav:
-            hl = False # High Light
-            data = self.gen_sub_nav(i['sub'])
-        return self.render_string("ui_modules/nav.html",url=url)
+        data = self.gen_nav(url)
+        return self.render_string("ui_modules/nav.html",data=data)
