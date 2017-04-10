@@ -27,15 +27,16 @@ class App(tornado.web.Application):
         settings['default_handler_class'] = Page404Handler # 404
         settings['ui_modules'] = UIModules
         tornado.web.Application.__init__(self, handlers, **settings)
-        #每10秒执行一次
+        # 每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
+        # App Version
         self.__version__ = conf['version']
-        #封装数据库
+        # 封装数据库
         self._db = conf['db']
         self._redis = conf['redis']
         db_engine = create_engine(self.__gen_db_conn(),encoding='utf-8', echo=False)
         self.db = scoped_session(sessionmaker(bind=db_engine))
-        #Redis
+        # Redis
         self.redis = self.__gen_redis__()
 
     def __gen_redis__(self):
@@ -64,7 +65,7 @@ class SaltAdmin():
         else:
             self.processes = 1
 
-    #多线程模式
+    # 多线程模式
     def run(self):
         self.log.info('SaltAdmin %s' % self.__version__) # 启动时打印版本号
         self.log.info('Listen Port: %s' % self.port)
