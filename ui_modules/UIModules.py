@@ -25,7 +25,7 @@ class Nav(UIModule):
             'sub': []
         },
         {
-            'url': '',
+            'url': url_none,
             'name': '主机管理',
             'icon': 'icon-layers',
             'sub': [
@@ -47,7 +47,7 @@ class Nav(UIModule):
             ]
         },
         {
-            'url': '',
+            'url': url_none,
             'name': '任务管理',
             'icon': 'icon-bar-chart',
             'sub': [
@@ -64,7 +64,7 @@ class Nav(UIModule):
             ]
         },
         {
-            'url': '',
+            'url': url_none,
             'name': '系统管理',
             'icon': 'icon-wrench',
             'sub': [
@@ -87,7 +87,7 @@ class Nav(UIModule):
             ]
         },
         {
-            'url': '',
+            'url': url_none,
             'name': '页面管理',
             'icon': 'icon-grid',
             'sub': [
@@ -110,7 +110,7 @@ class Nav(UIModule):
             ]
         },
         {
-            'url': '',
+            'url': url_none,
             'name': '关于',
             'icon': 'icon-info',
             'sub': [
