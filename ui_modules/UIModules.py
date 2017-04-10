@@ -135,6 +135,8 @@ class Nav(UIModule):
     # 生成二级菜单
     def gen_sub_nav(self,data,url=''):
         HL = False
+        if not data: # 二级菜单为空
+            return {'HL': HL, 'html': ''}
         html = '<ul class="sub-menu">'
         for i in data:
             if url == i['url']:
