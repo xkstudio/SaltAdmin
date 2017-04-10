@@ -160,7 +160,10 @@ class Nav(UIModule):
                 html += '<li class="%s">' % 'nav-item active open'
                 html += '<a href="%s" class="nav-link nav-toggle">' % i['url']
                 html += '<i class="%s"></i><span class="title">%s</span>' % (i['icon'],i['name'])
-                html += '<span class="arrow open"></span><span class="selected"></span></a>'
+                if sub['html']:
+                    html += '<span class="arrow open"></span><span class="selected"></span></a>'
+                else:
+                    html += '<span class="arrow"></span><span class="selected"></span></a>'
             else:
                 html += '<li class="%s">' % 'nav-item'
                 html += '<a href="%s" class="nav-link nav-toggle">' % i['url']
