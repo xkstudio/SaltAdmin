@@ -146,7 +146,7 @@ class Nav(UIModule):
                 css_class = 'nav-item'
             html += '<li class="%s"><a href="%s" class="nav-link">' % (css_class,i['url'])
             if i['icon']:
-                html += '<i class="%s"></i>' % i['icon']
+                html += '<i class="%s"></i> ' % i['icon']
             html += '<span class="title">%s</span></a></li>' % i['name']
         html += '</ul>'
         return {'HL': HL, 'html': html}
@@ -158,12 +158,14 @@ class Nav(UIModule):
             sub = self.gen_sub_nav(i['sub'],url)
             if i['url'] == url or sub['HL']:
                 html += '<li class="%s">' % 'nav-item active open'
+                html += '<a href="%s" class="nav-link nav-toggle">' % i['url']
                 html += '<i class="%s"></i><span class="title">%s</span>' % (i['icon'],i['name'])
-                html += '<span class="arrow open"></span><span class="selected"></span>'
+                html += '<span class="arrow open"></span><span class="selected"></span></a>'
             else:
                 html += '<li class="%s">' % 'nav-item'
+                html += '<a href="%s" class="nav-link nav-toggle">' % i['url']
                 html += '<i class="%s"></i><span class="title">%s</span>' % (i['icon'], i['name'])
-                html += '<span class="arrow"></span>'
+                html += '<span class="arrow"></span></a>'
             html += sub['html'] # Sub Menu Html
             html += '</li>'
         return html
