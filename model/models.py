@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-# Powered By KStudio
+# Powered By KK Studio
 
 from sqlalchemy import Column, Integer, SmallInteger, VARCHAR
 from sqlalchemy.ext.declarative import declarative_base
