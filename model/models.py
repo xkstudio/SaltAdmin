@@ -19,6 +19,7 @@ class User(Base):
     gender = Column(SmallInteger,nullable=True) # 性别
     dept = Column(VARCHAR(32),nullable=True) # 部门
     role = Column(VARCHAR(32),nullable=True)
+    lang = Column(VARCHAR(32),nullable=True) # Language
     login_time = Column(Integer,nullable=True)
     login_ua = Column(VARCHAR(600),nullable=True)
     login_ip = Column(VARCHAR(64),nullable=True)
