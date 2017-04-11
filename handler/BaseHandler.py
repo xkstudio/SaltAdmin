@@ -112,6 +112,10 @@ class BaseHandler(tornado.web.RequestHandler):
         self.set_session()
         self.set_secure_cookie(self.cookie_name, self.cookie_value, expires_days)  # 前端Cookie
 
+    # 保存或者更新Session
+    def save_session(self):
+        self.set_session()
+
 
     # 销毁Session
     def remove_session(self):
