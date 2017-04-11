@@ -39,6 +39,7 @@ config = {
         session_key = "_k_session_",
         session_expires = 7200,
         login_url = "/user/login",
+        default_lang = "en_US",
         debug = True,
         autoreload = True
     )
