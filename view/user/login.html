@@ -29,16 +29,18 @@
         <div class="form-group">
             <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
             <label class="control-label visible-ie8 visible-ie9">{{ _('Username') }}</label>
-            <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="{{ _('Username') }}" id="username" /> </div>
+            <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="{{ _('Username') }}" id="username" />
+        </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">{{ _('Password') }}</label>
-            <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="{{ _('Password') }}" id="password" /> </div>
+            <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="{{ _('Password') }}" id="password" />
+        </div>
+        <div class="form-group"><a href="javascript:;" id="forget-password" class="forget-password">{{ _('Forget Password') }}</a></div>
         <div class="form-actions">
             <label class="rememberme check mt-checkbox mt-checkbox-outline">
                 <input type="checkbox" id="remember" value="1" />{{ _('Remember Me') }}
                 <span></span>
             </label>
-            <a href="javascript:;" id="forget-password" class="forget-password">{{ _('Forget Password') }}</a>
             <button type="button" class="btn green login-btn" id="login">{{ _('Sign In') }}</button>
         </div>
         <!--
