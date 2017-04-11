@@ -23,10 +23,14 @@ class BaseHandler(tornado.web.RequestHandler):
         # Version
         self.app_version = self.application.__version__
 
-    # 重载on_finish
-    def on_finish(self):
+    # 后面的方法如果重写on_finish方法，需要调用_on_finish
+    def _on_finish(self):
         # 请求逻辑处理结束时关闭数据库连接，如果不关闭可能会造成MySQL Server has gone away 2006错误
         self.db.close()
+
+    # 重载on_finish
+    def on_finish(self):
+        self._on_finish()
 
     # 重载write_error方法
     def write_error(self, status_code, **kwargs):
