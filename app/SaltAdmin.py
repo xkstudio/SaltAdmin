@@ -9,6 +9,7 @@ import tornado.web
 import tornado.netutil
 import tornado.process
 import tornado.options
+import tornado.locale
 import platform
 import redis
 from tornado.log import gen_log
@@ -38,6 +39,8 @@ class App(tornado.web.Application):
         self.db = scoped_session(sessionmaker(bind=db_engine))
         # Redis
         self.redis = self.__gen_redis__()
+        # Load Locale
+        self.__load_locale()
 
     def __gen_redis__(self):
         return redis.Redis(self._redis['host'],self._redis['port'],self._redis['db'],self._redis['password'])
@@ -49,6 +52,11 @@ class App(tornado.web.Application):
 
     #def test(self):
     #    print "Test"
+
+    # Load Locale
+    def __load_locale(self):
+        tornado.locale.load_translations('locales')
+        tornado.locale.set_default_locale('zh_CN')
 
 class SaltAdmin():
 
