@@ -88,6 +88,7 @@ class ProfileHandler(BaseHandler):
             "email": self.get_argument("email", None),
             "phone": self.get_argument("phone", None),
             "dept": self.get_argument("dept", None),
+            "lang": self.get_argument("lang", 'zh_CN'),
             "update_time": self.time
         }
         # 数据校验
