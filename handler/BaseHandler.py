@@ -139,12 +139,13 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 重写获取用户语言的方法
     def get_user_locale(self):
-        #user_locale = self.get_argument('lang', 'zh')
+        #user_lang = self.get_argument('lang', 'zh')
+        default_lang = self.settings.get('default_lang')
         if self.session:
-            user_locale = self.session.get('lang')
+            user_lang = self.session.get('lang')
         else:
-            user_locale = 'en_US' # Default Language
-        if user_locale in ['en_US','zh_CN']:
-            return tornado.locale.get(user_locale)
+            user_lang = default_lang # Default Language
+        if user_lang in ['en_US','zh_CN']:
+            return tornado.locale.get(user_lang)
         else:
-            return tornado.locale.get('en_US') # Default Language
+            return tornado.locale.get(default_lang) # Default Language
