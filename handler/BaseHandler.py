@@ -25,6 +25,9 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # 后面的方法如果重写on_finish方法，需要调用_on_finish
     def _on_finish(self):
+        # 更新Session
+        if self.session:
+            self.save_session() # 更新Session到Redis
         # 请求逻辑处理结束时关闭数据库连接，如果不关闭可能会造成MySQL Server has gone away 2006错误
         self.db.close()
 
@@ -87,9 +90,9 @@ class BaseHandler(tornado.web.RequestHandler):
         if self.cookie_value:
             self.session_id = self.session_key + self.cookie_value
             self.session = self.get_session()
-            if self.session:
-                # 刷新Seesion过期时间
-                self.redis.expire(self.session_id, self.session_expires)
+            #if self.session:
+            #    # 刷新Seesion过期时间，这一步放到_on_finish方法中执行
+            #    self.redis.expire(self.session_id, self.session_expires)
         else:
             #self.cookie_value = self.gen_session_id()
             #self.set_secure_cookie(self.cookie_name,self.cookie_value)
