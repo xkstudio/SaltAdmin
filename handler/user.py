@@ -38,6 +38,7 @@ class LoginHandler(BaseHandler):
             "uid": profile.id,
             "username": profile.username,
             "nickname": profile.nickname,
+            "lang": profile.lang,
             "login_time": profile.login_time,
             "login_ua": profile.login_ua,
             "login_ip": profile.login_ip,
