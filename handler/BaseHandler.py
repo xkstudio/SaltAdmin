@@ -129,6 +129,7 @@ class BaseHandler(tornado.web.RequestHandler):
         if self.session: # Session存在
             self.redis.delete(self.session_id)
             self.clear_cookie(self.cookie_name)
+            self.session = None
 
 
     # 生成SessionID
