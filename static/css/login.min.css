@@ -232,4 +232,8 @@
 		font-size: 13px
 	}
 }
-11:31 下午 2017-04-11
+
+.footer-copyright-link:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+}
