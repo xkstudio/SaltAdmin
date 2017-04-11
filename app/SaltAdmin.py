@@ -40,7 +40,7 @@ class App(tornado.web.Application):
         # Redis
         self.redis = self.__gen_redis__()
         # Load Locale
-        self.__load_locale()
+        self.__load_locale(settings['default_lang'])
 
     def __gen_redis__(self):
         return redis.Redis(self._redis['host'],self._redis['port'],self._redis['db'],self._redis['password'])
@@ -54,9 +54,9 @@ class App(tornado.web.Application):
     #    print "Test"
 
     # Load Locale
-    def __load_locale(self):
+    def __load_locale(self,default_lang):
         tornado.locale.load_translations('locales')
-        tornado.locale.set_default_locale('zh_CN')
+        tornado.locale.set_default_locale(default_lang)
 
 class SaltAdmin():
 
