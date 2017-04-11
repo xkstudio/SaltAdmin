@@ -34,12 +34,12 @@
             <label class="control-label visible-ie8 visible-ie9">{{ _('Password') }}</label>
             <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="{{ _('Password') }}" id="password" /> </div>
         <div class="form-actions">
-            <button type="button" class="btn green uppercase" id="login">{{ _('SignIn') }}</button>
             <label class="rememberme check mt-checkbox mt-checkbox-outline">
                 <input type="checkbox" id="remember" value="1" />{{ _('Remember Me') }}
                 <span></span>
             </label>
             <a href="javascript:;" id="forget-password" class="forget-password">{{ _('Forget Password') }}</a>
+            <button type="button" class="btn green login-btn" id="login">{{ _('SignIn') }}</button>
         </div>
         <!--
         <div class="login-options">
@@ -62,7 +62,7 @@
         -->
         <div class="create-account">
             <p>
-                <a href="javascript:;" id="register-btn" class="uppercase">{{ _('SignUp') }}</a>
+                <a href="javascript:;" id="register-btn">{{ _('SignUp') }}</a>
             </p>
         </div>
     </form>
