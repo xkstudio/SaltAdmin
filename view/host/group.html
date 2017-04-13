@@ -22,12 +22,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for d in data %}
+                {% for gid in data %}
                 <tr>
-                    <td>{{ d.id }}</td>
-                    <td>{{ d.group_name }}</td>
-                    <td>{{ d.hosts_count }}</td>
-                    <td><a href="javascript:void(0)">编辑</a> | <a href="javascript:void(0)">删除</a></td>
+                    <td>{{ gid }}</td>
+                    <td>{{ data[gid].get('group_name','') }}</td>
+                    <td>{{ data[gid].get('hosts_count','') }}</td>
+                    <td><a href="javascript:void(0)" data-gid="{{ gid }}">编辑</a> | <a href="javascript:void(0)" data-gid="{{ gid }}">删除</a></td>
                 </tr>
                 {% end %}
                 </tbody>

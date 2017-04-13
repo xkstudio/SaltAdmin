@@ -30,7 +30,7 @@ class IndexHandler(BaseHandler):
 class GroupHandler(BaseHandler):
     @Auth
     def get(self):
-        data = self.db.query(HostGroup).all()
+        data = get_groups(self.db)
         self.render('host/group.html',data=data)
 
 
