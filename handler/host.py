@@ -40,6 +40,30 @@ class CreateHostHandler(BaseHandler):
         groups = get_groups(self.db)
         self.render('host/create_host.html',groups=groups)
 
+    @Auth
+    def post(self):
+        data = {
+            'hostname': self.get_argument('hostname',None),
+            'minion_id': self.get_argument('smid',None),
+            'ip': self.get_argument('ip',None),
+            'host_group': self.get_argument('group',None),
+            'host_desc': self.get_argument('desc',None),
+            'create_time': self.time
+        }
+        h = Host(**data)
+        self.db.add(h)
+        self.db.commit()
+        hid = h.id
+        if hid:
+            code = 0
+            msg = 'Success'
+        else:
+            self.db.rollback()
+            hid = 0
+            code = -1
+            msg = 'Error'
+        return self.jsonReturn({'code': code, 'msg': msg, 'hid': hid})
+
 
 # 主机详情
 class HostDetailHandler(BaseHandler):
