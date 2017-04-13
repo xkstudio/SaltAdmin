@@ -99,7 +99,7 @@
                 <div class="form-group">
                     <label for="create_time" class="col-sm-1 control-label">入库时间</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="create_time" placeholder="入库时间" value="{{ data.create_time }}" disabled>
+                        <input type="text" class="form-control" id="create_time" placeholder="入库时间" value="{{ handler.format_time(data.create_time) }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
