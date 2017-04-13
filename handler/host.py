@@ -32,3 +32,11 @@ class CreateHostHandler(BaseHandler):
     def get(self):
         groups = self.db.query(HostGroup).all()
         self.render('host/create_host.html',groups=groups)
+
+# 主机详情
+class HostDetailHandler(BaseHandler):
+    @Auth
+    def get(self):
+        hid = self.get_argument("hid",None)
+        data = self.db.query(Host).filter_by(id=hid).first()
+        self.render('host/host_detail.html',data=data)
