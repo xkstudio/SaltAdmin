@@ -34,7 +34,7 @@ class Host(Base):
 
     id = Column(Integer,primary_key=True,autoincrement=True)
     hostname = Column(VARCHAR(64), nullable=False, unique=True)
-    minion_id = Column(VARCHAR(64), nullable=False, unique=True)
+    minion_id = Column(VARCHAR(64), nullable=True, unique=True)
     ip = Column(VARCHAR(64), nullable=False)
     os = Column(VARCHAR(64), nullable=True)
     vendor = Column(VARCHAR(64), nullable=True)
