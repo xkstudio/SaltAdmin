@@ -10,6 +10,7 @@ import page
 route = [
     (r'/',index.IndexHandler),
     (r'/host',host.IndexHandler),
+    (r'/host/detail',host.HostDetailHandler),
     (r'/host/group',host.GroupHandler),
     (r'/host/create',host.CreateHostHandler),
     (r'/user/login',user.LoginHandler),
