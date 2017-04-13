@@ -52,13 +52,13 @@ class Nav(UIModule):
             'icon': 'icon-layers',
             'sub': [
                 {
-                    'url': '/salt/key',
-                    'name': 'SaltKey',
+                    'url': '/salt/status',
+                    'name': 'Salt状态',
                     'icon': ''
                 },
                 {
-                    'url': '/salt/service',
-                    'name': 'Salt服务管理',
+                    'url': '/salt/key',
+                    'name': 'SaltKey',
                     'icon': ''
                 }
             ]
