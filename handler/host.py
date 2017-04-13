@@ -14,7 +14,7 @@ def get_groups(db):
     all = db.query(HostGroup).all()
     groups = {}
     for i in all:
-        groups[i.id] = i.group_name
+        groups[i.id] = {'group_name':i.group_name,'hosts_count':i.hosts_count,'gid':i.id}
     return groups
 
 
