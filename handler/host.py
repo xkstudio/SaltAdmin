@@ -9,6 +9,15 @@ from model.models import Host
 from model.models import HostGroup
 
 
+# 获取主机分组
+def get_groups(db):
+    all = db.query(HostGroup).all()
+    groups = {}
+    for i in all:
+        groups[i.id] = i.group_name
+    return groups
+
+
 class IndexHandler(BaseHandler):
     @Auth
     def get(self):
@@ -27,11 +36,13 @@ class GroupHandler(BaseHandler):
         data = self.db.query(HostGroup).all()
         self.render('host/group.html',data=data)
 
+
 class CreateHostHandler(BaseHandler):
     @Auth
     def get(self):
         groups = self.db.query(HostGroup).all()
         self.render('host/create_host.html',groups=groups)
+
 
 # 主机详情
 class HostDetailHandler(BaseHandler):
