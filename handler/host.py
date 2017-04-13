@@ -46,5 +46,6 @@ class HostDetailHandler(BaseHandler):
     @Auth
     def get(self):
         hid = self.get_argument("hid",None)
+        groups = get_groups(self.db)
         data = self.db.query(Host).filter_by(id=hid).first()
-        self.render('host/host_detail.html',data=data)
+        self.render('host/host_detail.html',data=data,groups=groups)
