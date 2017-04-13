@@ -109,6 +109,8 @@ $(function(){
                     $.xk.toast(msg);
                 } else if (code==0){
                     $.xk.toast('添加成功！');
+                    var hid = response['hid'];
+                    location.href = '/host/detail?hid=' + hid; //添加成功跳转到主机详情页面
                 } else {
                     $.xk.alert('服务器错误！');
                 }
