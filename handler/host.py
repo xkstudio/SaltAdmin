@@ -37,7 +37,7 @@ class GroupHandler(BaseHandler):
 class CreateHostHandler(BaseHandler):
     @Auth
     def get(self):
-        groups = self.db.query(HostGroup).all()
+        groups = get_groups(self.db)
         self.render('host/create_host.html',groups=groups)
 
 

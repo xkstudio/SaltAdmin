@@ -30,8 +30,8 @@
                     <div class="col-sm-5">
                         <select class="form-control" id="group">
                             <option value="0">请选择分组</option>
-                            {% for i in groups %}
-                            <option value="{{ i.id }}">{{ i.group_name }}</option>
+                            {% for gid in groups %}
+                            <option value="{{ gid }}">{{ groups[gid].get('group_name','') }}</option>
                             {% end %}
                         </select>
                     </div>
