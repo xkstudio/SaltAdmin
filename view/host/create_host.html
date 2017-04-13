@@ -74,27 +74,44 @@
 {% block footer %}
 <script>
 $(function(){
-    var _save_profile = function(){
+    var _init = function(){
+        $('#hostname').keyup(function(){
+            var hostname = $(this).val().trim();
+            $('#smid').val(hostname);
+        });
+    };
+    _init();
+    var _create_host = function(){
         var data = {
-            'nickname': $('#nickname').val().trim(),
-            'gender': $('#gender').val(),
-            'email': $('#email').val().trim(),
-            'phone': $('#phone').val().trim(),
-            'dept': $('#dept').val().trim()
+            'hostname': $('#hostname').val().trim(),
+            'smid': $('#smid').val().trim(),
+            'ip': $('#ip').val().trim(),
+            'group': $('#group').val(),
+            'desc': $('#desc').val().trim()
         };
-        if (data['nickname']==""){
-            $.xk.toast('姓名不能为空！');
-            $('#nickname').focus();
+        if (data['hostname']==""){
+            $.xk.toast('主机名不能为空！');
+            $('#hostname').focus();
             return false;
         }
-        if (data['gender']=="0"){
-            $.xk.toast('请选择您的性别！');
-            $('#gender').focus();
+        if (data['smid']==""){
+            $.xk.toast('Salt ID 不能为空！');
+            $('#smid').focus();
+            return false;
+        }
+        if (data['ip']==""){
+            $.xk.toast('主机IP不能为空！');
+            $('#ip').focus();
+            return false;
+        }
+        if (data['group']=="0"){
+            $.xk.toast('请选择主机分组！');
+            $('#group').focus();
             return false;
         }
         $.xk.http({
             type: 'POST',
-            url: '/user/profile',
+            url: '/host/create',
             data: data,
             dataType: "json",
             success: function(response){
@@ -103,7 +120,7 @@ $(function(){
                     var msg = response['msg'];
                     $.xk.toast(msg);
                 } else if (code==0){
-                    $.xk.toast('保存成功！');
+                    $.xk.toast('添加成功！');
                 } else {
                     $.xk.alert('服务器错误！');
                 }
@@ -113,7 +130,7 @@ $(function(){
             }
         });
     };
-    //$("#save_btn").click(_save_profile);
+    $("#save_btn").click(_create_host);
 });
 </script>
 {% end %}
