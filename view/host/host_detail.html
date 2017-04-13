@@ -1,0 +1,166 @@
+{% extends "../layout/main.html" %}
+{% block content %}
+<div class="page-content">
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <span>主机详情</span>
+            </li>
+        </ul>
+        <div class="page-toolbar pull-right" style="margin-top:5px;"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="hid" class="col-sm-1 control-label">主机ID</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="hid" placeholder="主机ID" value="{{ data.id }}" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hostname" class="col-sm-1 control-label">主机名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="hostname" placeholder="主机名" value="{{ data.hostname }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ip" class="col-sm-1 control-label">IP地址</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="ip" placeholder="主机IP地址" value="{{ data.ip }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="group" class="col-sm-1 control-label">主机分组</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="group" data-v="{{ data.host_group }}">
+                            <option value="0">请选择分组</option>
+                            {% for gid in groups %}
+                            <option value="{{ gid }}">{{ groups[gid].get('group_name','') }}</option>
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="os" class="col-sm-1 control-label">操作系统</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="os" placeholder="" value="{{ data.os }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cpu" class="col-sm-1 control-label">CPU</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="cpu" placeholder="" value="{{ data.cpu }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mem" class="col-sm-1 control-label">内存</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="mem" placeholder="" value="{{ data.mem }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hdd" class="col-sm-1 control-label">硬盘</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="hdd" placeholder="" value="{{ data.hdd }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="vendor" class="col-sm-1 control-label">厂商</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="vendor" placeholder="厂商" value="{{ data.vendor }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="model" class="col-sm-1 control-label">型号</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="model" placeholder="型号" value="{{ data.model }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="snum" class="col-sm-1 control-label">序列号</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="snum" placeholder="" value="{{ data.snum }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tag" class="col-sm-1 control-label">资产标签</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="tag" placeholder="" value="{{ data.tag }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-sm-1 control-label">主机描述</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="desc" placeholder="主机描述" value="{{ data.host_desc }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="create_time" class="col-sm-1 control-label">入库时间</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="create_time" placeholder="入库时间" value="{{ data.create_time }}" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label"></label>
+                    <div class="col-sm-5 text-right">
+                        <a class="btn btn-primary" id="save_btn"><i class="fa fa-check"></i> 保存</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% end %}
+{% block footer %}
+<script>
+$(function(){
+    var _init_ = function(){
+        var gid = $('#group').data('v');
+        $('#group').val(gid);
+    };
+    _init_();
+    var _save_profile = function(){
+        var data = {
+            'nickname': $('#nickname').val().trim(),
+            'gender': $('#gender').val(),
+            'email': $('#email').val().trim(),
+            'phone': $('#phone').val().trim(),
+            'dept': $('#dept').val().trim()
+        };
+        if (data['nickname']==""){
+            $.xk.toast('姓名不能为空！');
+            $('#nickname').focus();
+            return false;
+        }
+        if (data['gender']=="0"){
+            $.xk.toast('请选择您的性别！');
+            $('#gender').focus();
+            return false;
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/user/profile',
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('保存成功！');
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+    //$("#save_btn").click(_save_profile);
+});
+</script>
+{% end %}
