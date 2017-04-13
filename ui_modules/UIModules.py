@@ -27,7 +27,7 @@ class Nav(UIModule):
         {
             'url': url_none,
             'name': '主机管理',
-            'icon': 'icon-layers',
+            'icon': 'icon-screen-desktop',
             'sub': [
                 {
                     'url': '/host',
@@ -42,6 +42,23 @@ class Nav(UIModule):
                 {
                     'url': '/host/create',
                     'name': '创建主机',
+                    'icon': ''
+                }
+            ]
+        },
+        {
+            'url': url_none,
+            'name': 'SaltStack',
+            'icon': 'icon-layers',
+            'sub': [
+                {
+                    'url': '/salt/key',
+                    'name': 'SaltKey',
+                    'icon': ''
+                },
+                {
+                    'url': '/salt/service',
+                    'name': 'Salt服务管理',
                     'icon': ''
                 }
             ]
