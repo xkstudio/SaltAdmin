@@ -22,10 +22,7 @@ class IndexHandler(BaseHandler):
     @Auth
     def get(self):
         data = self.db.query(Host).all()
-        grps = self.db.query(HostGroup).all()
-        groups = {}
-        for i in grps:
-            groups[i.id] = i.group_name
+        groups = get_groups(self.db)
         status = {1:"正常",2:"未知"}
         self.render('host/index.html',data=data,groups=groups,status=status)
 
