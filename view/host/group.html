@@ -1,4 +1,4 @@
-{% extends "../layout/main.html" %}
+{% extends "layout/main.html" %}
 {% block content %}
 <div class="page-content">
     <div class="page-bar">
@@ -29,10 +29,10 @@
                     <td>{{ data[gid].get('hosts_count','') }}</td>
                     <td><a href="javascript:void(0)" data-gid="{{ gid }}">编辑</a> | <a href="javascript:void(0)" data-gid="{{ gid }}">删除</a></td>
                 </tr>
-                {% end %}
+                {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-{% end %}
+{% endblock %}
