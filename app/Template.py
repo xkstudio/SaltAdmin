@@ -87,3 +87,13 @@ class Jinja2Loader(tornado.template.BaseLoader):
         if self._jinja2_env is None:
             raise TypeError('no jinja2 environment for this loader specified')
         return self._jinja2_env.get_template(name)
+
+
+class TemplateLoader:
+
+    def __init__(self,template_path,autoescape=False):
+        # Create a instance of Jinja2Loader
+        self.jinja2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path), autoescape=autoescape)
+
+    def Loader(self):
+        return Jinja2Loader(self.jinja2_env)
