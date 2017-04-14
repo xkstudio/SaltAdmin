@@ -31,17 +31,16 @@ class App(tornado.web.Application):
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
         # App Version
         self.__version__ = conf['version']
-        # 封装数据库
+        # 数据库
         self._db = conf['db']
-        self._redis = conf['redis']
         self.db = self.get_db()
         # Redis
-        self.redis = self.__gen_redis__()
+        self.redis = self.get_redis(conf['redis'])
         # Load Locale
         self.__load_locale(settings['default_lang'])
 
-    def __gen_redis__(self):
-        return redis.Redis(self._redis['host'],self._redis['port'],self._redis['db'],self._redis['password'])
+    def get_redis(self,conf):
+        return redis.Redis(conf['host'],conf['port'],conf['db'],conf['password'])
 
     def get_db(self):
         db = Database(**self._db)
