@@ -8,19 +8,19 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 class Database:
 
-    def __init__(self,host='localhost',port=3306,db='mysql',user='root',pw='',charset='utf-8'):
+    def __init__(self,host='localhost',port=3306,db='mysql',user='root',passwd='',charset='utf-8'):
         self._host = host
         self._port = port
         self._db = db
         self._user = user
-        self._pw = pw
+        self._passwd = passwd
         self._charset = charset
         self._db_url = self._gen_db_conf()
 
 
     def _gen_db_conf(self):
         db_url = 'mysql+mysqldb://%s:%s@%s:%s/%s?charset=%s' % \
-                 (self._user,self._pw,self._host,self._port,self._db,self._charset)
+                 (self._user,self._passwd,self._host,self._port,self._db,self._charset)
         return db_url
 
 
