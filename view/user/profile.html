@@ -1,4 +1,4 @@
-{% extends "../layout/main.html" %}
+{% extends "layout/main.html" %}
 {% block content %}
 <div class="page-content">
     <div class="page-bar">
@@ -90,7 +90,7 @@
         </div>
     </div>
 </div>
-{% end %}
+{% endblock %}
 {% block footer %}
 <script>
 $(function(){
@@ -145,4 +145,4 @@ $(function(){
     $("#save_btn").click(_save_profile);
 });
 </script>
-{% end %}
+{% endblock %}
