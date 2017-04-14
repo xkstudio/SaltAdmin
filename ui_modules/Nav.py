@@ -11,28 +11,28 @@ class Nav:
     nav = [
         {
             'url': '/',
-            'name': '控制中心',
+            'name': u'控制中心',
             'icon': 'icon-wrench',
             'sub': []
         },
         {
             'url': url_none,
-            'name': '主机管理',
+            'name': u'主机管理',
             'icon': 'icon-screen-desktop',
             'sub': [
                 {
                     'url': '/host',
-                    'name': '主机清单',
+                    'name': u'主机清单',
                     'icon': ''
                 },
                 {
                     'url': '/host/group',
-                    'name': '主机分组',
+                    'name': u'主机分组',
                     'icon': ''
                 },
                 {
                     'url': '/host/create',
-                    'name': '创建主机',
+                    'name': u'创建主机',
                     'icon': ''
                 }
             ]
@@ -44,7 +44,7 @@ class Nav:
             'sub': [
                 {
                     'url': '/salt/status',
-                    'name': 'Salt状态',
+                    'name': u'Salt状态',
                     'icon': ''
                 },
                 {
@@ -56,83 +56,83 @@ class Nav:
         },
         {
             'url': url_none,
-            'name': '任务管理',
+            'name': u'任务管理',
             'icon': 'icon-bar-chart',
             'sub': [
                 {
                     'url': '#',
-                    'name': '命令下发',
+                    'name': u'命令下发',
                     'icon': ''
                 },
                 {
                     'url': '#',
-                    'name': '文件分发',
+                    'name': u'文件分发',
                     'icon': ''
                 }
             ]
         },
         {
             'url': url_none,
-            'name': '系统管理',
+            'name': u'系统管理',
             'icon': 'icon-wrench',
             'sub': [
                 {
                     'url': '#',
-                    'name': '系统设置',
+                    'name': u'系统设置',
                     'icon': ''
                 },
                 {
                     'url': '/user',
-                    'name': '用户管理',
+                    'name': u'用户管理',
                     'icon': ''
                 }
                 ,
                 {
                     'url': '#',
-                    'name': '版本升级',
+                    'name': u'版本升级',
                     'icon': ''
                 }
             ]
         },
         {
             'url': url_none,
-            'name': '页面管理',
+            'name': u'页面管理',
             'icon': 'icon-grid',
             'sub': [
                 {
                     'url': '/page/404.html',
-                    'name': '404页面',
+                    'name': u'404页面',
                     'icon': 'icon-bulb'
                 },
                 {
                     'url': '/page/blank.html',
-                    'name': '空白页面',
+                    'name': u'空白页面',
                     'icon': 'icon-bar-chart'
                 }
                 ,
                 {
                     'url': '/user/login',
-                    'name': '登录页面',
+                    'name': u'登录页面',
                     'icon': 'icon-bulb'
                 }
             ]
         },
         {
             'url': url_none,
-            'name': '关于',
+            'name': u'关于',
             'icon': 'icon-info',
             'sub': [
                 {
                     'url': '#',
-                    'name': '系统信息',
+                    'name': u'系统信息',
                     'icon': ''
                 },{
                     'url': '#',
-                    'name': '技术交流',
+                    'name': u'技术交流',
                     'icon': ''
                 },{
                     'url': '#',
-                    'name': 'Bug提交',
+                    'name': u'Bug提交',
                     'icon': ''
                 }
             ]
