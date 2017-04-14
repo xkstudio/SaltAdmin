@@ -36,7 +36,7 @@ Designed By [KK Studio](http://github.com/kkstu)
 
 * [Tornado](http://www.tornadoweb.org/)：4.0+
 
-* [Jinja2](http://jinja.pocoo.org/)：2.7+
+* [Jinja2](http://jinja.pocoo.org/)：2.9+
 
 * [MySQL](http://www.percona.com/)：Percona-Server 5.5/5.6
 
