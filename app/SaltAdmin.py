@@ -13,8 +13,7 @@ import tornado.locale
 import platform
 import redis
 from tornado.log import gen_log
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
+from DB import Database
 from handler.page import Page404Handler
 from config.settings import config
 from handler import route
@@ -35,8 +34,7 @@ class App(tornado.web.Application):
         # 封装数据库
         self._db = conf['db']
         self._redis = conf['redis']
-        db_engine = create_engine(self.__gen_db_conn(),encoding='utf-8', echo=False)
-        self.db = scoped_session(sessionmaker(bind=db_engine))
+        self.db = self.get_db()
         # Redis
         self.redis = self.__gen_redis__()
         # Load Locale
@@ -45,10 +43,9 @@ class App(tornado.web.Application):
     def __gen_redis__(self):
         return redis.Redis(self._redis['host'],self._redis['port'],self._redis['db'],self._redis['password'])
 
-    def __gen_db_conn(self):
-        conn = 'mysql+mysqldb://%s:%s@%s:%s/%s?charset=%s' % \
-            (self._db['user'], self._db['pass'], self._db['host'], self._db['port'], self._db['db'], self._db['charset'])
-        return conn
+    def get_db(self):
+        db = Database(**self._db)
+        return db.db_session()
 
     #def test(self):
     #    print "Test"
