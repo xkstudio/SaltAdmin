@@ -1,4 +1,4 @@
-{% extends "../layout/main.html" %}
+{% extends "layout/main.html" %}
 {% block content %}
 <div class="page-content">
     <div class="page-bar">
@@ -18,8 +18,7 @@
             <p>上次登录时间: {{ data['login_time'] }}</p>
             <p>上次登录IP: {{ data['login_ip'] }}</p>
             <p>上次登录UA: {{ data['login_ua'] }}</p>
-            <p>{% module Test('Hello') %}</p>
         </div>
     </div>
 </div>
-{% end %}
+{% endblock %}
