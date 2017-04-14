@@ -32,8 +32,7 @@ class App(tornado.web.Application):
         # App Version
         self.__version__ = conf['version']
         # 数据库
-        self._db = conf['db']
-        self.db = self.get_db()
+        self.db = self.get_db(conf['db'])
         # Redis
         self.redis = self.get_redis(conf['redis'])
         # Load Locale
@@ -42,8 +41,8 @@ class App(tornado.web.Application):
     def get_redis(self,conf):
         return redis.Redis(conf['host'],conf['port'],conf['db'],conf['password'])
 
-    def get_db(self):
-        db = Database(**self._db)
+    def get_db(self,conf):
+        db = Database(**conf)
         return db.db_session()
 
     #def test(self):
