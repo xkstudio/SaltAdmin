@@ -12,7 +12,6 @@ import tornado.options
 import tornado.locale
 import platform
 import redis
-import jinja2
 from tornado.log import gen_log
 from DB import Database
 from handler.page import Page404Handler
