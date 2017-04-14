@@ -6,9 +6,9 @@ import tornado.template
 import jinja2
 from jinja2 import Environment, FileSystemLoader
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+#import sys
+#reload(sys)
+#sys.setdefaultencoding('utf8')
 
 
 class FixedTemplate(jinja2.Template):
