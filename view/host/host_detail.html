@@ -1,4 +1,4 @@
-{% extends "../layout/main.html" %}
+{% extends "layout/main.html" %}
 {% block content %}
 <div class="page-content">
     <div class="page-bar">
@@ -38,7 +38,7 @@
                             <option value="0">请选择分组</option>
                             {% for gid in groups %}
                             <option value="{{ gid }}">{{ groups[gid].get('group_name','') }}</option>
-                            {% end %}
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
         </div>
     </div>
 </div>
-{% end %}
+{% endblock %}
 {% block footer %}
 <script>
 $(function(){
@@ -163,4 +163,4 @@ $(function(){
     //$("#save_btn").click(_save_profile);
 });
 </script>
-{% end %}
+{% endblock %}
