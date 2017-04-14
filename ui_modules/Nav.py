@@ -82,7 +82,7 @@ class Nav:
                     'icon': ''
                 },
                 {
-                    'url': '#',
+                    'url': '/user',
                     'name': '用户管理',
                     'icon': ''
                 }
