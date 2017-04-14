@@ -1,4 +1,4 @@
-{% extends "../layout/main.html" %}
+{% extends "layout/main.html" %}
 {% block content %}
 <div class="page-content">
     <div class="page-bar">
@@ -33,10 +33,10 @@
                     <td>{{ status.get(d.status,'') }}</td>
                     <td><a href="/host/detail?hid={{ d.id }}">编辑</a> | <a href="javascript:void(0)">任务</a></td>
                 </tr>
-                {% end %}
+                {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-{% end %}
+{% endblock %}
