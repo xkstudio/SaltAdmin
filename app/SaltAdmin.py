@@ -12,12 +12,13 @@ import tornado.options
 import tornado.locale
 import platform
 import redis
+import jinja2
 from tornado.log import gen_log
 from DB import Database
 from handler.page import Page404Handler
 from config.settings import config
 from handler import route
-from ui_modules import UIModules
+from Template import Jinja2Loader
 
 
 class App(tornado.web.Application):
@@ -25,12 +26,16 @@ class App(tornado.web.Application):
     def __init__(self,handlers,settings,conf,log):
         self.log = log
         settings['default_handler_class'] = Page404Handler # 404
-        settings['ui_modules'] = UIModules
-        tornado.web.Application.__init__(self, handlers, **settings)
         # 每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
         # App Version
         self.__version__ = conf['version']
+        # Template
+        # Create a instance of Jinja2Loader
+        jinja2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(settings['template_path']), autoescape=False)
+        jinja2_loader = Jinja2Loader(jinja2_env)
+        # Init Tornado App
+        tornado.web.Application.__init__(self, handlers, template_loader=jinja2_loader, **settings)
         # 数据库
         self.db = self.get_db(conf['db'])
         # Redis
