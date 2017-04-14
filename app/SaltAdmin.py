@@ -18,7 +18,7 @@ from DB import Database
 from handler.page import Page404Handler
 from config.settings import config
 from handler import route
-from Template import Jinja2Loader
+from Template import TemplateLoader
 
 
 class App(tornado.web.Application):
@@ -31,11 +31,9 @@ class App(tornado.web.Application):
         # App Version
         self.__version__ = conf['version']
         # Template
-        # Create a instance of Jinja2Loader
-        jinja2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(settings['template_path']), autoescape=False)
-        jinja2_loader = Jinja2Loader(jinja2_env)
+        tpl_loader = TemplateLoader(settings['template_path'],False)
         # Init Tornado App
-        tornado.web.Application.__init__(self, handlers, template_loader=jinja2_loader, **settings)
+        tornado.web.Application.__init__(self, handlers, template_loader=tpl_loader.Loader(), **settings)
         # 数据库
         self.db = self.get_db(conf['db'])
         # Redis
