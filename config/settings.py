@@ -18,7 +18,7 @@ config = {
         'port': 3306,
         'db': 'saltadmin2',
         'user': 'test',
-        'pass': 'test',
+        'passwd': 'test',
         'charset': 'utf8'
     },
     'redis': {
