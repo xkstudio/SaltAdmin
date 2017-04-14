@@ -16,12 +16,12 @@
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{{ static_url('css/layout.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ static_url('css/saltadmin.css') }}" rel="stylesheet" type="text/css" />
-    {% block head %}{% end %}
+    {% block head %}{% endblock %}
 </head>
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
     <div class="page-wrapper">
         <!-- BEGIN HEADER -->
-        {% include "top.html" %}
+        {% include "layout/top.html" %}
         <!-- END HEADER -->
         <!-- BEGIN HEADER & CONTENT DIVIDER -->
         <div class="clearfix"> </div>
@@ -29,12 +29,12 @@
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN SIDEBAR -->
-            {% module Nav(handler.url) %}
+            {% include "layout/nav.html" %}
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
-                {% block content %}{% end %}
+                {% block content %}{% endblock %}
                 <!-- END CONTENT BODY -->
             </div>
             <!-- END CONTENT -->
@@ -53,6 +53,6 @@
         <!-- END FOOTER -->
     </div>
     <script src="{{ static_url('js/xk-saltadmin.min.js') }}" type="text/javascript"></script>
-{% block footer %}{% end %}
+{% block footer %}{% endblock %}
 </body>
 </html>
