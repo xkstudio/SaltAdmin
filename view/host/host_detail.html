@@ -45,55 +45,55 @@
                 <div class="form-group">
                     <label for="os" class="col-sm-1 control-label">操作系统</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="os" placeholder="" value="{{ data.os }}">
+                        <input type="text" class="form-control" id="os" placeholder="" value="{{ data.os or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cpu" class="col-sm-1 control-label">CPU</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="cpu" placeholder="" value="{{ data.cpu }}">
+                        <input type="text" class="form-control" id="cpu" placeholder="" value="{{ data.cpu or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="mem" class="col-sm-1 control-label">内存</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="mem" placeholder="" value="{{ data.mem }}">
+                        <input type="text" class="form-control" id="mem" placeholder="" value="{{ data.mem or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="hdd" class="col-sm-1 control-label">硬盘</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="hdd" placeholder="" value="{{ data.hdd }}">
+                        <input type="text" class="form-control" id="hdd" placeholder="" value="{{ data.hdd or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="vendor" class="col-sm-1 control-label">厂商</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="vendor" placeholder="厂商" value="{{ data.vendor }}">
+                        <input type="text" class="form-control" id="vendor" placeholder="厂商" value="{{ data.vendor or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="model" class="col-sm-1 control-label">型号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="model" placeholder="型号" value="{{ data.model }}">
+                        <input type="text" class="form-control" id="model" placeholder="型号" value="{{ data.model or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="snum" class="col-sm-1 control-label">序列号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="snum" placeholder="" value="{{ data.snum }}">
+                        <input type="text" class="form-control" id="snum" placeholder="" value="{{ data.snum or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="tag" class="col-sm-1 control-label">资产标签</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="tag" placeholder="" value="{{ data.tag }}">
+                        <input type="text" class="form-control" id="tag" placeholder="" value="{{ data.tag or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="desc" class="col-sm-1 control-label">主机描述</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="desc" placeholder="主机描述" value="{{ data.host_desc }}">
+                        <input type="text" class="form-control" id="desc" placeholder="主机描述" value="{{ data.host_desc or '' }}">
                     </div>
                 </div>
                 <div class="form-group">
