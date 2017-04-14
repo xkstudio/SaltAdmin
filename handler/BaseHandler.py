@@ -7,6 +7,7 @@ import os
 import time
 import json
 import hashlib
+from ui_modules.Nav import Nav
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -161,3 +162,7 @@ class BaseHandler(tornado.web.RequestHandler):
             return tornado.locale.get(user_lang)
         else:
             return tornado.locale.get(default_lang) # Default Language
+
+    # Nav UI
+    def get_nav(self):
+        return Nav().gen_nav(self.url)
