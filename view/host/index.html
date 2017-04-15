@@ -28,7 +28,7 @@
                 {% for d in data %}
                 <tr>
                     <td>{{ d.id }}</td>
-                    <td>{{ d.hostname or '' }}</td>
+                    <td><a href="/host/detail?hid={{ d.id }}">{{ d.hostname or '' }}</a></td>
                     <td>{{ d.minion_id or '' }}</td>
                     <td>{{ d.ip or '' }}</td>
                     <td>{{ groups.get(d.host_group,{}).get('group_name','') }}</td>
