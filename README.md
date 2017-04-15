@@ -86,3 +86,8 @@ Version: **2.0-Alpha**
 - apt-get install salt-minion
 
 > More about Saltstack deployment documents see the https://repo.saltstack.com/.
+
+
+## License
+
+This project is under the MIT License. See the [LICENSE](http://git.luxiaok.com:82/xiaok/SaltAdmin/src/master/LICENSE) file for the full license text.
