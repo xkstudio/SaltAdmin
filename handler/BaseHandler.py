@@ -69,8 +69,8 @@ class BaseHandler(tornado.web.RequestHandler):
         self.write(data)
 
     # 格式化时间戳
-    def format_time(self,timestamp=None):
-        return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))
+    def format_time(self,timestamp=None,format='%Y-%m-%d %H:%M:%S'):
+        return time.strftime(format, time.localtime(timestamp))
 
 
     # Session初始化
