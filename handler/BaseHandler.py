@@ -79,9 +79,9 @@ class BaseHandler(tornado.web.RequestHandler):
     def init_session(self):
         prefix = self.settings.get('session_prefix')
         expires = self.settings.get('session_expires')
-        cookie_name = self.settings.get('cookie_name')
-        sid = self.get_secure_cookie(cookie_name)
-        self.session = Session(prefix,sid,expires,self.redis)
+        self.cookie_name = self.settings.get('cookie_name')
+        self.sid = self.get_secure_cookie(self.cookie_name)
+        self.session = Session(prefix,self.sid,expires,self.redis)
 
 
     # 重写get_current_user
