@@ -21,9 +21,9 @@ class IndexHandler(BaseHandler):
             'tornado': tornado_verion,
             'saltadmin': self.app_version,
             'saltstack': salt_version,
-            'login_time': self.format_time(self.session['login_time']),
-            'login_ip': self.session['login_ip'],
-            'login_ua': self.session['login_ua']
+            'login_time': self.format_time(self.session.get('login_time')),
+            'login_ip': self.session.get('login_ip'),
+            'login_ua': self.session.get('login_ua')
         }
         return data
 
