@@ -21,7 +21,7 @@
                     <th>IP地址</th>
                     <th>分组</th>
                     <th>状态</th>
-                    <th>操作</th>
+                    <th style="width:180px;">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,9 +34,9 @@
                     <td>{{ groups.get(d.host_group,{}).get('group_name','') }}</td>
                     <td>{{ status.get(d.status,'') }}</td>
                     <td>
-                        <a href="javascript:void(0);" class="btn btn-danger btn-xs">删除</a>
-                        <a href="/host/detail?hid={{ d.id }}" class="btn btn-info btn-xs">编辑</a>
-                        <a href="javascript:void(0);" class="btn btn-primary btn-xs">任务</a>
+                        <a href="javascript:void(0);" class="btn btn-danger btn-xs">删 除</a>
+                        <a href="/host/detail?hid={{ d.id }}" class="btn btn-info btn-xs">编 辑</a>
+                        <a href="javascript:void(0);" class="btn btn-primary btn-xs">任 务</a>
                     </td>
                 </tr>
                 {% endfor %}
