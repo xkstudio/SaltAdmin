@@ -18,7 +18,6 @@ class BaseHandler(tornado.web.RequestHandler):
         # Current URL
         self.url = self.get_route()
         # Session
-        self.session = None # 用户未登录标识
         self.init_session()
         # Version
         self.app_version = self.application.__version__
