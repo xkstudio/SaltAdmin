@@ -100,6 +100,22 @@ Version: **2.0-Alpha**
 After the version 2.0-Stable release.
 
 
+## Technology Communications
+
+#### Wechat
+
+![Python运维圈](https://github.com/luxiaok/SaltAdmin/raw/master/static/images/ops_circle_qrcode.jpg)
+
+#### QQ Group
+
+**459457262**
+
+
+#### KK Studio
+
+http://studio.luxiaokc.com
+
+
 ## License
 
 This project is under the MIT License. See the [LICENSE](http://git.luxiaok.com:82/xiaok/SaltAdmin/src/master/LICENSE) file for the full license text.
