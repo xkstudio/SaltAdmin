@@ -7,6 +7,7 @@ from BaseHandler import BaseHandler
 from tornado.web import authenticated as Auth
 from model.models import Host
 from model.models import HostGroup
+from model.models import or_
 
 
 # 获取主机分组
@@ -50,6 +51,18 @@ class CreateHostHandler(BaseHandler):
             'host_desc': self.get_argument('desc',None),
             'create_time': self.time
         }
+        # 检测重复
+        chk = self.db.query(Host).filter(or_(Host.hostname==data['hostname'],Host.ip==data['ip'],Host.minion_id==data['minion_id'])).first()
+        if chk:
+            if chk.hostname == data['hostname']:
+                msg = u'主机名重复'
+            elif chk.minion_id == data['minion_id']:
+                msg = u'Salt ID 重复'
+            elif chk.ip == data['ip']:
+                msg = u'IP地址重复'
+            else:
+                msg = u'主机重复'
+            return self.jsonReturn({'code': -2, 'msg': msg, 'hid': chk.id})
         h = Host(**data)
         self.db.add(h)
         self.db.commit()
