@@ -97,6 +97,13 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 - [简体中文](README_CN.md)
 
 
+## Get Support and Help
+
+To report an issue with SaltAdmin.
+
+https://github.com/kkstu/SaltAdmin/issues
+
+
 ## Contributors
 
 After the version 2.0-Stable release.
