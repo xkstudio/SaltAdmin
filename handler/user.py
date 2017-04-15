@@ -33,22 +33,7 @@ class LoginHandler(BaseHandler):
         if self.md5(password) != profile.password:
             return self.jsonReturn({'code': -2, 'msg': '用户名或密码错误'})
         ##### 验证通过逻辑 #####
-        # 写Session
-        session = {
-            "uid": profile.id,
-            "username": profile.username,
-            "nickname": profile.nickname,
-            "lang": profile.lang,
-            "login_time": profile.login_time,
-            "login_ua": profile.login_ua,
-            "login_ip": profile.login_ip,
-            "login_location": profile.login_location
-        }
-        if remember == "yes":
-            expires_days = 15 # 记住Session
-        else:
-            expires_days = None
-        self.create_session(session,expires_days) # 创建Session
+        self.create_session(profile,remember) # Create Session
         # 记录登录信息
         headers = self.request.headers
         login_ua = headers.get('User-Agent')
@@ -66,11 +51,32 @@ class LoginHandler(BaseHandler):
         return self.jsonReturn({'code': 0, 'msg': 'Success', 'url': url})
 
 
+    def create_session(self,data,remember):
+        sid = self.session.gen_session_id()
+        self.session.data = {
+            "uid": data.id,
+            "username": data.username,
+            "nickname": data.nickname,
+            "lang": data.lang,
+            "login_time": data.login_time,
+            "login_ua": data.login_ua,
+            "login_ip": data.login_ip,
+            "login_location": data.login_location
+        }
+        self.session.isGuest = False
+        #self.session.save() # Why don't save? See self._on_finish !!
+        if remember == "yes":
+            expires_days = 15  # Remember Session 15 days
+        else:
+            expires_days = None
+        self.set_secure_cookie(self.cookie_name, sid, expires_days)
+
+
 # 注销登录
 class LogoutHandler(BaseHandler):
     def get(self):
         self.session.remove()
-        self.clear_cookie(self.settings.get('cookie_name'))
+        self.clear_cookie(self.cookie_name)
         self.redirect(self.get_login_url())
 
 
