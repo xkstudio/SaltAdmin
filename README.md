@@ -88,6 +88,13 @@ Version: **2.0-Alpha**
 > More about Saltstack deployment documents see the https://repo.saltstack.com/.
 
 
+## Documents
+
+- See the [docs](docs).
+
+- [简体中文](README.md)
+
+
 ## Contributors
 
 After the version 2.0-Stable release.
