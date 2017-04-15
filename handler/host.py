@@ -106,17 +106,19 @@ class HostDetailHandler(BaseHandler):
             'tag': self.get_argument('tag',None)
         }
         # 检测重复
-        chk = self.db.query(Host).filter(or_(Host.hostname==data['hostname'],Host.ip==data['ip'],Host.minion_id==data['minion_id'])).first()
-        if chk and int(chk.id) != int(hid):
-            if chk.hostname == data['hostname']:
-                msg = u'主机名重复'
-            elif chk.minion_id == data['minion_id']:
-                msg = u'Salt ID 重复'
-            elif chk.ip == data['ip']:
-                msg = u'IP地址重复'
-            else:
-                msg = u'主机重复'
-            return self.jsonReturn({'code': -2, 'msg': msg, 'hid': chk.id})
+        chk = self.db.query(Host.id,Host.hostname,Host.minion_id,Host.ip).filter(or_(Host.hostname==data['hostname'],Host.ip==data['ip'],Host.minion_id==data['minion_id'])).all()
+        if chk:
+            for row in chk:
+                if int(row.id) != int(hid):
+                    if row.hostname == data['hostname']:
+                        msg = u'主机名重复'
+                    elif row.minion_id == data['minion_id']:
+                        msg = u'Salt ID 重复'
+                    elif row.ip == data['ip']:
+                        msg = u'IP地址重复'
+                    else:
+                        msg = u'主机重复'
+                    return self.jsonReturn({'code': -2, 'msg': msg, 'hid': row.id})
         ret = self.db.query(Host).filter_by(id=hid).update(data)  # <type 'long'> - 1
         self.db.commit()
         if ret:
