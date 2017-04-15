@@ -127,4 +127,4 @@ http://studio.luxiaok.com
 
 ## License
 
-This project is under the MIT License. See the [LICENSE](http://git.luxiaok.com:82/xiaok/SaltAdmin/src/master/LICENSE) file for the full license text.
+This project is under the MIT License. See the [LICENSE](LICENSE) file for the full license text.

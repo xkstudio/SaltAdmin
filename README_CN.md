@@ -105,4 +105,4 @@ http://studio.luxiaok.com
 
 MIT
 
-协议详情：[LICENSE](http://git.luxiaok.com:82/xiaok/SaltAdmin/src/master/LICENSE)
+协议详情：[LICENSE](LICENSE)
