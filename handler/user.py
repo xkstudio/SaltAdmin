@@ -19,7 +19,8 @@ class LoginHandler(BaseHandler):
     def get(self):
         if not self.session.isGuest:
             return self.redirect('/') # 已登录则跳转到首页
-        self.render('user/login.html', title="Login")
+        next = self.get_argument("next", "/")
+        self.render('user/login.html', next=next)
 
     def post(self):
         username = self.get_argument("username",None)
