@@ -14,7 +14,7 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 ## Overview
 
-![SaltAdmin](http://git.luxiaok.com:82/xiaok/SaltAdmin/raw/master/static/img/screenshot/login.jpg)
+![SaltAdmin](https://raw.githubusercontent.com/kkstu/SaltAdmin/master/static/img/screenshot/login.jpg)
 
 
 ## Features

@@ -14,7 +14,7 @@ Powered By [KK Studio](http://github.com/kkstu)
 
 ## 概览
 
-![SaltAdmin](http://git.luxiaok.com:82/xiaok/SaltAdmin/raw/master/static/img/screenshot/login.jpg)
+![SaltAdmin](https://raw.githubusercontent.com/kkstu/SaltAdmin/master/static/img/screenshot/login.jpg)
 
 
 ## 依赖组件
