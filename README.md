@@ -92,7 +92,7 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 ## Documents
 
-- See the [docs](docs).
+- [English](README.md)
 
 - [简体中文](README_CN.md)
 
