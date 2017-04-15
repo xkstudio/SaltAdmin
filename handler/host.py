@@ -86,3 +86,45 @@ class HostDetailHandler(BaseHandler):
         groups = get_groups(self.db)
         data = self.db.query(Host).filter_by(id=hid).first()
         self.render('host/host_detail.html',data=data,groups=groups)
+
+    @Auth
+    def post(self):
+        hid = self.get_argument('hid', None)
+        data = {
+            'hostname': self.get_argument('hostname',None),
+            'minion_id': self.get_argument('smid',None),
+            'ip': self.get_argument('ip',None),
+            'host_group': self.get_argument('group',None),
+            'host_desc': self.get_argument('desc',None),
+            'os': self.get_argument('os',None),
+            'cpu': self.get_argument('cpu',None),
+            'hdd': self.get_argument('hdd',None),
+            'mem': self.get_argument('mem',None),
+            'vendor': self.get_argument('vendor',None),
+            'model': self.get_argument('model',None),
+            'snum': self.get_argument('snum',None),
+            'tag': self.get_argument('tag',None)
+        }
+        # 检测重复
+        chk = self.db.query(Host).filter(or_(Host.hostname==data['hostname'],Host.ip==data['ip'],Host.minion_id==data['minion_id'])).first()
+        if chk and chk.id != hid:
+            if chk.hostname == data['hostname']:
+                msg = u'主机名重复'
+            elif chk.minion_id == data['minion_id']:
+                msg = u'Salt ID 重复'
+            elif chk.ip == data['ip']:
+                msg = u'IP地址重复'
+            else:
+                msg = u'主机重复'
+            return self.jsonReturn({'code': -2, 'msg': msg, 'hid': chk.id})
+        ret = self.db.query(Host).filter(id=hid).update(data)  # <type 'long'> - 1
+        self.db.commit()
+        if ret:
+            code = 0
+            msg = 'Success'
+        else:
+            self.db.rollback()
+            code = -1
+            msg = u'保存失败'
+        return self.jsonReturn({'code': code, 'msg': msg})
+
