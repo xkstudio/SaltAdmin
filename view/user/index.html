@@ -33,7 +33,7 @@
                     <th>部门</th>
                     <th>电子邮箱</th>
                     <th>手机号</th>
-                    <th>操作</th>
+                    <th style="width:150px;">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,8 +47,8 @@
                     <td>{{ u.email }}</td>
                     <td>{{ u.phone }}</td>
                     <td>
-                        <a href="javascript:void(0);" data-uid="{{ u.id }}" class="btn btn-danger btn-xs">删除</a>
-                        <a href="javascript:void(0);" data-uid="{{ u.id }}" class="btn btn-info btn-xs">编辑</a>
+                        <a href="javascript:void(0);" data-uid="{{ u.id }}" class="btn btn-danger btn-xs">删 除</a>
+                        <a href="javascript:void(0);" data-uid="{{ u.id }}" class="btn btn-info btn-xs">编 辑</a>
                     </td>
                 </tr>
                 {% endfor %}
