@@ -73,6 +73,17 @@ Powered By [KK Studio](http://github.com/kkstu)
 > 更多Saltstack部署信息请参考官网 https://repo.saltstack.com/
 
 
+#### 启动程序
+
+> python run.py
+
+访问 http://你的IP或域名:8888/
+
+指定监听端口:
+
+> python run.py --port=8080
+
+
 ## 贡献代码
 
 正式版2.0发布之后才接受代码贡献
