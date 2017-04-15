@@ -54,7 +54,7 @@ class Session:
 
 
     def save_session(self):
-        if self.session_id:
+        if not self.isGuest and self.session_id and self.data:
             self.redis.set(self.session_id,json.dumps(self.data),self.expires)
 
 
