@@ -15,6 +15,7 @@ class Session:
     def __init__(self,prefix='',session_id=None,expires=7200,redis=None):
         self.redis = redis
         self.expires = expires
+        self.prefix = prefix
         if session_id:
             self.session_id = prefix + session_id
             self.data = self.get_data()
@@ -29,9 +30,10 @@ class Session:
 
 
     # 生成SessionID
-    @staticmethod
-    def gen_session_id():
-        return hashlib.sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
+    def gen_session_id(self):
+        sid = hashlib.sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
+        self.session_id = self.prefix + sid
+        return sid
 
 
     # 获取Session数据
