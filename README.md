@@ -10,6 +10,11 @@ Powered By [KK Studio](http://github.com/kkstu)
 Version: **2.0-Alpha**
 
 
+## Overview
+
+![SaltAdmin](http://git.luxiaok.com:82/xiaok/SaltAdmin/src/master/static/img/screenshot/login.jpg)
+
+
 ## Features
 
 - Host assets management automation
