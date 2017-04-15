@@ -76,11 +76,6 @@ class BaseHandler(tornado.web.RequestHandler):
         return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))
 
 
-    # 获取当前登录用户
-    def get_current_user(self):
-        return self.session
-
-
     # Session初始化
     def init_session(self):
         prefix = self.settings.get('session_prefix')
@@ -88,6 +83,14 @@ class BaseHandler(tornado.web.RequestHandler):
         cookie_name = self.settings.get('cookie_name')
         sid = self.get_secure_cookie(cookie_name)
         self.session = Session(prefix,sid,expires,self.redis)
+
+
+    # 重写get_current_user
+    def get_current_user(self):
+        if not self.session.isGuest and self.session.data:
+            return self.session.data
+        else:
+            return None
 
 
     # MD5计算
