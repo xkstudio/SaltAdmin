@@ -12,7 +12,7 @@ Version: **2.0-Alpha**
 
 ## Overview
 
-![SaltAdmin](http://git.luxiaok.com:82/xiaok/SaltAdmin/src/master/static/img/screenshot/login.jpg)
+![SaltAdmin](http://git.luxiaok.com:82/xiaok/SaltAdmin/raw/bdcb7db9ce31438300a5ae78be9f0624fb0fe9f4/static/img/screenshot/login.jpg)
 
 
 ## Features
