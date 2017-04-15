@@ -5,7 +5,7 @@
 import tornado
 import time
 import hashlib
-from Session import Session
+from app.Session import Session
 from ui_modules.Nav import Nav
 
 class BaseHandler(tornado.web.RequestHandler):
