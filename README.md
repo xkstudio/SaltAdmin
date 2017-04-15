@@ -88,6 +88,11 @@ Version: **2.0-Alpha**
 > More about Saltstack deployment documents see the https://repo.saltstack.com/.
 
 
+## Contributors
+
+After the version 2.0-Stable release.
+
+
 ## License
 
 This project is under the MIT License. See the [LICENSE](http://git.luxiaok.com:82/xiaok/SaltAdmin/src/master/LICENSE) file for the full license text.
