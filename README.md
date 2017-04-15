@@ -96,6 +96,31 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 > More about Saltstack deployment documents see the https://repo.saltstack.com/.
 
 
+#### Configure Database
+
+See the [config/settings.py](config/settings.py)
+
+```python
+config = {
+    'db': {
+        'host': '127.0.0.1',
+        'port': 3306,
+        'db': 'saltadmin',
+        'user': 'test',
+        'passwd': 'test',
+        'charset': 'utf8'
+    },
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'password': '',
+        'db': '0'
+    }
+    #......
+}
+```
+
+
 #### Startup
 
 > python run.py
