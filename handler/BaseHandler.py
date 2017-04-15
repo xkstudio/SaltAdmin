@@ -14,7 +14,6 @@ class BaseHandler(tornado.web.RequestHandler):
     def initialize(self):
         # 当前请求时间
         self.time = int(time.time())
-        self.time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.time))
         # Current URL
         self.url = self.get_route()
         # Session
