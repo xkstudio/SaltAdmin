@@ -96,6 +96,17 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 > More about Saltstack deployment documents see the https://repo.saltstack.com/.
 
 
+#### Startup
+
+> python run.py
+
+You can visit the site via http://YourIP:8888/
+
+Specify Port:
+
+> python run.py --port=8080
+
+
 ## Documents
 
 - [English](README.md)
