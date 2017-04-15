@@ -92,7 +92,7 @@ Version: **2.0-Alpha**
 
 - See the [docs](docs).
 
-- [简体中文](README.md)
+- [简体中文](README_CN.md)
 
 
 ## Contributors
