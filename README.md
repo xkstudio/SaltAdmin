@@ -44,7 +44,7 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 - [Tornado](http://www.tornadoweb.org/)：4.0+
 
-- [SaltStack](https://github.com/saltstack/salt)：>= 2015.1.0
+- [SaltStack](https://github.com/saltstack/salt)：>= 2015.5.10
 
 - [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.8
 
