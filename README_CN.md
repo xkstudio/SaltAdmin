@@ -78,6 +78,13 @@ Powered By [KK Studio](http://github.com/kkstu)
 正式版2.0发布之后才接受代码贡献
 
 
+## 支持和帮助
+
+请通过工单(Issues)提交您遇到的问题或需要反馈的建议或Bug。
+
+https://github.com/kkstu/SaltAdmin/issues
+
+
 ## 技术交流
 
 #### 微信
