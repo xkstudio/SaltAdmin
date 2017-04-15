@@ -7,7 +7,7 @@ Automated operation and maintenance platform based on [SaltStack](https://github
 
 Powered By [KK Studio](http://github.com/kkstu)
 
-Version: 2.0
+Version: **2.0-Alpha**
 
 
 ## Features
