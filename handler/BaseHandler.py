@@ -104,11 +104,12 @@ class BaseHandler(tornado.web.RequestHandler):
         uri = self.request.uri.split('?')
         return uri[0]
 
+
     # 重写获取用户语言的方法
     def get_user_locale(self):
         #user_lang = self.get_argument('lang', 'zh')
         default_lang = self.settings.get('default_lang')
-        if self.session:
+        if not self.session.isGuest: # Login
             user_lang = self.session.get('lang')
         else:
             user_lang = default_lang # Default Language
@@ -116,6 +117,7 @@ class BaseHandler(tornado.web.RequestHandler):
             return tornado.locale.get(user_lang)
         else:
             return tornado.locale.get(default_lang) # Default Language
+
 
     # Nav UI
     def get_nav(self):
