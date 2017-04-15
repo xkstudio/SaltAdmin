@@ -103,7 +103,8 @@ class HostDetailHandler(BaseHandler):
             'vendor': self.get_argument('vendor',None),
             'model': self.get_argument('model',None),
             'snum': self.get_argument('snum',None),
-            'tag': self.get_argument('tag',None)
+            'tag': self.get_argument('tag',None),
+            'update_time': self.time
         }
         # 检测重复
         chk = self.db.query(Host.id,Host.hostname,Host.minion_id,Host.ip).filter(or_(Host.hostname==data['hostname'],Host.ip==data['ip'],Host.minion_id==data['minion_id'])).all()
