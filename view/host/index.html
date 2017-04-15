@@ -17,6 +17,7 @@
                 <tr>
                     <th>#</th>
                     <th>主机名</th>
+                    <th>Minion ID</th>
                     <th>IP地址</th>
                     <th>分组</th>
                     <th>状态</th>
@@ -27,8 +28,9 @@
                 {% for d in data %}
                 <tr>
                     <td>{{ d.id }}</td>
-                    <td>{{ d.hostname }}</td>
-                    <td>{{ d.ip }}</td>
+                    <td>{{ d.hostname or '' }}</td>
+                    <td>{{ d.minion_id or '' }}</td>
+                    <td>{{ d.ip or '' }}</td>
                     <td>{{ groups.get(d.host_group,{}).get('group_name','') }}</td>
                     <td>{{ status.get(d.status,'') }}</td>
                     <td><a href="/host/detail?hid={{ d.id }}">编辑</a> | <a href="javascript:void(0)">任务</a></td>
