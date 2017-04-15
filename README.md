@@ -19,6 +19,8 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 ## Features
 
+- Completely based on **Saltstack**
+
 - Host assets management automation
 
 - Host monitoring (Batch)
