@@ -73,6 +73,31 @@ Powered By [KK Studio](http://github.com/kkstu)
 > 更多Saltstack部署信息请参考官网 https://repo.saltstack.com/
 
 
+#### 配置数据库
+
+配置文件 [config/settings.py](config/settings.py)
+
+```python
+config = {
+    'db': {
+        'host': '127.0.0.1',
+        'port': 3306,
+        'db': 'saltadmin',
+        'user': 'test',
+        'passwd': 'test',
+        'charset': 'utf8'
+    },
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'password': '',
+        'db': '0'
+    }
+    #......
+}
+```
+
+
 #### 启动程序
 
 > python run.py
