@@ -3,10 +3,9 @@
 # Powered By KStudio
 
 import tornado
-import os
 import time
-import json
 import hashlib
+from Session import Session
 from ui_modules.Nav import Nav
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -84,58 +83,11 @@ class BaseHandler(tornado.web.RequestHandler):
 
     # Session初始化
     def init_session(self):
-        self.session_key  = self.settings.get('session_key')
-        self.session_expires  = self.settings.get('session_expires')
-        self.cookie_name = self.settings.get('cookie_name')
-        self.cookie_value = self.get_secure_cookie(self.cookie_name)
-        if self.cookie_value:
-            self.session_id = self.session_key + self.cookie_value
-            self.session = self.get_session()
-            #if self.session:
-            #    # 刷新Seesion过期时间，这一步放到_on_finish方法中执行
-            #    self.redis.expire(self.session_id, self.session_expires)
-        else:
-            #self.cookie_value = self.gen_session_id()
-            #self.set_secure_cookie(self.cookie_name,self.cookie_value)
-            #self.session_id = self.session_key + self.cookie_value
-            self.session_id = None
-
-
-    def get_session(self):
-        session = self.redis.get(self.session_id)
-        if not session:
-            return None
-        session = json.loads(session) # 字符串转字典
-        return session
-
-
-    def set_session(self):
-        self.redis.set(self.session_id,json.dumps(self.session),self.session_expires) # 后端Session
-
-
-    def create_session(self,session,expires_days=None):
-        self.cookie_value = self.gen_session_id()
-        self.session_id = self.session_key + self.cookie_value
-        self.session = session
-        self.set_session()
-        self.set_secure_cookie(self.cookie_name, self.cookie_value, expires_days)  # 前端Cookie
-
-    # 保存或者更新Session
-    def save_session(self):
-        self.set_session()
-
-
-    # 销毁Session
-    def remove_session(self):
-        if self.session: # Session存在
-            self.redis.delete(self.session_id)
-            self.clear_cookie(self.cookie_name)
-            self.session = None
-
-
-    # 生成SessionID
-    def gen_session_id(self):
-        return hashlib.sha1('%s%s' % (os.urandom(16), time.time())).hexdigest()
+        prefix = self.settings.get('session_prefix')
+        expires = self.settings.get('session_expires')
+        cookie_name = self.settings.get('cookie_name')
+        sid = self.get_secure_cookie(cookie_name)
+        self.session = Session(prefix,sid,expires,self.redis)
 
 
     # MD5计算
