@@ -7,7 +7,7 @@
                 <span>Error</span>
             </li>
         </ul>
-        <div class="page-toolbar pull-right" style="margin-top:5px;">{{ handler.time_str }}</div>
+        <div class="page-toolbar pull-right" style="margin-top:5px;">{{ handler.format_time(handler.time) }}</div>
     </div>
     <h1 class="page-title">{{ title }}</h1>
     <div>{{ msg }}</div>
