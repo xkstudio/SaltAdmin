@@ -20,7 +20,7 @@ class Session:
             self.session_id = prefix + session_id
             self.data = self.get_data()
             if self.data:
-                self.isGuset = False
+                self.isGuest = False
             else:
                 self.isGuest = True # Not Login
         else:
