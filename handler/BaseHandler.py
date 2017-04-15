@@ -81,6 +81,7 @@ class BaseHandler(tornado.web.RequestHandler):
         self.cookie_name = self.settings.get('cookie_name')
         self.sid = self.get_secure_cookie(self.cookie_name)
         self.session = Session(prefix,self.sid,expires,self.redis)
+        self.uid = self.session.get('uid')
 
 
     # 重写get_current_user
