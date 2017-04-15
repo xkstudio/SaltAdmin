@@ -3,43 +3,79 @@ SaltAdmin2
 
 ![SaltAdmin](https://github.com/luxiaok/SaltAdmin/raw/master/static/images/SaltAdminLogo.jpg)
 
-基于[SaltStack](https://github.com/saltstack/salt)的自动化运维平台
+Automated operation and maintenance platform based on [SaltStack](https://github.com/saltstack/salt)
 
-Designed By [KK Studio](http://github.com/kkstu)
+Powered By [KK Studio](http://github.com/kkstu)
 
-
-### Python运维圈（微信扫一扫） ###
-
-![Python运维圈](https://github.com/luxiaok/SaltAdmin/raw/master/static/images/ops_circle_qrcode.jpg)
-
->微信搜索 **Python运维圈**
+Version: 2.0
 
 
-### 技术交流QQ群 ###
+## Features
 
-**459457262**
+- Host assets management automation
 
->加群时请注明来自 **Github**
+- Host monitoring (Batch)
+
+- Host service management
+
+- Soft Package management
+
+- Execute remote commands in batches
+
+- Transport files in batches
+
+- Custom jobs management
 
 
-## 版本说明 ##
+## Dependency Component
 
-* SaltAdmin：**2.0.0**
+- [Torweb](https://github.com/kkstu/Torweb)：1.0+
 
-* OS：RHEL 6.x / CentOS 6.x / Ubuntu 12.04+
+- [Tornado](http://www.tornadoweb.org/)：4.0+
 
-* [SaltStack](https://github.com/saltstack/salt)：>= 2014.7.0
+- [SaltStack](https://github.com/saltstack/salt)：>= 2015.1.0
 
-* [Python](http://www.python.org)：2.6.x/2.7.x
+- [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.8
 
-* [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.8
+- [Jinja2](http://jinja.pocoo.org/)：2.9+
 
-* [Tornado](http://www.tornadoweb.org/)：4.0+
+- [MySQL](http://www.percona.com/)：Percona-Server 5.5/5.6
 
-* [Jinja2](http://jinja.pocoo.org/)：2.9+
+- [MySQL-python](http://pypi.python.org/pypi/MySQL-python)：1.2.5+
 
-* [MySQL](http://www.percona.com/)：Percona-Server 5.5/5.6
+- [Redis-Py](https://github.com/andymccurdy/redis-py)：2.10+
 
-* [MySQL-python](http://pypi.python.org/pypi/MySQL-python)：1.2.5+
+- [Python](http://www.python.org)：2.6.x/2.7.x
 
-* [Redis-Py](https://github.com/andymccurdy/redis-py)：2.10+
+
+## Deployment
+
+#### Get started
+
+> git clone https://github.com/kkstu/SaltAdmin.git
+
+#### Install Component
+
+- yum install MySQL-python
+
+- pip install tornado
+
+- pip install redis
+
+- pip install jinja2
+
+- pip install SQLAlchemy
+
+#### Deploying Saltstack
+
+##### RedHat/CentOS
+
+-  yum install salt-master
+
+-  yum install salt-minion
+
+##### Ubuntu
+
+- apt-get install salt-master
+
+- apt-get install salt-minion
