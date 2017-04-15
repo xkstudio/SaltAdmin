@@ -9,6 +9,8 @@ Powered By [KK Studio](http://github.com/kkstu)
 
 Version: **2.0-Alpha**
 
+(See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin)
+
 
 ## Overview
 
