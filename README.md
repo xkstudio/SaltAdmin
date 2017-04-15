@@ -3,7 +3,7 @@ SaltAdmin2
 
 ![SaltAdmin](https://github.com/luxiaok/SaltAdmin/raw/master/static/images/SaltAdminLogo.jpg)
 
-Automated operation and maintenance platform based on [SaltStack](https://github.com/saltstack/salt)
+Automated operation and maintenance platform based on [SaltStack](https://github.com/saltstack/salt).
 
 Powered By [KK Studio](http://github.com/kkstu)
 
@@ -84,3 +84,5 @@ Version: **2.0-Alpha**
 - apt-get install salt-master
 
 - apt-get install salt-minion
+
+> More about Saltstack deployment documents see the https://repo.saltstack.com/.
