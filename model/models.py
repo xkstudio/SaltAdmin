@@ -2,8 +2,10 @@
 # -*- coding:utf-8 -*-
 # Powered By KK Studio
 
-from sqlalchemy import Column, Integer, SmallInteger, VARCHAR
+from sqlalchemy import Column, Integer, SmallInteger, VARCHAR, or_
 from sqlalchemy.ext.declarative import declarative_base
+
+or_ = or_
 
 Base = declarative_base()
 
