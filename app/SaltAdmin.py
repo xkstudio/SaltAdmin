@@ -41,7 +41,7 @@ class App(tornado.web.Application):
         self.__load_locale(settings['default_lang'])
 
     def get_redis(self,conf):
-        return redis.Redis(conf['host'],conf['port'],conf['db'],conf['password'])
+        return redis.Redis(**conf)
 
     def get_db(self,conf):
         db = Database(**conf)
