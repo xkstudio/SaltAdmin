@@ -108,7 +108,7 @@ After the version 2.0-Stable release.
 
 #### QQ Group
 
-**459457262**
+459457262
 
 
 #### KK Studio
