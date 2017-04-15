@@ -94,7 +94,7 @@ class TemplateLoader:
 
     def __init__(self,template_path,autoescape=False):
         # Create a instance of Jinja2Loader
-        self.jinja2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path), autoescape=autoescape)
+        self.jinja2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path), autoescape=autoescape, trim_blocks=True)
 
     def Loader(self):
         return Jinja2Loader(self.jinja2_env)
