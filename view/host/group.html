@@ -27,7 +27,12 @@
                     <td>{{ gid }}</td>
                     <td>{{ data[gid].get('group_name','') }}</td>
                     <td>{{ data[gid].get('hosts_count','') }}</td>
-                    <td><a href="javascript:void(0)" data-gid="{{ gid }}">编辑</a> | <a href="javascript:void(0)" data-gid="{{ gid }}">删除</a></td>
+                    <td>
+                        <div class="btn-group btn-group-xs btn-group-solid">
+                            <button type="button" class="btn red" data-gid="{{ gid }}">删除</button>
+                            <button type="button" class="btn green" data-gid="{{ gid }}">编辑</button>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
