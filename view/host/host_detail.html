@@ -29,9 +29,9 @@
                     <div class="col-sm-1" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i></div>
                 </div>
                 <div class="form-group">
-                    <label for="minion_id" class="col-sm-1 control-label">MinionID</label>
+                    <label for="smid" class="col-sm-1 control-label">MinionID</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="minion_id" placeholder="Salt Minion ID" value="{{ data.minion_id or '' }}">
+                        <input type="text" class="form-control" id="smid" placeholder="Salt Minion ID" value="{{ data.minion_id or '' }}">
                     </div>
                     <div class="col-sm-1" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i></div>
                 </div>
@@ -132,27 +132,46 @@ $(function(){
         $('#group').val(gid);
     };
     _init_();
-    var _save_profile = function(){
+    var _save_host = function(){
         var data = {
-            'nickname': $('#nickname').val().trim(),
-            'gender': $('#gender').val(),
-            'email': $('#email').val().trim(),
-            'phone': $('#phone').val().trim(),
-            'dept': $('#dept').val().trim()
+            'hid': $('#hid').val().trim(),
+            'hostname': $('#hostname').val().trim(),
+            'smid': $('#smid').val().trim(),
+            'ip': $('#ip').val().trim(),
+            'group': $('#group').val(),
+            'desc': $('#desc').val().trim(),
+            'os': $('#os').val().trim(),
+            'cpu': $('#cpu').val().trim(),
+            'hdd': $('#hdd').val().trim(),
+            'mem': $('#mem').val().trim(),
+            'vendor': $('#vendor').val().trim(),
+            'model': $('#model').val().trim(),
+            'snum': $('#snum').val().trim(),
+            'tag': $('#tag').val().trim()
         };
-        if (data['nickname']==""){
-            $.xk.toast('姓名不能为空！');
-            $('#nickname').focus();
+        if (data['hostname']==""){
+            $.xk.toast('主机名不能为空！');
+            $('#hostname').focus();
             return false;
         }
-        if (data['gender']=="0"){
-            $.xk.toast('请选择您的性别！');
-            $('#gender').focus();
+        if (data['smid']==""){
+            $.xk.toast('Salt ID 不能为空！');
+            $('#smid').focus();
+            return false;
+        }
+        if (data['ip']==""){
+            $.xk.toast('主机IP不能为空！');
+            $('#ip').focus();
+            return false;
+        }
+        if (data['group']=="0"){
+            $.xk.toast('请选择主机分组！');
+            $('#group').focus();
             return false;
         }
         $.xk.http({
             type: 'POST',
-            url: '/user/profile',
+            url: '/host/detail',
             data: data,
             dataType: "json",
             success: function(response){
@@ -171,7 +190,7 @@ $(function(){
             }
         });
     };
-    //$("#save_btn").click(_save_profile);
+    $("#save_btn").click(_save_host);
 });
 </script>
 {% endblock %}
