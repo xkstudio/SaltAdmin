@@ -17,7 +17,7 @@ class Session:
         self.expires = expires
         if session_id:
             self.session_id = prefix + session_id
-            self.data = self.get_session_data()
+            self.data = self.get_data()
             if self.data:
                 self.isGuset = False
             else:
@@ -35,7 +35,7 @@ class Session:
 
 
     # 获取Session数据
-    def get_session_data(self):
+    def get_data(self):
         session = self.redis.get(self.session_id)
         if not session:
             return None
@@ -53,13 +53,13 @@ class Session:
         self.data[name] = value
 
 
-    def save_session(self):
+    def save(self):
         if not self.isGuest and self.session_id and self.data:
             self.redis.set(self.session_id,json.dumps(self.data),self.expires)
 
 
     # 销毁Session
-    def remove_session(self):
+    def remove(self):
         if self.session_id: # SessionID存在
             self.redis.delete(self.session_id)
             self.session_id = None
