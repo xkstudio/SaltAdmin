@@ -28,6 +28,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="minion_id" class="col-sm-1 control-label">MinionID</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="minion_id" placeholder="Salt Minion ID" value="{{ data.minion_id or '' }}">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="ip" class="col-sm-1 control-label">IP地址</label>
                     <div class="col-sm-5">
                         <input type="text" class="form-control" id="ip" placeholder="主机IP地址" value="{{ data.ip }}">
