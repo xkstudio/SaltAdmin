@@ -33,7 +33,10 @@
                     <td>{{ d.ip or '' }}</td>
                     <td>{{ groups.get(d.host_group,{}).get('group_name','') }}</td>
                     <td>{{ status.get(d.status,'') }}</td>
-                    <td><a href="/host/detail?hid={{ d.id }}">编辑</a> | <a href="javascript:void(0)">任务</a></td>
+                    <td>
+                        <a href="/host/detail?hid={{ d.id }}" class="btn btn-info btn-xs">编辑</a>
+                        <a href="javascript:void(0);" class="btn btn-primary btn-xs">任务</a>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
