@@ -26,8 +26,7 @@ class BaseHandler(tornado.web.RequestHandler):
     # 后面的方法如果重写on_finish方法，需要调用_on_finish
     def _on_finish(self):
         # 更新Session
-        if self.session:
-            self.save_session() # 更新Session到Redis
+        self.session.save()
         # 请求逻辑处理结束时关闭数据库连接，如果不关闭可能会造成MySQL Server has gone away 2006错误
         self.db.close()
 
