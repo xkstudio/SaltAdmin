@@ -84,7 +84,7 @@ class LogoutHandler(BaseHandler):
 class ProfileHandler(BaseHandler):
     @Auth
     def get(self):
-        uid = self.session['uid']
+        uid = self.session.get('uid')
         profile = self.db.query(User).filter_by(id=uid).first()
         self.render('user/profile.html',profile=profile)
 
@@ -104,7 +104,7 @@ class ProfileHandler(BaseHandler):
             return self.jsonReturn({'code': -1, 'msg': '姓名不能空'})
         if data['gender'] not in ['1','2']:
             return self.jsonReturn({'code': -1, 'msg': '参数错误'})
-        uid = self.session['uid']
+        uid = self.session.get('uid')
         self.db.query(User).filter_by(id=uid).update(data) # <type 'long'> - 1
         self.db.commit() # <type 'NoneType'> - None
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
