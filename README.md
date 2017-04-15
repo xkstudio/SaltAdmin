@@ -37,6 +37,8 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 - Multi language support (i18n)
 
+- Adaptive mobile terminal (Web APP UI)
+
 
 ## Dependency Component
 
