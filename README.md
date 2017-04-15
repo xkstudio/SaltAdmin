@@ -1,4 +1,4 @@
-SaltAdmin2
+SaltAdmin
 =========
 
 ![SaltAdmin](https://github.com/luxiaok/SaltAdmin/raw/master/static/images/SaltAdminLogo.jpg)
