@@ -11,8 +11,8 @@ class UserHandler(BaseHandler):
     @Auth
     def get(self):
         data = self.db.query(User).all()
-        gender = {1:'男', 2:'女'}
-        self.render('user/index.html', title="用户管理",data=data,gender=gender)
+        gender = {1:u'男', 2:u'女'}
+        self.render('user/index.html', title=u"用户管理",data=data,gender=gender)
 
 # 用户登录
 class LoginHandler(BaseHandler):
@@ -27,12 +27,12 @@ class LoginHandler(BaseHandler):
         password = self.get_argument("password",None)
         remember = self.get_argument("remember","no")
         if not username or not password:
-            return self.jsonReturn({'code':-1,'msg':'参数错误'})
+            return self.jsonReturn({'code':-1,'msg':u'参数错误'})
         profile = self.db.query(User).filter_by(username=username).first()
         if not profile:
-            return self.jsonReturn({'code': -2, 'msg': '用户名或密码错误'})
+            return self.jsonReturn({'code': -2, 'msg': u'用户名或密码错误'})
         if self.md5(password) != profile.password:
-            return self.jsonReturn({'code': -2, 'msg': '用户名或密码错误'})
+            return self.jsonReturn({'code': -2, 'msg': u'用户名或密码错误'})
         ##### 验证通过逻辑 #####
         self.create_session(profile,remember) # Create Session
         # 记录登录信息
@@ -101,9 +101,9 @@ class ProfileHandler(BaseHandler):
         }
         # 数据校验
         if not data['nickname']:
-            return self.jsonReturn({'code': -1, 'msg': '姓名不能空'})
+            return self.jsonReturn({'code': -1, 'msg': u'姓名不能空'})
         if data['gender'] not in ['1','2']:
-            return self.jsonReturn({'code': -1, 'msg': '参数错误'})
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
         self.db.query(User).filter_by(id=self.uid).update(data) # <type 'long'> - 1
         self.db.commit() # <type 'NoneType'> - None
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
