@@ -47,7 +47,10 @@ class Session:
 
     # Get
     def get(self,name):
-        return self.data.get(name,None)
+        if name:
+            return self.data.get(name,None)
+        else:
+            return None
 
 
     # Set
