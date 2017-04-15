@@ -33,6 +33,8 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 - Custom jobs management
 
+- Multi language support (i18n)
+
 
 ## Dependency Component
 
