@@ -70,7 +70,7 @@ Powered By [KK Studio](http://github.com/kkstu)
 
 - apt-get install salt-minion
 
-> 更多Saltstack部署信息请参考官网 the https://repo.saltstack.com/.
+> 更多Saltstack部署信息请参考官网 https://repo.saltstack.com/
 
 
 ## 贡献代码
