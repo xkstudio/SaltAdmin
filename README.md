@@ -115,7 +115,7 @@ After the version 2.0-Stable release.
 
 #### KK Studio
 
-http://studio.luxiaokc.com
+http://studio.luxiaok.com
 
 
 ## License
