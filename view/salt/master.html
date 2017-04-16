@@ -16,27 +16,30 @@
                 <thead class="cf">
                 <tr>
                     <th>#</th>
-                    <th>Col 1</th>
-                    <th>Col 2</th>
-                    <th>Col 3</th>
-                    <th>Action</th>
+                    <th>主机名</th>
+                    <th>API</th>
+                    <th>用户名</th>
+                    <th>Minion统计</th>
+                    <th>状态</th>
+                    <th>管理</th>
                 </tr>
                 </thead>
                 <tbody>
+                {% for d in data %}
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>{{ d.id }}</td>
+                    <td>{{ d.hostname or '' }}</td>
+                    <td>{{ d.api or '' }}</td>
+                    <td>{{ d.username or '' }}</td>
+                    <td>{{ d.minion_count }}</td>
+                    <td>{{ d.status }}</td>
+                    <td>
+                        <a href="javascript:void(0);" class="btn btn-danger btn-xs">删 除</a>
+                        <a href="/salt/master/edit?hid={{ d.id }}" class="btn btn-info btn-xs">编 辑</a>
+                        <a href="javascript:void(0);" class="btn btn-primary btn-xs">详 情</a>
+                    </td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
