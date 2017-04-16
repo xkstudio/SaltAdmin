@@ -62,3 +62,18 @@ class HostGroup(Base):
     hosts_count = Column(Integer,nullable=False,default=0)
     create_time = Column(Integer,nullable=True)
     update_time = Column(Integer,nullable=True)
+
+
+class SaltMaster(Base):
+    __tablename__ = 'salt_master'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    hostname = Column(VARCHAR(128), nullable=False, unique=True)
+    type = Column(VARCHAR(12), nullable=True, default='remote')
+    api = Column(VARCHAR(64), nullable=True)
+    username = Column(VARCHAR(64), nullable=True)
+    password = Column(VARCHAR(64), nullable=True)
+    eauth = Column(VARCHAR(12), nullable=True, default='pam')
+    minion_count = Column(Integer, nullable=False, default=0)
+    create_time = Column(Integer, nullable=True)
+    status = Column(SmallInteger, nullable=False, default=1)
