@@ -16,4 +16,5 @@ class MasterHandler(BaseHandler):
 # Salt-Key管理
 class KeyHandler(BaseHandler):
     def get(self):
-        self.render('salt/key.html')
+        data = self.db.query(SaltMaster).all()
+        self.render('salt/key.html',data=data)
