@@ -5,10 +5,22 @@
 from BaseHandler import BaseHandler
 from app.SaltApi import Api
 
+from tornado.httpclient import AsyncHTTPClient
+import tornado
+
 # Test Page
 class TestHandler(BaseHandler):
+
+    @tornado.web.asynchronous
+    @tornado.gen.coroutine
     def get(self):
-        url = 'https://api.github.com'
-        data = Api().http(url)
-        return self.jsonReturn(data)
-        #self.write('Test')
+        url = 'http://admin1.test.com/api/test/hello?foo=2'
+
+        client = AsyncHTTPClient()
+        resp = yield client.fetch(url)
+        self.write(resp.body)
+
+        #resp = Api().http(url)
+        #self.write(resp)
+
+        self.finish()
