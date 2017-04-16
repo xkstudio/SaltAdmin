@@ -9,10 +9,10 @@ import json
 class Api:
 
     def __init__(self,url='',username='salt',password='123456',eauth='pam'):
-        self.url = url
-        self.username = username
-        self.password = password
-        self.eauth = eauth
+        self._url = url
+        self._username = username
+        self._password = password
+        self._eauth = eauth
 
     def http(self,url,method='GET',data=None,headers=None):
         tornado.httpclient.AsyncHTTPClient.configure("tornado.curl_httpclient.CurlAsyncHTTPClient") # pycurl
@@ -30,9 +30,16 @@ class Api:
         if options['method'] == 'GET' and data:
             url += '?' + urllib.urlencode(data)
         elif options['method'] == 'POST' and data:
-            options['body'] = urllib.urlencode(data)
-        response = http_client.fetch(url,**options)
-        content_type = response.headers.get('Content-Type')
+            options['body'] = json.dumps(data)
+        try:
+            response = http_client.fetch(url,**options)
+            content_type = response.headers.get('Content-Type')
+        except tornado.httpclient.HTTPError as e:
+            #print dir(e)
+            return {'code':e.code,'msg':e.message}
+        except Exception, e:
+            #print e
+            return {'code': -2}
         if 'json' in content_type:
             resp_data = json.loads(response.body)
         else:
@@ -40,6 +47,13 @@ class Api:
         return {'code':response.code,'body':resp_data}
 
 
+    def get_token(self):
+        body = {'username':self._username,'password':self._password,'eauth':self._eauth}
+        headers = {'Accept':'application/json','Content-Type':'application/json'}
+        data = self.http(self._url+'/login','POST',body,headers)
+        return data
+
+
 if __name__ == '__main__':
-    api = Api()
-    print api.http('http://admin1.congxue.com/api/test/hello','POST',{'foo':'234'})
+    api = Api('http://192.168.1.69:8081')
+    print api.get_token()
