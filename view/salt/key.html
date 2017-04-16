@@ -12,30 +12,38 @@
     <br>
     <div class="row">
         <div class="col-sm-12">
+            <span>请选择Salt-Master：</span>
+            <span>
+                <select id="saltmaster" style="height: 32px; padding: 3px 6px;">
+                    {% for d in data %}
+                        <option value="{{ d.id }}">{{ d.hostname }}</option>
+                    {% endfor %}
+                </select>
+            </span>
+            <span><a href="javascript:void(0);" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> 加载 Salt-Key</a></span>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-8">
             <table class="table table-bordered table-striped cf table-hover table-center">
                 <thead class="cf">
                 <tr>
                     <th>#</th>
-                    <th>Col 1</th>
-                    <th>Col 2</th>
-                    <th>Col 3</th>
-                    <th>Action</th>
+                    <th>Salt-Key</th>
+                    <th>状态</th>
+                    <th style="width:200px">管理</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a href="javascript:void(0);" class="btn btn-danger btn-xs">删 除</a>
+                        <a href="javascript:void(0);" class="btn btn-success btn-xs">通过认证</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
