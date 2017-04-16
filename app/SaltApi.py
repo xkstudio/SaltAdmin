@@ -60,7 +60,7 @@ class Api:
         return token_data
 
 
-    def cmd(self,fun,tgt='*',arg='',client='local'):
+    def cmd(self,fun,tgt='*',arg=[],client='local'):
         body = {'client':client,'fun':fun,'tgt':tgt,'arg':arg}
         headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-Auth-Token':self.token}
         data = self.http(self._url, 'POST', body, headers)
