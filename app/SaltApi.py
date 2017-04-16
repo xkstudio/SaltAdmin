@@ -13,6 +13,7 @@ class Api:
         self._username = username
         self._password = password
         self._eauth = eauth
+        self.token = None
 
     def http(self,url,method='GET',data=None,headers=None):
         tornado.httpclient.AsyncHTTPClient.configure("tornado.curl_httpclient.CurlAsyncHTTPClient") # pycurl
@@ -59,6 +60,16 @@ class Api:
         return token_data
 
 
+    def run(self,fun,tgt='*',arg=[]):
+        body = {'client':'local','fun':fun,'tgt':tgt,'arg':arg}
+        headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-Auth-Token':self.token}
+        data = self.http(self._url, 'POST', body, headers)
+        return data
+
+
+
 if __name__ == '__main__':
     api = Api('http://192.168.1.69:8081')
-    print api.get_token()
+    api.token = '2c00d869989e4c67ede8e2e6fe9fa51e3c51786a'
+    #print api.get_token()
+    print api.run('test.ping')
