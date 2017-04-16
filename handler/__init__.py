@@ -6,6 +6,7 @@ import index
 import host
 import user
 import page
+import salt_handler
 
 route = [
     (r'/',index.IndexHandler),
@@ -18,6 +19,8 @@ route = [
     (r'/user/profile',user.ProfileHandler),
     (r'/user/passwd',user.PasswdHandler),
     (r'/user',user.UserHandler),
+    (r'/salt/master',salt_handler.MasterHandler),
+    (r'/salt/key',salt_handler.KeyHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/blank.html',page.BlankHandler),
     #(r'.*',page.Page404Handler), # 默认路由定位到404
