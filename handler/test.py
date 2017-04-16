@@ -14,6 +14,9 @@ class TestHandler(BaseHandler):
     @tornado.web.asynchronous
     @tornado.gen.coroutine
     def get(self):
+
+        # Test Command: ab -n 1000 -c 100 http://127.0.0.1:8888/test
+
         url = 'http://admin1.test.com/api/test/hello?foo=2'
 
         client = AsyncHTTPClient()
