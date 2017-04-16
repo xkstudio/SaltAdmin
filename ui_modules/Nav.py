@@ -43,13 +43,13 @@ class Nav:
             'icon': 'icon-layers',
             'sub': [
                 {
-                    'url': '/salt/status',
-                    'name': u'Salt状态',
+                    'url': '/salt/master',
+                    'name': u'Master管理',
                     'icon': ''
                 },
                 {
                     'url': '/salt/key',
-                    'name': 'SaltKey',
+                    'name': u'SaltKey管理',
                     'icon': ''
                 }
             ]
