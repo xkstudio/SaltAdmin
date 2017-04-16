@@ -72,4 +72,5 @@ if __name__ == '__main__':
     api = Api('http://192.168.1.69:8081')
     api.token = '2c00d869989e4c67ede8e2e6fe9fa51e3c51786a'
     #print api.get_token()
-    print api.cmd('test.ping')
+    #print api.cmd('test.ping')
+    print api.cmd('key.list_all',client='wheel')
