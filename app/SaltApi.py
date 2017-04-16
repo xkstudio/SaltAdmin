@@ -51,7 +51,12 @@ class Api:
         body = {'username':self._username,'password':self._password,'eauth':self._eauth}
         headers = {'Accept':'application/json','Content-Type':'application/json'}
         data = self.http(self._url+'/login','POST',body,headers)
-        return data
+        token_data = {}
+        if data.get('code',None) == 200:
+            body = data['body']
+            if body.get('return',None):
+                token_data = body['return'][0]
+        return token_data
 
 
 if __name__ == '__main__':
