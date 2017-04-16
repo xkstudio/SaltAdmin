@@ -25,5 +25,5 @@ class Database:
 
 
     def db_session(self):
-        self.db_engine = create_engine(self._db_url, encoding=self._charset, echo=False)
-        return scoped_session(sessionmaker(bind=self.db_engine))
+        engine = create_engine(self._db_url, encoding=self._charset, echo=False)
+        return scoped_session(sessionmaker(bind=engine, autocommit=False))
