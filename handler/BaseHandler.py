@@ -56,7 +56,7 @@ class BaseHandler(tornado.web.RequestHandler):
     # 数据库
     @property
     def db(self):
-        return self.application.get_db()
+        return self.application.db
 
     # Redis
     @property

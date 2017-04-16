@@ -34,7 +34,7 @@ class App(tornado.web.Application):
         # Init Tornado App
         tornado.web.Application.__init__(self, handlers, template_loader=tpl_loader.Loader(), **settings)
         # 数据库
-        self.__db_setting__ = conf['db']
+        self.db = self.get_db(conf['db'])
         # Redis
         self.redis = self.get_redis(conf['redis'])
         # Load Locale
@@ -43,8 +43,8 @@ class App(tornado.web.Application):
     def get_redis(self,conf):
         return redis.Redis(**conf)
 
-    def get_db(self):
-        db = Database(**self.__db_setting__)
+    def get_db(self,conf):
+        db = Database(**conf)
         return db.db_session()
 
     #def test(self):
