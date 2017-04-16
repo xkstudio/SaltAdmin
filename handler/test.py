@@ -3,8 +3,12 @@
 # Powered By KK Studio
 
 from BaseHandler import BaseHandler
+from app.SaltApi import Api
 
 # Test Page
 class TestHandler(BaseHandler):
     def get(self):
-        self.write('Test')
+        url = 'https://api.github.com'
+        data = Api().http(url)
+        return self.jsonReturn(data)
+        #self.write('Test')
