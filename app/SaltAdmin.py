@@ -72,10 +72,17 @@ class SaltAdmin():
 
     # 多线程模式
     def run(self):
-        self.log.info('SaltAdmin %s' % self.__version__) # 启动时打印版本号
+        self.log.info('SaltAdmin %s' % self.__version__)  # 启动时打印版本号
         self.log.info('Listen Port: %s' % self.port)
         http_sockets = tornado.netutil.bind_sockets(self.port, self.host)
         tornado.process.fork_processes(num_processes=self.processes)
         http_server = tornado.httpserver.HTTPServer(request_callback=App(self.urls,self.config['app_settings'],self.config,self.log), xheaders=True)
         http_server.add_sockets(http_sockets)
         tornado.ioloop.IOLoop.instance().start()
+
+
+    # 单进程模式
+    def run_single(self):
+        app = App(self.urls,self.config['app_settings'],self.config,self.log)
+        app.listen(8888)
+        tornado.ioloop.IOLoop.current().start()
