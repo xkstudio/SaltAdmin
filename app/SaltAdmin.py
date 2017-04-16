@@ -84,5 +84,5 @@ class SaltAdmin():
     # 单进程模式
     def run_single(self):
         app = App(self.urls,self.config['app_settings'],self.config,self.log)
-        app.listen(8888)
+        app.listen(self.port)
         tornado.ioloop.IOLoop.current().start()
