@@ -60,8 +60,8 @@ class Api:
         return token_data
 
 
-    def run(self,fun,tgt='*',arg=[]):
-        body = {'client':'local','fun':fun,'tgt':tgt,'arg':arg}
+    def cmd(self,fun,tgt='*',arg='',client='local'):
+        body = {'client':client,'fun':fun,'tgt':tgt,'arg':arg}
         headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-Auth-Token':self.token}
         data = self.http(self._url, 'POST', body, headers)
         return data
@@ -72,4 +72,4 @@ if __name__ == '__main__':
     api = Api('http://192.168.1.69:8081')
     api.token = '2c00d869989e4c67ede8e2e6fe9fa51e3c51786a'
     #print api.get_token()
-    print api.run('test.ping')
+    print api.cmd('test.ping')
