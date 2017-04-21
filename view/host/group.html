@@ -81,6 +81,8 @@
 <script>
 $(function(){
     $('#new_group').click(function(){
+        $('#gid').val('系统自动分配');
+        $('#gname').val('');
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
     $('.edit-btn').click(function(){
