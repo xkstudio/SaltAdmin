@@ -64,7 +64,7 @@ class GroupHandler(BaseHandler):
                 for i in chk:
                     if i.id != int(gid) and i.group_name == name:
                         return self.jsonReturn({'code': -2, 'msg': u'分组重复', 'gid': i.id})
-            ret = self.db.query(Host).filter_by(id=gid).update({'group_name':name,'update_time':self.time})  # <type 'long'> - 1
+            ret = self.db.query(HostGroup).filter_by(id=gid).update({'group_name':name,'update_time':self.time})  # <type 'long'> - 1
             self.db.commit()
             if ret:
                 code = 0
