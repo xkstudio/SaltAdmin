@@ -7,7 +7,7 @@
                 <span>SaltMaster管理</span>
             </li>
         </ul>
-        <div class="page-toolbar pull-right" style="margin-top:5px;"><a href="/salt/master/create" class="btn btn-primary"><i class="fa fa-plus"></i> 新增Master</a></div>
+        <div class="page-toolbar pull-right" style="margin-top:5px;"><a href="javascript:void(0);" class="btn btn-primary" id="new_saltmaster"><i class="fa fa-plus"></i> 新增Master</a></div>
     </div>
     <br>
     <div class="row">
@@ -45,4 +45,108 @@
         </div>
     </div>
 </div>
+<div class="modal fade in" id="dialog" tabindex="-1" role="basic" aria-hidden="true" style="margin-top: 4%;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="dialog_title">SaltMaster管理</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="gid" class="col-sm-2 col-sm-offset-1 control-label">主机名</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="gid" placeholder="Salt Master 主机名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="api_url" class="col-sm-2 col-sm-offset-1 control-label">API</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="api_url" placeholder="API URL">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="api_username" class="col-sm-2 col-sm-offset-1 control-label">用户名</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="api_username" placeholder="API用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="api_password" class="col-sm-2 col-sm-offset-1 control-label">密　码</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="api_password" placeholder="API密码">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn green" id="save_btn">保 存</button>
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+{% endblock %}
+{% block footer %}
+<script>
+$(function(){
+    $('#new_saltmaster').click(function(){
+        $('#save_btn').data('fun','c');
+        $('#dialog_title').html('新增SaltMaster');
+        $('#gid').val('');
+        $('#gname').val('');
+        $("#dialog").modal({keyboard:false,backdrop:"static"});
+    });
+    $('.edit-btn').click(function(){
+        $('#save_btn').data('fun','u');
+        var gid = $(this).data('gid');
+        $('#gid').val(gid);
+        var gname = $('#gname_'+gid).html().trim();
+        $('#gname').val(gname);
+        $("#dialog").modal({keyboard:false,backdrop:"static"});
+    });
+    var _save_group = function(){
+        var gid = $('#gid').val();
+        var gname = $('#gname').val().trim();
+        var f = $('#save_btn').data('fun');
+        if (gname==""){
+            $.xk.toast('分组名称不能为空！');
+            $('#gname').focus();
+            return false;
+        }
+        gid = f=='c' ? 0 : gid;
+        $.xk.http({
+            type: 'POST',
+            url: '/host/group',
+            data: {'f':f,'gid':gid,'name':gname},
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                    $("#dialog").modal('hide');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+    //$('#save_btn').click(_save_group);
+});
+</script>
 {% endblock %}
