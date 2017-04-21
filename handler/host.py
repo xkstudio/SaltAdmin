@@ -34,6 +34,39 @@ class GroupHandler(BaseHandler):
         data = get_groups(self.db)
         self.render('host/group.html',data=data)
 
+    @Auth
+    def post(self):
+        gid = self.get_argument('gid',None)
+        name = self.get_argument('name',None)
+        f = self.get_argument('f',None) # n = new, e = edit, d = delete
+        if not gid and not name:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        if f == 'n':
+            chk = self.db.query(HostGroup).filter_by(group_name=name).first()
+            if chk:
+                return self.jsonReturn({'code': -2, 'msg': u'分组重复'})
+            hg = HostGroup(group_name=name,create_time=self.time,update_time=self.time)
+            self.db.add(hg)
+            self.db.commit()
+            gid = hg.id
+            if gid:
+                code = 0
+                msg = 'Success'
+            else:
+                self.db.rollback()
+                gid = 0
+                code = -3
+                msg = 'Error'
+            return self.jsonReturn({'code': code, 'msg': msg, 'gid': gid})
+        elif f == 'e':
+            pass
+        elif f == 'd':
+            pass
+        else:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+
+
+
 
 class CreateHostHandler(BaseHandler):
     @Auth
