@@ -25,7 +25,7 @@
                 {% for gid in data %}
                 <tr>
                     <td>{{ gid }}</td>
-                    <td>{{ data[gid].get('group_name','') }}</td>
+                    <td id="gname_{{ gid }}">{{ data[gid].get('group_name','') }}</td>
                     <td>{{ data[gid].get('hosts_count','') }}</td>
                     <td>
                         <div class="btn-group btn-group-xs btn-group-solid">
@@ -58,9 +58,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-sm-2 col-sm-offset-1 control-label">分组名称</label>
+                                <label for="gname" class="col-sm-2 col-sm-offset-1 control-label">分组名称</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" id="name" placeholder="分组名称">
+                                    <input type="text" class="form-control" id="gname" placeholder="分组名称">
                                 </div>
                             </div>
                         </form>
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn green">保 存</button>
+                <button type="button" class="btn green" id="save_btn">保 存</button>
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
             </div>
         </div>
@@ -84,6 +84,10 @@ $(function(){
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
     $('.edit-btn').click(function(){
+        var gid = $(this).data('gid');
+        $('#gid').val(gid);
+        var gname = $('#gname_'+gid).html().trim();
+        $('#gname').val(gname);
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
 });
