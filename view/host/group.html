@@ -104,6 +104,28 @@ $(function(){
             return false;
         }
         gid = f=='c' ? 0 : gid;
+        $.xk.http({
+            type: 'POST',
+            url: '/host/group',
+            data: {'f':f,'gid':gid,'name':gname},
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
     };
     $('#save_btn').click(_save_group);
 });
