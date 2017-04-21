@@ -39,7 +39,7 @@ class GroupHandler(BaseHandler):
         gid = self.get_argument('gid',None)
         name = self.get_argument('name',None)
         f = self.get_argument('f',None) # c = create, u = update, d = delete
-        if not gid and not name:
+        if not gid and not name and not f:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
         if f == 'c': # Create a New Group
             chk = self.db.query(HostGroup).filter_by(group_name=name).first()
