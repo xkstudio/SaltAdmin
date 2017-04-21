@@ -51,7 +51,7 @@ class GroupHandler(BaseHandler):
             gid = hg.id
             if gid:
                 code = 0
-                msg = 'Success'
+                msg = '成功新增分组'
             else:
                 self.db.rollback()
                 gid = 0
@@ -68,7 +68,7 @@ class GroupHandler(BaseHandler):
             self.db.commit()
             if ret:
                 code = 0
-                msg = 'Success'
+                msg = '保存成功'
             else:
                 self.db.rollback()
                 code = -3
