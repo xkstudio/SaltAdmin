@@ -90,8 +90,6 @@ class GroupHandler(BaseHandler):
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
 
 
-
-
 class CreateHostHandler(BaseHandler):
     @Auth
     def get(self):

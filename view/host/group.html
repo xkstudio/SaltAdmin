@@ -117,6 +117,7 @@ $(function(){
                 } else if (code==0){
                     var msg = response['msg'];
                     $.xk.toast(msg);
+                    $("#dialog").modal('hide');
                     location.reload();
                 } else {
                     $.xk.alert('服务器错误！');
