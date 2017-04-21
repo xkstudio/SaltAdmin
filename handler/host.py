@@ -38,10 +38,10 @@ class GroupHandler(BaseHandler):
     def post(self):
         gid = self.get_argument('gid',None)
         name = self.get_argument('name',None)
-        f = self.get_argument('f',None) # n = new, e = edit, d = delete
+        f = self.get_argument('f',None) # c = create, u = update, d = delete
         if not gid and not name:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
-        if f == 'n':
+        if f == 'c': # Create a New Group
             chk = self.db.query(HostGroup).filter_by(group_name=name).first()
             if chk:
                 return self.jsonReturn({'code': -2, 'msg': u'分组重复'})
@@ -58,7 +58,7 @@ class GroupHandler(BaseHandler):
                 code = -3
                 msg = u'保存失败'
             return self.jsonReturn({'code': code, 'msg': msg, 'gid': gid})
-        elif f == 'e':
+        elif f == 'u': # Update Group Info
             chk = self.db.query(HostGroup).filter_by(group_name=name).all()
             if chk:
                 for i in chk:
@@ -74,7 +74,7 @@ class GroupHandler(BaseHandler):
                 code = -3
                 msg = u'保存失败'
             return self.jsonReturn({'code': code, 'msg': msg})
-        elif f == 'd':
+        elif f == 'd': # Delete a Group
             pass
         else:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
