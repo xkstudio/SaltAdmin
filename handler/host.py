@@ -75,7 +75,17 @@ class GroupHandler(BaseHandler):
                 msg = u'保存失败'
             return self.jsonReturn({'code': code, 'msg': msg})
         elif f == 'd': # Delete a Group
-            pass
+            chk = self.db.query(HostGroup).filter_by(id=gid).first()
+            if not chk:
+                return self.jsonReturn({'code': -4, 'msg': u'分组不存在'})
+            # Check Host
+            chk = self.db.query(Host).filter_by(host_group=gid).first()
+            if chk:
+                return self.jsonReturn({'code': -5, 'msg': u'请先清空该分组的主机'})
+            # Delete Group
+            self.db.query(HostGroup).filter_by(id=gid).delete()
+            self.db.commit()
+            return self.jsonReturn({'code': 0, 'msg': u'删除成功'})
         else:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
 
