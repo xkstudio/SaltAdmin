@@ -56,10 +56,24 @@ class GroupHandler(BaseHandler):
                 self.db.rollback()
                 gid = 0
                 code = -3
-                msg = 'Error'
+                msg = u'保存失败'
             return self.jsonReturn({'code': code, 'msg': msg, 'gid': gid})
         elif f == 'e':
-            pass
+            chk = self.db.query(HostGroup).filter_by(group_name=name).all()
+            if chk:
+                for i in chk:
+                    if i.id != int(gid) and i.group_name == name:
+                        return self.jsonReturn({'code': -2, 'msg': u'分组重复', 'gid': i.id})
+            ret = self.db.query(Host).filter_by(id=gid).update({'group_name':name,'update_time':self.time})  # <type 'long'> - 1
+            self.db.commit()
+            if ret:
+                code = 0
+                msg = 'Success'
+            else:
+                self.db.rollback()
+                code = -3
+                msg = u'保存失败'
+            return self.jsonReturn({'code': code, 'msg': msg})
         elif f == 'd':
             pass
         else:
