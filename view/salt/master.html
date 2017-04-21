@@ -35,7 +35,7 @@
                     <td>{{ d.status }}</td>
                     <td>
                         <a href="javascript:void(0);" class="btn btn-danger btn-xs">删 除</a>
-                        <a href="/salt/master/edit?hid={{ d.id }}" class="btn btn-info btn-xs">编 辑</a>
+                        <a href="javascript:void(0);" class="btn btn-info btn-xs edit-btn" data-mid="{{ d.id }}">编 辑</a>
                         <a href="javascript:void(0);" class="btn btn-primary btn-xs">详 情</a>
                     </td>
                 </tr>
@@ -109,6 +109,7 @@ $(function(){
     $('.edit-btn').click(function(){
         $('#dialog_title').html('编辑SaltMaster');
         $('#save_btn').data('fun','u');
+        var mid = $(this).data('mid');
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
     var _save_group = function(){
