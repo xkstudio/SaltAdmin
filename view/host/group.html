@@ -7,7 +7,7 @@
                 <span>主机分组管理</span>
             </li>
         </ul>
-        <div class="page-toolbar pull-right" style="margin-top:5px;"><button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> 新增分组</button></div>
+        <div class="page-toolbar pull-right" style="margin-top:5px;"><button type="button" class="btn btn-primary" id="new_group"><i class="fa fa-plus"></i> 新增分组</button></div>
     </div>
     <br>
     <div class="row">
@@ -40,4 +40,30 @@
         </div>
     </div>
 </div>
+<div class="modal fade in" id="dialog" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">分组管理</h4>
+            </div>
+            <div class="modal-body"> Modal body goes here </div>
+            <div class="modal-footer">
+                <button type="button" class="btn green">保存</button>
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+{% endblock %}
+{% block footer %}
+<script>
+$(function(){
+    $('#new_group').click(function(){
+        $("#dialog").modal({keyboard:false,backdrop:"static"});
+    });
+});
+</script>
 {% endblock %}
