@@ -28,9 +28,9 @@
                 {% for d in data %}
                 <tr>
                     <td>{{ d.id }}</td>
-                    <td>{{ d.hostname or '' }}</td>
-                    <td>{{ d.api or '' }}</td>
-                    <td>{{ d.username or '' }}</td>
+                    <td id="hostname_{{ d.id }}">{{ d.hostname or '' }}</td>
+                    <td id="api_url_{{ d.id }}">{{ d.api or '' }}</td>
+                    <td id="api_username_{{ d.id }}">{{ d.username or '' }}</td>
                     <td>{{ d.minion_count }}</td>
                     <td>{{ d.status }}</td>
                     <td>
@@ -110,6 +110,12 @@ $(function(){
         $('#dialog_title').html('编辑SaltMaster');
         $('#save_btn').data('fun','u');
         var mid = $(this).data('mid');
+        var hostname = $('#hostname_'+mid).html().trim();
+        var api_url = $('#api_url_'+mid).html().trim();
+        var api_username = $('#api_username_'+mid).html().trim();
+        $('#hostname').val(hostname);
+        $('#api_url').val(api_url);
+        $('#api_username').val(api_username);
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
     var _save_group = function(){
