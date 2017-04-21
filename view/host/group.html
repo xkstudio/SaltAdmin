@@ -81,11 +81,13 @@
 <script>
 $(function(){
     $('#new_group').click(function(){
+        $('#save_btn').data('fun','c');
         $('#gid').val('系统自动分配');
         $('#gname').val('');
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
     $('.edit-btn').click(function(){
+        $('#save_btn').data('fun','u');
         var gid = $(this).data('gid');
         $('#gid').val(gid);
         var gname = $('#gname_'+gid).html().trim();
