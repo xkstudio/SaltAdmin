@@ -94,6 +94,18 @@ $(function(){
         $('#gname').val(gname);
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
+    var _save_group = function(){
+        var gid = $('#gid').val();
+        var gname = $('#gname').val().trim();
+        var f = $('#save_btn').data('fun');
+        if (gname==""){
+            $.xk.toast('分组名称不能为空！');
+            $('#gname').focus();
+            return false;
+        }
+        gid = f=='c' ? 0 : gid;
+    };
+    $('#save_btn').click(_save_group);
 });
 </script>
 {% endblock %}
