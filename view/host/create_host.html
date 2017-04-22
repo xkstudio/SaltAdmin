@@ -30,9 +30,9 @@
                     <div class="col-sm-1" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i></div>
                 </div>
                 <div class="form-group">
-                    <label for="smid" class="col-sm-1 control-label">MinionID</label>
+                    <label for="minion_id" class="col-sm-1 control-label">MinionID</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="smid" placeholder="Salt Minion ID">
+                        <input type="text" class="form-control" id="minion_id" placeholder="Salt Minion ID">
                     </div>
                     <div class="col-sm-1" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i></div>
                 </div>
@@ -80,14 +80,14 @@ $(function(){
     var _init = function(){
         $('#hostname').keyup(function(){
             var hostname = $(this).val().trim();
-            $('#smid').val(hostname);
+            $('#minion_id').val(hostname);
         });
     };
     _init();
     var _create_host = function(){
         var data = {
             'hostname': $('#hostname').val().trim(),
-            'smid': $('#smid').val().trim(),
+            'minion_id': $('#minion_id').val().trim(),
             'master_id': $('#master_id').val(),
             'ip': $('#ip').val().trim(),
             'group': $('#group').val(),
@@ -103,9 +103,9 @@ $(function(){
             $('#hostname').focus();
             return false;
         }
-        if (data['smid']==""){
+        if (data['minion_id']==""){
             $.xk.toast('Salt ID 不能为空！');
-            $('#smid').focus();
+            $('#minion_id').focus();
             return false;
         }
         if (data['master_id']=="0"){
