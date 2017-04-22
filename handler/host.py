@@ -7,6 +7,7 @@ from BaseHandler import BaseHandler
 from tornado.web import authenticated as Auth
 from model.models import Host
 from model.models import HostGroup
+from model.models import SaltMaster
 from model.models import or_
 
 
@@ -94,7 +95,8 @@ class CreateHostHandler(BaseHandler):
     @Auth
     def get(self):
         groups = get_groups(self.db)
-        self.render('host/create_host.html',groups=groups)
+        saltmaster = self.db.query(SaltMaster).all()
+        self.render('host/create_host.html',groups=groups,saltmaster=saltmaster)
 
     @Auth
     def post(self):
