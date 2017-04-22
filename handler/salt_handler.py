@@ -52,7 +52,7 @@ class MasterHandler(BaseHandler):
             chk = self.db.query(SaltMaster).filter(or_(SaltMaster.hostname == data['hostname'], SaltMaster.api == data['api'])).all()
             if chk:
                 for i in chk:
-                    if i.id1 != int(_id):
+                    if i.id != int(_id):
                         if i.hostname == data['hostname'] or data['api']:
                             return self.jsonReturn({'code': -3, 'msg': u'SaltMaster重复'})
             if not data['password']:
