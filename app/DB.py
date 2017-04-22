@@ -14,7 +14,7 @@ class Database:
 
 
     def create_session(self,db_uri,encoding='utf-8'):
-        engine = create_engine(db_uri, encoding=encoding, echo=False)
+        engine = create_engine(db_uri, encoding=encoding, echo=False, pool_recycle=60)
         return scoped_session(sessionmaker(bind=engine, autocommit=False))
 
 
