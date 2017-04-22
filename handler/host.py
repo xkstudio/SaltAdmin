@@ -96,6 +96,8 @@ class CreateHostHandler(BaseHandler):
     def get(self):
         groups = get_groups(self.db)
         saltmaster = self.db.query(SaltMaster).all()
+        if not saltmaster:
+            saltmaster = [{'id':0,'hostname':u'请先添加SaltMaster'}]
         self.render('host/create_host.html',groups=groups,saltmaster=saltmaster)
 
     @Auth
@@ -143,6 +145,8 @@ class HostDetailHandler(BaseHandler):
         groups = get_groups(self.db)
         data = self.db.query(Host).filter_by(id=hid).first()
         saltmaster = self.db.query(SaltMaster).all()
+        if not saltmaster:
+            saltmaster = [{'id':0,'hostname':u'请先添加SaltMaster'}]
         self.render('host/host_detail.html',data=data,groups=groups,saltmaster=saltmaster)
 
     @Auth
