@@ -157,6 +157,7 @@ $(function(){
                     var msg = response['msg'];
                     $.xk.toast(msg);
                 } else if (code==0){
+                    $("#dialog").modal('hide');
                     $.xk.toast('保存成功！');
                     location.reload();
                 } else {
