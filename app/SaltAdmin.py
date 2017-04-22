@@ -45,7 +45,7 @@ class App(tornado.web.Application):
 
     def get_db(self,conf):
         db = Database(**conf)
-        return db.db_session()
+        return db.session
 
     #def test(self):
     #    print "Test"
