@@ -99,6 +99,7 @@
 $(function(){
     $('#new_saltmaster').click(function(){
         $('#save_btn').data('fun','c');
+        $('#save_btn').data('mid',0);
         $('#dialog_title').html('新增SaltMaster');
         $('#hostname').val('');
         $('#api_url').val('');
@@ -107,9 +108,10 @@ $(function(){
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
     $('.edit-btn').click(function(){
+        var mid = $(this).data('mid');
         $('#dialog_title').html('编辑SaltMaster');
         $('#save_btn').data('fun','u');
-        var mid = $(this).data('mid');
+        $('#save_btn').data('mid',mid);
         var hostname = $('#hostname_'+mid).html().trim();
         var api_url = $('#api_url_'+mid).html().trim();
         var api_username = $('#api_username_'+mid).html().trim();
@@ -124,6 +126,7 @@ $(function(){
             api_url: $('#api_url').val().trim(),
             api_username: $('#api_username').val().trim(),
             api_password: $('#api_password').val().trim(),
+            id: $('#save_btn').data('mid'),
             f: $('#save_btn').data('fun')
         };
         if (data.hostname==""){
