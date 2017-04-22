@@ -29,7 +29,7 @@ class MasterHandler(BaseHandler):
         if not data['hostname'] or f not in ['c','u'] or not data['username']:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
         if f == 'c':
-            if not data['api_password']:
+            if not data['password']:
                 return self.jsonReturn({'code': -2, 'msg': u'SaltAPI密码不能为空'})
                 chk = self.db.query(SaltMaster).filter(or_(SaltMaster.hostname == data['hostname'], SaltMaster.api == data['api'])).first()
                 if chk:
