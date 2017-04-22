@@ -88,10 +88,16 @@ $(function(){
         var data = {
             'hostname': $('#hostname').val().trim(),
             'smid': $('#smid').val().trim(),
+            'master_id': $('#master_id').val(),
             'ip': $('#ip').val().trim(),
             'group': $('#group').val(),
             'desc': $('#desc').val().trim()
         };
+        if (data['ip']==""){
+            $.xk.toast('主机IP不能为空！');
+            $('#ip').focus();
+            return false;
+        }
         if (data['hostname']==""){
             $.xk.toast('主机名不能为空！');
             $('#hostname').focus();
@@ -102,9 +108,9 @@ $(function(){
             $('#smid').focus();
             return false;
         }
-        if (data['ip']==""){
-            $.xk.toast('主机IP不能为空！');
-            $('#ip').focus();
+        if (data['master_id']=="0"){
+            $.xk.toast('请选择SaltMaster！');
+            $('#master_id').focus();
             return false;
         }
         if (data['group']=="0"){
