@@ -4,10 +4,13 @@
 
 from BaseHandler import BaseHandler
 from model.models import SaltMaster
+from tornado.web import authenticated as Auth
 
 
 # Salt-Master管理
 class MasterHandler(BaseHandler):
+
+    @Auth
     def get(self):
         data = self.db.query(SaltMaster).all()
         self.render('salt/master.html',data=data)
@@ -15,6 +18,8 @@ class MasterHandler(BaseHandler):
 
 # Salt-Key管理
 class KeyHandler(BaseHandler):
+
+    @Auth
     def get(self):
         data = self.db.query(SaltMaster).all()
         self.render('salt/key.html',data=data)
