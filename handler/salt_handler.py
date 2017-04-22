@@ -31,20 +31,20 @@ class MasterHandler(BaseHandler):
         if f == 'c':
             if not data['password']:
                 return self.jsonReturn({'code': -2, 'msg': u'SaltAPI密码不能为空'})
-                chk = self.db.query(SaltMaster).filter(or_(SaltMaster.hostname == data['hostname'], SaltMaster.api == data['api'])).first()
-                if chk:
-                    return self.jsonReturn({'code': -3, 'msg': u'SaltMaster重复'})
-                s = SaltMaster(**data)
-                self.db.add(s)
-                self.db.commit()
-                if s.id:
-                    code = 0
-                    msg = 'Success'
-                else:
-                    self.db.rollback()
-                    code = -1
-                    msg = u'保存失败'
-                return self.jsonReturn({'code': code, 'msg': msg})
+            chk = self.db.query(SaltMaster).filter(or_(SaltMaster.hostname == data['hostname'], SaltMaster.api == data['api'])).first()
+            if chk:
+                return self.jsonReturn({'code': -3, 'msg': u'SaltMaster重复'})
+            s = SaltMaster(**data)
+            self.db.add(s)
+            self.db.commit()
+            if s.id:
+                code = 0
+                msg = 'Success'
+            else:
+                self.db.rollback()
+                code = -1
+                msg = u'保存失败'
+            return self.jsonReturn({'code': code, 'msg': msg})
         else: # Update
             if not _id:
                 return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
