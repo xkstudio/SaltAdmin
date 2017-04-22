@@ -104,7 +104,7 @@ class CreateHostHandler(BaseHandler):
     def post(self):
         data = {
             'hostname': self.get_argument('hostname',None),
-            'minion_id': self.get_argument('smid',None),
+            'minion_id': self.get_argument('minion_id',None),
             'master_id': self.get_argument('master_id',None),
             'ip': self.get_argument('ip',None),
             'host_group': self.get_argument('group',None),
