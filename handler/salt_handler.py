@@ -34,6 +34,7 @@ class MasterHandler(BaseHandler):
             chk = self.db.query(SaltMaster).filter(or_(SaltMaster.hostname == data['hostname'], SaltMaster.api == data['api'])).first()
             if chk:
                 return self.jsonReturn({'code': -3, 'msg': u'SaltMaster重复'})
+            data['create_time'] = self.time
             s = SaltMaster(**data)
             self.db.add(s)
             self.db.commit()
