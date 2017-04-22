@@ -19,6 +19,7 @@ class MasterHandler(BaseHandler):
     @Auth
     def post(self):
         f = self.get_argument('f', None)
+        _id = self.get_argument('id', None)
         data = {
             'hostname': self.get_argument('hostname', None),
             'api': self.get_argument('api_url', None),
@@ -45,7 +46,26 @@ class MasterHandler(BaseHandler):
                     msg = u'保存失败'
                 return self.jsonReturn({'code': code, 'msg': msg})
         else: # Update
+            if not _id:
+                return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
             chk = self.db.query(SaltMaster).filter(or_(SaltMaster.hostname == data['hostname'], SaltMaster.api == data['api'])).all()
+            if chk:
+                for i in chk:
+                    if i.id1 != int(_id):
+                        if i.hostname == data['hostname'] or data['api']:
+                            return self.jsonReturn({'code': -3, 'msg': u'SaltMaster重复'})
+            if not data['password']:
+                del(data['password']) # 密码为空时不修改密码
+            ret = self.db.query(SaltMaster).filter_by(id=_id).update(data)  # <type 'long'> - 1
+            self.db.commit()
+            if ret:
+                code = 0
+                msg = '保存成功'
+            else:
+                self.db.rollback()
+                code = -3
+                msg = u'保存失败'
+            return self.jsonReturn({'code': code, 'msg': msg})
 
 
 
