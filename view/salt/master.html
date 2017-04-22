@@ -118,7 +118,58 @@ $(function(){
         $('#api_username').val(api_username);
         $("#dialog").modal({keyboard:false,backdrop:"static"});
     });
-    //$('#save_btn').click(_save_group);
+    var _save_master = function(){
+        var data = {
+            hostname: $('#hostname').val().trim(),
+            api_url: $('#api_url').val().trim(),
+            api_username: $('#api_username').val().trim(),
+            api_password: $('#api_password').val().trim(),
+            f: $('#save_btn').data('fun')
+        };
+        if (data.hostname==""){
+            $.xk.toast('请输入SaltMaster主机名');
+            $('#hostname').focus();
+            return false;
+        }
+        if (data.api_url==""){
+            $.xk.toast('请输入SaltAPI的URL地址');
+            $('#api_url').focus();
+            return false;
+        }
+        if (data.api_username==""){
+            $.xk.toast('请输入SaltAPI用户名');
+            $('#api_username').focus();
+            return false;
+        }
+        if (data.f=="c" && data.api_password==""){
+            $.xk.toast('请输入SaltAPI密码');
+            $('#api_password').focus();
+            return false;
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/salt/master',
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('保存成功！');
+                    var hid = response['hid'];
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+    $('#save_btn').click(_save_master);
 });
 </script>
 {% endblock %}
