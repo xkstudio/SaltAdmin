@@ -26,7 +26,7 @@ class MasterHandler(BaseHandler):
             'username': self.get_argument('api_username', None),
             'password': self.get_argument('api_password', None)
         }
-        if not data['hostname'] or f not in ['c','u'] or not data['api_username']:
+        if not data['hostname'] or f not in ['c','u'] or not data['username']:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
         if f == 'c':
             if not data['api_password']:
