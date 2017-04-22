@@ -142,7 +142,8 @@ class HostDetailHandler(BaseHandler):
         hid = self.get_argument("hid",None)
         groups = get_groups(self.db)
         data = self.db.query(Host).filter_by(id=hid).first()
-        self.render('host/host_detail.html',data=data,groups=groups)
+        saltmaster = self.db.query(SaltMaster).all()
+        self.render('host/host_detail.html',data=data,groups=groups,saltmaster=saltmaster)
 
     @Auth
     def post(self):
