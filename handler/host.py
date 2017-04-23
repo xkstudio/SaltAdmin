@@ -25,7 +25,7 @@ class IndexHandler(BaseHandler):
     def get(self):
         data = self.db.query(Host).all()
         groups = get_groups(self.db)
-        status = {1:u"正常",2:u"未知"}
+        status = {1:u"在线",2:u"未知"}
         self.render('host/index.html',data=data,groups=groups,status=status)
 
 
