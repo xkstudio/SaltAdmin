@@ -25,7 +25,7 @@ Powered By [KK Studio](http://github.com/kkstu)
 
 - [SaltStack](https://github.com/saltstack/salt)：>= 2015.5.10
 
-- [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.8
+- [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.9
 
 - [Jinja2](http://jinja.pocoo.org/)：2.9+
 

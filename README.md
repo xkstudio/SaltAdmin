@@ -48,7 +48,7 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 - [SaltStack](https://github.com/saltstack/salt)：>= 2015.5.10
 
-- [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.8
+- [SQLAlchemy](http://www.sqlalchemy.org/)：1.1.9
 
 - [Jinja2](http://jinja.pocoo.org/)：2.9+
 
