@@ -164,7 +164,7 @@ After the version 2.0-Stable release.
 459457262
 
 
-#### KK Studio
+#### Development Team
 
 http://studio.luxiaok.com
 
