@@ -23,7 +23,10 @@ def get_groups(db):
 class IndexHandler(BaseHandler):
     @Auth
     def get(self):
-        data = self.db.query(Host).all()
+        page = int(self.get_argument('page',1))
+        line = int(self.get_argument('line',100))
+        offset = (page-1)*line
+        data = self.db.query(Host).offset(offset).limit(line).all()
         groups = get_groups(self.db)
         status = {
             0: u'<span class="label label-default"> 未知 </span>',
