@@ -10,7 +10,10 @@ from model.models import User
 class UserHandler(BaseHandler):
     @Auth
     def get(self):
-        data = self.db.query(User).all()
+        page = int(self.get_argument('page', 1))
+        line = int(self.get_argument('line', 50))
+        offset = (page - 1) * line
+        data = self.db.query(User).offset(offset).limit(line).all()
         gender = {1:u'男', 2:u'女'}
         self.render('user/index.html', title=u"用户管理",data=data,gender=gender)
 
