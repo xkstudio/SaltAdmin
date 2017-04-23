@@ -112,7 +112,8 @@ class CreateHostHandler(BaseHandler):
             'ip': self.get_argument('ip',None),
             'host_group': self.get_argument('group',None),
             'host_desc': self.get_argument('desc',None),
-            'create_time': self.time
+            'create_time': self.time,
+            'status': 0 # Default status is 0
         }
         # 检测重复
         chk = self.db.query(Host).filter(or_(Host.hostname==data['hostname'],Host.ip==data['ip'],Host.minion_id==data['minion_id'])).first()
