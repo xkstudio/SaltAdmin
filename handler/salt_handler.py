@@ -61,7 +61,7 @@ class MasterHandler(BaseHandler):
             self.db.commit()
             if ret:
                 code = 0
-                msg = '保存成功'
+                msg = u'保存成功'
             else:
                 self.db.rollback()
                 code = -3
