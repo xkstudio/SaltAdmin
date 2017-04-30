@@ -100,7 +100,7 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 Import SQL
 
-> mysql saltadmin < docs/data.sql
+> mysql saltadmin < [docs/saltadmin.sql](docs/saltadmin.sql)
 
 Config info See the [config/settings.py](config/settings.py)
 
