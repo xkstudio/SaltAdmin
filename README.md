@@ -98,6 +98,10 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 #### Configure Database
 
+Create a database
+
+> mysql> create database saltadmin;
+
 Import SQL
 
 > mysql saltadmin < [docs/saltadmin.sql](docs/saltadmin.sql)
