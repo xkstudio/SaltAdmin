@@ -75,6 +75,14 @@ Powered By [KK Studio](http://github.com/kkstu)
 
 #### 配置数据库
 
+创建数据库
+
+> mysql> create database saltadmin;
+
+导入数据
+
+> mysql saltadmin < [docs/saltadmin.sql](docs/saltadmin.sql)
+
 配置文件 [config/settings.py](config/settings.py)
 
 ```python
