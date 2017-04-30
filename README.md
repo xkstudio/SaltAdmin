@@ -98,7 +98,11 @@ See the old version (v1.0) please visit https://github.com/luxiaok/SaltAdmin
 
 #### Configure Database
 
-See the [config/settings.py](config/settings.py)
+Import SQL
+
+> mysql saltadmin < docs/data.sql
+
+Config info See the [config/settings.py](config/settings.py)
 
 ```python
 config = {
