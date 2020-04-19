@@ -149,6 +149,6 @@ http://studio.luxiaok.com
 
 ## 开源协议
 
-MIT
+GPLv3
 
 协议详情：[LICENSE](LICENSE)
